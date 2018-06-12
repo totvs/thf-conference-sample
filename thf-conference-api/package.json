@@ -1,0 +1,25 @@
+{
+  "name": "thf-conference-app",
+  "version": "1.0.0",
+  "description": "THF conference application API. ",
+  "main": "index.js",
+  "scripts": {
+    "prestart": "npm install",
+    "start": "nodemon index.js"
+  },
+  "keywords": [
+    "swagger"
+  ],
+  "license": "Unlicense",
+  "private": true,
+  "dependencies": {
+    "connect": "^3.2.0",
+    "cors": "^2.8.4",
+    "js-yaml": "^3.3.0",
+    "jslint": "^0.12.0",
+    "swagger-tools": "0.10.1"
+  },
+  "devDependencies": {
+    "nodemon": "^1.17.5"
+  }
+}
