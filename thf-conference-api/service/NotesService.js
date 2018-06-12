@@ -6,7 +6,7 @@ var notes = [{
   title: "Basic RESTful API in NodeJS",
   text: "Note of Basic RESTful API in NodeJS",
   lectureId: "2",
-  userId: "1",
+  userId: "2",
   createdDate: new Date().toISOString(),
   updatedDate: new Date().toISOString(),
   deletedDate: undefined,
@@ -16,12 +16,18 @@ var notes = [{
   title: "Unit testing for beginners",
   text: "Note of unit testing for beginners",
   lectureId: "1",
-  userId: "1",
+  userId: "2",
   createdDate: new Date().toISOString(),
   updatedDate: new Date().toISOString(),
   deletedDate: undefined,
   deleted: false
 }];
+
+exports.findNotesByUserId = function (userId) {
+  return notes.filter(note => note.userId == userId).map(note => {
+    return { id: note.id, title: note.title }
+  });
+}
 
 /**
  * Load the list of notes

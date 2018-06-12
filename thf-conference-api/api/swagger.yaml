@@ -1013,6 +1013,35 @@ paths:
       x-swagger-router-controller: "Users"
     x-restlet:
       section: "Users"
+  /users/{id}/notes/:
+    get:
+      tags:
+      - "Users"
+      summary: "Load all notes by users"
+      operationId: "usersIdNotesGET"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "User id."
+        required: true
+        type: "string"
+        x-example: "1"
+      responses:
+        200:
+          description: "Status 200 - OK"
+          schema:
+            $ref: "#/definitions/user"
+        404:
+          description: "Status 404 - Not Found"
+          schema:
+            $ref: "#/definitions/errorResponse"
+        500:
+          description: "Status 500 - Internal Server Error"
+      x-swagger-router-controller: "Users"
+    x-restlet:
+      section: "Users"
 definitions:
   errorResponse:
     type: "object"
@@ -1191,6 +1220,22 @@ definitions:
       lectureId: "lectureId"
     x-restlet:
       section: "Notes"
+  noteSummary:
+    type: "object"
+    required:
+    - "title"
+    properties:
+      id:
+        type: "string"
+        description: "Note id."
+      title:
+        type: "string"
+        description: "Note title."
+    example:
+      id: "id"
+      title: "title"
+    x-restlet:
+      section: "Notes"
   notesResponse:
     type: "object"
     required:
@@ -1349,8 +1394,18 @@ definitions:
       isSuperUser:
         type: "boolean"
         description: "Define if is a super user."
+      notes:
+        type: "array"
+        description: "Notes list of user."
+        items:
+          $ref: "#/definitions/noteSummary"
     example:
       password: "password"
+      notes:
+      - id: "id"
+        title: "title"
+      - id: "id"
+        title: "title"
       isSuperUser: true
       id: "id"
       username: "username"
@@ -1374,10 +1429,20 @@ definitions:
       hasNext: true
       items:
       - password: "password"
+        notes:
+        - id: "id"
+          title: "title"
+        - id: "id"
+          title: "title"
         isSuperUser: true
         id: "id"
         username: "username"
       - password: "password"
+        notes:
+        - id: "id"
+          title: "title"
+        - id: "id"
+          title: "title"
         isSuperUser: true
         id: "id"
         username: "username"

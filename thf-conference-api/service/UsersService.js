@@ -1,11 +1,24 @@
 'use strict';
 
+const note = require('./NotesService');
+
 var totvsResponse = { "hasNext": false, "items": [] };
 var users = [{
   id: "1",
   username: "admin",
   password: "admin",
   isSuperUser: true,
+  notes: undefined,
+  createdDate: new Date().toISOString(),
+  updatedDate: new Date().toISOString(),
+  deletedDate: undefined,
+  deleted: false
+}, {
+  id: "2",
+  username: "dev",
+  password: "totvs",
+  isSuperUser: false,
+  notes: undefined,
   createdDate: new Date().toISOString(),
   updatedDate: new Date().toISOString(),
   deletedDate: undefined,
@@ -67,6 +80,26 @@ exports.usersIdGET = function (id) {
 
 
 /**
+ * Load all notes by users
+ *
+ * id String User id.
+ * returns user
+ **/
+exports.usersIdNotesGET = function (id) {
+  return new Promise(function (resolve, reject) {
+    var user = users.find(user => user.id == id);
+
+    if (user) {
+      user.notes = note.findNotesByUserId(user.id);
+      resolve(user);
+    } else {
+      throw 404;
+    }
+  });
+}
+
+
+/**
  * Update a user
  *
  * id BigDecimal User id.
@@ -82,7 +115,7 @@ exports.usersIdPUT = function (id, body) {
       user.password = body.password;
       user.isSuperUser = body.isSuperUser;
       user.updatedDate = new Date().toISOString();
-      
+
       resolve(user);
     } else {
       throw 404;
@@ -108,7 +141,7 @@ exports.usersPOST = function (body) {
       updatedDate: new Date().toISOString(),
       deleted: false
     };
-    
+
     users.push(user);
     resolve(user);
   });

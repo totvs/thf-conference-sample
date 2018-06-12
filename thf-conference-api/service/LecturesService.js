@@ -48,16 +48,6 @@ exports.findLecturesBySpeakerId = function (speakerId) {
   });
 }
 
-exports.getLectures = function () {
-  return lectures;
-}
-
-exports.setLectures = function (lecture) {
-  if (lecture) {
-    lectures.push(lecture);
-  }
-}
-
 /**
  * Load the list of lectures
  *
