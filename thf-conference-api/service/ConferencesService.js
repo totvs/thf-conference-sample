@@ -40,7 +40,7 @@ exports.conferencesIdGET = function (id) {
     if (conference) {
       resolve(conference);
     } else {
-      throw 404;
+      reject(404);
     }
   });
 }
@@ -66,7 +66,7 @@ exports.conferencesIdPUT = function (id, body) {
 
       resolve(conference);
     } else {
-      throw 404;
+      reject(404);
     }
   });
 }

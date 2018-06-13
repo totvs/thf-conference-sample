@@ -72,7 +72,7 @@ exports.tracksIdDELETE = function (id) {
       track.deleted = true;
       resolve();
     } else {
-      throw 404;
+      reject(404);
     }
   });
 }
@@ -91,7 +91,7 @@ exports.tracksIdGET = function (id) {
     if (track) {
       resolve(track);
     } else {
-      throw 404;
+      reject(404);
     }
   });
 }
@@ -115,7 +115,7 @@ exports.tracksIdPUT = function (id, body) {
 
       resolve(track);
     } else {
-      throw 404;
+      reject(404);
     }
   });
 }

@@ -77,7 +77,7 @@ exports.lecturesIdDELETE = function (id) {
       lecture.deleted = true;
       resolve();
     } else {
-      throw 404;
+      reject(404);
     }
   });
 }
@@ -96,7 +96,7 @@ exports.lecturesIdGET = function (id) {
     if (lecture) {
       resolve(lecture);
     } else {
-      throw 404;
+      reject(404);
     }
   });
 }
@@ -125,7 +125,7 @@ exports.lecturesIdPUT = function (id, body) {
 
       resolve(lecture);
     } else {
-      throw 404;
+      reject(404);
     }
   });
 }

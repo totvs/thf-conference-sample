@@ -49,7 +49,7 @@ var speakers = [{
   deleted: false
 }];
 
-var clearLecturesForSpeakers = function () {
+var findLecturesBySpeaker = function () {
   speakers = speakers.map(speaker => {
     return {
       id: speaker.id,
@@ -57,7 +57,7 @@ var clearLecturesForSpeakers = function () {
       email: speaker.email,
       photo: speaker.photo,
       description: speaker.description,
-      lectures: undefined,
+      lectures: lecture.findLecturesBySpeakerId(speaker.id),
       createdDate: speaker.createdDate,
       updatedDate: speaker.updatedDate,
       deletedDate: speaker.deletedDate,
@@ -86,7 +86,7 @@ exports.speakersGET = function (order, diffDate) {
 
     }
     */
-    clearLecturesForSpeakers();
+    findLecturesBySpeaker();
     totvsResponse.items = speakers;
 
     resolve(totvsResponse);
@@ -109,7 +109,7 @@ exports.speakersIdDELETE = function (id) {
       speaker.deleted = true;
       resolve();
     } else {
-      throw 404;
+      reject(404);
     }
   });
 }
@@ -123,13 +123,13 @@ exports.speakersIdDELETE = function (id) {
  **/
 exports.speakersIdGET = function (id) {
   return new Promise(function (resolve, reject) {
-    clearLecturesForSpeakers();
+    findLecturesBySpeaker();
     var speaker = speakers.find(speaker => speaker.id == id);
 
     if (speaker) {
       resolve(speaker);
     } else {
-      throw 404;
+      reject(404);
     }
   });
 }
@@ -149,7 +149,7 @@ exports.speakersIdLecturesGET = function(id) {
       speaker.lectures = lecture.findLecturesBySpeakerId(speaker.id);
       resolve(speaker);
     } else {
-      throw 404;
+      reject(404);
     }
   });
 }
@@ -175,7 +175,7 @@ exports.speakersIdPUT = function (id, body) {
       
       resolve(speaker);
     } else {
-      throw 404;
+      reject(404);
     }
   });
 }
@@ -190,14 +190,14 @@ exports.speakersIdPUT = function (id, body) {
 exports.speakersPOST = function (body) {
   return new Promise(function (resolve, reject) {
     var speaker = {
-      "id": (speakers.length + 1).toString(),
-      "name": body.name,
-      "description": body.description,
-      "photo": body.photo,
-      "email": body.email,
-      "deleted": false,
-      "createdDate": new Date().toISOString(),
-      "updatedDate": new Date().toISOString()
+      id: (speakers.length + 1).toString(),
+      name: body.name,
+      description: body.description,
+      photo: body.photo,
+      email: body.email,
+      deleted: false,
+      createdDate: new Date().toISOString(),
+      updatedDate: new Date().toISOString()
     };
     
     speakers.push(speaker);

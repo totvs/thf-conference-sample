@@ -25,14 +25,14 @@ var users = [{
   deleted: false
 }];
 
-var clearNotesForUsers = function () {
+var findNotesForUsers = function () {
   users = users.map(user => {
     return {
       id: user.id,
       username: user.username,
       password: user.password,
       isSuperUser: user.isSuperUser,
-      notes: undefined,
+      notes: note.findNotesByUserId(user.id),
       createdDate: user.createdDate,
       updatedDate: user.updatedDate,
       deletedDate: user.deletedDate,
@@ -48,7 +48,7 @@ var clearNotesForUsers = function () {
  **/
 exports.usersGET = function () {
   return new Promise(function (resolve, reject) {
-    clearNotesForUsers();
+    findNotesForUsers();
     totvsResponse.items = users;
 
     resolve(totvsResponse);
@@ -71,7 +71,7 @@ exports.usersIdDELETE = function (id) {
       user.deleted = true;
       resolve();
     } else {
-      throw 404;
+      reject(404);
     }
   });
 }
@@ -85,13 +85,13 @@ exports.usersIdDELETE = function (id) {
  **/
 exports.usersIdGET = function (id) {
   return new Promise(function (resolve, reject) {
-    clearNotesForUsers();
+    findNotesForUsers();
     var user = users.find(user => user.id == id);
 
     if (user) {
       resolve(user);
     } else {
-      throw 404;
+      reject(404);
     }
   });
 }
@@ -111,7 +111,7 @@ exports.usersIdNotesGET = function (id) {
       user.notes = note.findNotesByUserId(user.id);
       resolve(user);
     } else {
-      throw 404;
+      reject(404);
     }
   });
 }
@@ -136,7 +136,7 @@ exports.usersIdPUT = function (id, body) {
 
       resolve(user);
     } else {
-      throw 404;
+      reject(404);
     }
   });
 }

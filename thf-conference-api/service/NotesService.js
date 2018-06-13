@@ -58,7 +58,7 @@ exports.notesIdDELETE = function (id) {
       note.deleted = true;
       resolve();
     } else {
-      throw 404;
+      reject(404);
     }
   });
 }
@@ -77,7 +77,7 @@ exports.notesIdGET = function (id) {
     if (note) {
       resolve(note);
     } else {
-      throw 404;
+      reject(404);
     }
   });
 }
@@ -103,7 +103,7 @@ exports.notesIdPUT = function (id, body) {
       
       resolve(note);
     } else {
-      throw 404;
+      reject(404);
     }
   });
 }
