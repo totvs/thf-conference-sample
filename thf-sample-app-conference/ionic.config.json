@@ -1,0 +1,8 @@
+{
+  "name": "thf-sample-conference",
+  "app_id": "",
+  "type": "ionic-angular",
+  "integrations": {
+    "cordova": {}
+  }
+}

@@ -1,3 +1,6 @@
 # dependencies
 /thf-conference-api/node_modules
-package-lock.json
+/thf-conference-api/package-lock.json
+
+/thf-sample-app-conference/node_modules
+/thf-sample-app-conference/package-lock.json
