@@ -5,9 +5,9 @@ const lecture = require('./LecturesService');
 var totvsResponse = { "hasNext": false, "items": [] };
 var speakers = [{
   id: "1",
-  name: "NodeJS Developer",
-  email: "developer.nodejs@totvs.com.br",
-  photo: "image01.jpg",
+  name: "Peter Benjamin Parker",
+  email: "peter.parker@totvs.com.br",
+  photo: "avatar4.png",
   description: "Nodejs developer with 4 years experience",
   lectures: undefined,
   createdDate: new Date().toISOString(),
@@ -16,9 +16,9 @@ var speakers = [{
   deleted: false
 }, {
   id: "2",
-  name: "Angular Developer",
-  email: "developer.angular@totvs.com.br",
-  photo: "image02.jpg",
+  name: "Natasha Romanova",
+  email: "natasha.romanova@totvs.com.br",
+  photo: "avatar2.png",
   description: "Angular developer with 2 years experience",
   lectures: undefined,
   createdDate: new Date().toISOString(),
@@ -27,9 +27,9 @@ var speakers = [{
   deleted: false
 }, {
   id: "3",
-  name: "Javascript Developer",
-  email: "developer.js@totvs.com.br",
-  photo: "image03.jpg",
+  name: "Anthony Stark",
+  email: "anthony.stark@totvs.com.br",
+  photo: "avatar8.png",
   description: "Javascript developer with 8 years experience",
   lectures: undefined,
   createdDate: new Date().toISOString(),
@@ -38,9 +38,9 @@ var speakers = [{
   deleted: false
 }, {
   id: "4",
-  name: "Full Stack Developer",
-  email: "developer.fullstack@totvs.com.br",
-  photo: "image04.jpg",
+  name: "Carol Danvers",
+  email: "carol.danvers@totvs.com.br",
+  photo: "avatar3.png",
   description: "Full stack developer with 2 years experience",
   lectures: undefined,
   createdDate: new Date().toISOString(),
