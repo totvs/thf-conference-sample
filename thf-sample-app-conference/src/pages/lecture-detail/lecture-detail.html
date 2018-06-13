@@ -1,0 +1,26 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-title *ngIf="lecture">{{ lecture.title }}</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <div *ngIf="lecture">
+
+    <ion-row>
+      <ion-col col-10> <h1>{{ lecture.title }}</h1> </ion-col>
+      <ion-col col-2>
+        <div [style.backgroundColor]="lecture.track.color" class="track">{{ lecture.track.name }}</div>
+      </ion-col>
+    </ion-row>
+
+    <h4>{{ lecture.speaker.name }}</h4>
+    <p>{{ lecture.startTime }} - {{ lecture.endTime }}</p>
+    <p>Room: {{ lecture.room }}</p>
+
+    <br>
+
+    <p>{{ lecture.description }}</p>
+
+  </div>
+</ion-content>
