@@ -66,6 +66,10 @@ var findLecturesBySpeaker = function () {
   });
 };
 
+exports.findSpeakerById = (speakerId) => {
+  return speakers.find(speaker => speaker.id == speakerId);
+}
+
 /**
  * Load the list of speakers
  *
@@ -102,7 +106,7 @@ exports.speakersGET = function (order, diffDate) {
  **/
 exports.speakersIdDELETE = function (id) {
   return new Promise(function (resolve, reject) {
-    var speaker = speakers.find(speaker => speaker.id == id);
+    var speaker = findSpeakerById(id);
 
     if (speaker) {
       speaker.deletedDate = new Date().toISOString();
@@ -124,7 +128,7 @@ exports.speakersIdDELETE = function (id) {
 exports.speakersIdGET = function (id) {
   return new Promise(function (resolve, reject) {
     findLecturesBySpeaker();
-    var speaker = speakers.find(speaker => speaker.id == id);
+    var speaker = findSpeakerById(id);
 
     if (speaker) {
       resolve(speaker);
@@ -143,7 +147,7 @@ exports.speakersIdGET = function (id) {
  **/
 exports.speakersIdLecturesGET = function(id) {
   return new Promise(function(resolve, reject) {
-    var speaker = speakers.find(speaker => speaker.id == id);
+    var speaker = findSpeakerById(id);
 
     if (speaker) {
       speaker.lectures = lecture.findLecturesBySpeakerId(speaker.id);
@@ -164,7 +168,7 @@ exports.speakersIdLecturesGET = function(id) {
  **/
 exports.speakersIdPUT = function (id, body) {
   return new Promise(function (resolve, reject) {
-    var speaker = speakers.find(speaker => speaker.id == id);
+    var speaker = findSpeakerById(id);
 
     if (speaker) {
       speaker.name = body.name;

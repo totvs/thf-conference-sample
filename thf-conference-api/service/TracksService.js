@@ -43,6 +43,11 @@ var tracks = [{
   deleted: false
 }];
 
+exports.findTrackById = function (id) {
+  return tracks.find(track => track.id == id);
+}
+
+
 /**
  * Load the list of Tracks
  *
@@ -65,7 +70,7 @@ exports.tracksGET = function () {
  **/
 exports.tracksIdDELETE = function (id) {
   return new Promise(function (resolve, reject) {
-    var track = tracks.find(track => track.id == id);
+    var track = findTrackById(id);
 
     if (track) {
       track.deletedDate = new Date().toISOString();
@@ -86,7 +91,7 @@ exports.tracksIdDELETE = function (id) {
  **/
 exports.tracksIdGET = function (id) {
   return new Promise(function (resolve, reject) {
-    var track = tracks.find(track => track.id == id);
+    var track = findTrackById(id);
 
     if (track) {
       resolve(track);
@@ -106,7 +111,7 @@ exports.tracksIdGET = function (id) {
  **/
 exports.tracksIdPUT = function (id, body) {
   return new Promise(function (resolve, reject) {
-    var track = tracks.find(track => track.id == id);
+    var track = findTrackById(id);
 
     if (track) {
       track.color = body.color;

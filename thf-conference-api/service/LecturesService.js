@@ -1,5 +1,8 @@
 'use strict';
 
+const tracks = require('./TracksService');
+const speakers = require('./SpeakersService');
+
 var totvsResponse = { "hasNext": false, "items": [] };
 var lectures = [{
   id: "1",
@@ -42,6 +45,27 @@ var lectures = [{
   deleted: false
 }];
 
+const lectureWithRelationship = (lecture) => {
+  return {
+    id: lecture.id,
+    title: lecture.title,
+    room: lecture.room,
+    startTime: lecture.startTime,
+    endTime: lecture.endTime,
+    description: lecture.description,
+    track: tracks.findTrackById(lecture.trackId),
+    speaker: speakers.findSpeakerById(lecture.speakerId),
+    createdDate: lecture.createdDate,
+    updatedDate: lecture.updatedDate,
+    deletedDate: lecture.deletedDate,
+    deleted: lecture.deleted
+  }
+}
+
+const findLecturesGroupRelationship =  () => {
+  return lectures.map(lecture => lectureWithRelationship(lecture));
+};
+
 exports.findLecturesBySpeakerId = function (speakerId) {
   return lectures.filter(lecture => lecture.speakerId == speakerId).map(lecture => {
     return { id: lecture.id, title: lecture.title }
@@ -55,7 +79,7 @@ exports.findLecturesBySpeakerId = function (speakerId) {
  **/
 exports.lecturesGET = function () {
   return new Promise(function (resolve, reject) {
-    totvsResponse.items = lectures;
+    totvsResponse.items = findLecturesGroupRelationship();
 
     resolve(totvsResponse);
   });
@@ -94,7 +118,7 @@ exports.lecturesIdGET = function (id) {
     var lecture = lectures.find(lecture => lecture.id == id);
 
     if (lecture) {
-      resolve(lecture);
+      resolve(lectureWithRelationship(lecture));
     } else {
       reject(404);
     }
@@ -139,6 +163,7 @@ exports.lecturesIdPUT = function (id, body) {
  **/
 exports.lecturesPOST = function (body) {
   return new Promise(function (resolve, reject) {
+
     var lecture = {
       id: (lectures.length + 1).toString(),
       trackId: body.trackId,
