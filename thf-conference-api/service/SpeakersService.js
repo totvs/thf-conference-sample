@@ -49,6 +49,23 @@ var speakers = [{
   deleted: false
 }];
 
+var clearLecturesForSpeakers = function () {
+  speakers = speakers.map(speaker => {
+    return {
+      id: speaker.id,
+      name: speaker.name,
+      email: speaker.email,
+      photo: speaker.photo,
+      description: speaker.description,
+      lectures: undefined,
+      createdDate: speaker.createdDate,
+      updatedDate: speaker.updatedDate,
+      deletedDate: speaker.deletedDate,
+      deleted: speaker.deleted
+    }
+  });
+};
+
 /**
  * Load the list of speakers
  *
@@ -69,6 +86,7 @@ exports.speakersGET = function (order, diffDate) {
 
     }
     */
+    clearLecturesForSpeakers();
     totvsResponse.items = speakers;
 
     resolve(totvsResponse);
@@ -86,7 +104,6 @@ exports.speakersIdDELETE = function (id) {
   return new Promise(function (resolve, reject) {
     var speaker = speakers.find(speaker => speaker.id == id);
 
-    // apenas mudar propriedade deleted para true :)
     if (speaker) {
       speaker.deletedDate = new Date().toISOString();
       speaker.deleted = true;
@@ -106,6 +123,7 @@ exports.speakersIdDELETE = function (id) {
  **/
 exports.speakersIdGET = function (id) {
   return new Promise(function (resolve, reject) {
+    clearLecturesForSpeakers();
     var speaker = speakers.find(speaker => speaker.id == id);
 
     if (speaker) {

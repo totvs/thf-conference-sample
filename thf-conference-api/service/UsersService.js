@@ -25,6 +25,22 @@ var users = [{
   deleted: false
 }];
 
+var clearNotesForUsers = function () {
+  users = users.map(user => {
+    return {
+      id: user.id,
+      username: user.username,
+      password: user.password,
+      isSuperUser: user.isSuperUser,
+      notes: undefined,
+      createdDate: user.createdDate,
+      updatedDate: user.updatedDate,
+      deletedDate: user.deletedDate,
+      deleted: user.deleted
+    }
+  });
+};
+
 /**
  * Load the list of users
  *
@@ -32,6 +48,7 @@ var users = [{
  **/
 exports.usersGET = function () {
   return new Promise(function (resolve, reject) {
+    clearNotesForUsers();
     totvsResponse.items = users;
 
     resolve(totvsResponse);
@@ -68,6 +85,7 @@ exports.usersIdDELETE = function (id) {
  **/
 exports.usersIdGET = function (id) {
   return new Promise(function (resolve, reject) {
+    clearNotesForUsers();
     var user = users.find(user => user.id == id);
 
     if (user) {
