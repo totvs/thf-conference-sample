@@ -69,6 +69,21 @@ var findLecturesBySpeaker = function () {
 const findSpeakerById = exports.findSpeakerById = (speakerId) => {
   return speakers.find(speaker => speaker.id == speakerId);
 }
+/**
+ * Load
+ *
+ * date Date Date.
+ * returns speakersResponse
+ **/
+exports.speakersDiffDateGET = function(date) {
+  return new Promise(function(resolve, reject) {
+    totvsResponse.items = speakers.filter(speaker => {
+      return new Date(speaker.updatedDate) >= new Date(date);
+    });
+
+    resolve(totvsResponse);
+  });
+}
 
 /**
  * Load the list of speakers
@@ -77,7 +92,7 @@ const findSpeakerById = exports.findSpeakerById = (speakerId) => {
  * diffDate Date Date used to search data that were updated from this date. (optional)
  * returns speakersResponse
  **/
-exports.speakersGET = function (order, diffDate) {
+exports.speakersGET = function (order) {
   return new Promise(function (resolve, reject) {
     /* Ordenação
     if (order) {
@@ -85,11 +100,6 @@ exports.speakersGET = function (order, diffDate) {
     }
     */
 
-    /*
-    if (diffDate) {
-
-    }
-    */
     findLecturesBySpeaker();
     totvsResponse.items = speakers;
 
