@@ -4,3 +4,6 @@
 
 /thf-sample-app-conference/node_modules
 /thf-sample-app-conference/package-lock.json
+
+/thf-sample-web-conference/node_modules
+/thf-sample-web-conference/package-lock.json
