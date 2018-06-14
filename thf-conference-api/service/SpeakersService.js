@@ -66,7 +66,7 @@ var findLecturesBySpeaker = function () {
   });
 };
 
-exports.findSpeakerById = (speakerId) => {
+const findSpeakerById = exports.findSpeakerById = (speakerId) => {
   return speakers.find(speaker => speaker.id == speakerId);
 }
 

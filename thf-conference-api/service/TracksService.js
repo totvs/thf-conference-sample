@@ -43,10 +43,9 @@ var tracks = [{
   deleted: false
 }];
 
-exports.findTrackById = function (id) {
+const findTrackById = exports.findTrackById = function (id) {
   return tracks.find(track => track.id == id);
 }
-
 
 /**
  * Load the list of Tracks
