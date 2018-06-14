@@ -1,0 +1,12 @@
+<thf-page-list
+  t-title="Speakers"
+  [t-actions]="actions"
+  [t-filter]="filter">
+
+  <div class="thf-row">
+    <div *ngFor="let speaker of speakers" class="thf-xl-4 thf-md-6 padding">
+      <speaker-card [speaker]="speaker"></speaker-card>
+    </div>
+  </div>
+
+</thf-page-list>
