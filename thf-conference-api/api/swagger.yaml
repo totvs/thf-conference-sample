@@ -719,6 +719,30 @@ paths:
       x-swagger-router-controller: "Speakers"
     x-restlet:
       section: "Speakers"
+  /speakers/diff/{date}:
+    get:
+      tags:
+      - "Speakers"
+      summary: "Load"
+      operationId: "speakersDiffDateGET"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "date"
+        in: "path"
+        description: "Date."
+        required: true
+        type: "string"
+        format: "date-time"
+        x-example: "2018-06-14T13:15:35.605Z"
+      responses:
+        200:
+          description: "Status 200 - OK"
+          schema:
+            $ref: "#/definitions/speakersResponse"
+      x-swagger-router-controller: "Speakers"
+    x-restlet:
+      section: "Speakers"
   /tracks/:
     get:
       tags:
@@ -1327,6 +1351,37 @@ definitions:
         items:
           $ref: "#/definitions/speaker"
     description: "Pattern data type of return to speakers list."
+    example:
+      hasNext: true
+      items:
+      - deleted: true
+        createdDate: "2000-01-23T04:56:07.000+00:00"
+        deletedDate: "2000-01-23T04:56:07.000+00:00"
+        name: "name"
+        lectures:
+        - id: "id"
+          title: "title"
+        - id: "id"
+          title: "title"
+        description: "description"
+        photo: "photo"
+        id: "id"
+        updatedDate: "2000-01-23T04:56:07.000+00:00"
+        email: "email"
+      - deleted: true
+        createdDate: "2000-01-23T04:56:07.000+00:00"
+        deletedDate: "2000-01-23T04:56:07.000+00:00"
+        name: "name"
+        lectures:
+        - id: "id"
+          title: "title"
+        - id: "id"
+          title: "title"
+        description: "description"
+        photo: "photo"
+        id: "id"
+        updatedDate: "2000-01-23T04:56:07.000+00:00"
+        email: "email"
     x-restlet:
       section: "Speakers"
   track:

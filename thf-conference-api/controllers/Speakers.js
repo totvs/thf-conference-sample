@@ -3,6 +3,17 @@
 var utils = require('../utils/writer.js');
 var Speakers = require('../service/SpeakersService');
 
+module.exports.speakersDiffDateGET = function speakersDiffDateGET (req, res, next) {
+  var date = req.swagger.params['date'].value;
+  Speakers.speakersDiffDateGET(date)
+    .then(function (response) {
+      utils.writeJson(res, response);
+    })
+    .catch(function (response) {
+      utils.writeJson(res, response);
+    });
+};
+
 module.exports.speakersGET = function speakersGET (req, res, next) {
   var order = req.swagger.params['order'].value;
   var diffDate = req.swagger.params['diffDate'].value;
