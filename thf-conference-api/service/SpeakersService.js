@@ -49,8 +49,8 @@ var speakers = [{
   deleted: false
 }];
 
-var findLecturesBySpeaker = function () {
-  speakers = speakers.map(speaker => {
+const findLecturesBySpeaker = function () {
+  return speakers.map(speaker => {
     return {
       id: speaker.id,
       name: speaker.name,
@@ -77,7 +77,7 @@ const findSpeakerById = exports.findSpeakerById = (speakerId) => {
  **/
 exports.speakersDiffDateGET = function(date) {
   return new Promise(function(resolve, reject) {
-    totvsResponse.items = speakers.filter(speaker => {
+    totvsResponse.items = findLecturesBySpeaker().filter(speaker => {
       return new Date(speaker.updatedDate) >= new Date(date);
     });
 
@@ -100,8 +100,7 @@ exports.speakersGET = function (order) {
     }
     */
 
-    findLecturesBySpeaker();
-    totvsResponse.items = speakers;
+    totvsResponse.items = findLecturesBySpeaker();
 
     resolve(totvsResponse);
   });
@@ -120,6 +119,7 @@ exports.speakersIdDELETE = function (id) {
 
     if (speaker) {
       speaker.deletedDate = new Date().toISOString();
+      speaker.updatedDate = speaker.deletedDate;
       speaker.deleted = true;
       resolve();
     } else {
@@ -137,7 +137,7 @@ exports.speakersIdDELETE = function (id) {
  **/
 exports.speakersIdGET = function (id) {
   return new Promise(function (resolve, reject) {
-    findLecturesBySpeaker();
+    speakers = findLecturesBySpeaker();
     var speaker = findSpeakerById(id);
 
     if (speaker) {

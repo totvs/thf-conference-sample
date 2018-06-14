@@ -17,6 +17,7 @@ module.exports.speakersDiffDateGET = function speakersDiffDateGET (req, res, nex
 module.exports.speakersGET = function speakersGET (req, res, next) {
   var order = req.swagger.params['order'].value;
   var diffDate = req.swagger.params['diffDate'].value;
+
   Speakers.speakersGET(order,diffDate)
     .then(function (response) {
       utils.writeJson(res, response);
@@ -28,6 +29,7 @@ module.exports.speakersGET = function speakersGET (req, res, next) {
 
 module.exports.speakersIdDELETE = function speakersIdDELETE (req, res, next) {
   var id = req.swagger.params['id'].value;
+
   Speakers.speakersIdDELETE(id)
     .then(function (response) {
       utils.writeJson(res, response);

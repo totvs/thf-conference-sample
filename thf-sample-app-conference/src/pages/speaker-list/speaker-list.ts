@@ -9,14 +9,8 @@ import {
 } from 'ionic-angular';
 import { ThfSyncService } from '@totvs/thf-sync';
 import { SpeakerDetailPage } from '../speaker-detail/speaker-detail';
-// import { InAppBrowser } from '@ionic-native/in-app-browser';
+import { LectureDetailPage } from './../lecture-detail/lecture-detail';
 
-// import { ConferenceData } from '../../providers/conference-data';
-
-// import { SessionDetailPage } from '../session-detail/session-detail';
-// import { SpeakerDetailPage } from '../speaker-detail/speaker-detail';
-
-// TODO remove
 export interface ActionSheetButton {
   text?: string;
   role?: string;
@@ -36,10 +30,8 @@ export class SpeakerListPage {
   constructor(
     public actionSheetCtrl: ActionSheetController,
     public navCtrl: NavController,
-    // public confData: ConferenceData,
     public config: Config,
     private thfSync: ThfSyncService
-    // public inAppBrowser: InAppBrowser
   ) {}
 
   ionViewDidLoad() {
@@ -48,20 +40,14 @@ export class SpeakerListPage {
     })
   }
 
-  goToSessionDetail(session: any) {
-    // this.navCtrl.push(SessionDetailPage, { sessionId: session.id });
+  goToLectureDetail(lecture: any) {
+    this.navCtrl.push(LectureDetailPage, { lectureId: lecture.id });
   }
 
   goToSpeakerDetail(speaker: any) {
     this.navCtrl.push(SpeakerDetailPage, { speakerId: speaker.id });
   }
 
-  // goToSpeakerTwitter(speaker: any) {
-  //   this.inAppBrowser.create(
-  //     `https://twitter.com/${speaker.twitter}`,
-  //     '_blank'
-  //   );
-  // }
 
   openContact(speaker: any) {
     let mode = this.config.get('mode');
