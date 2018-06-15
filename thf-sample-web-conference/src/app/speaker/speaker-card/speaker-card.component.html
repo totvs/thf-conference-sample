@@ -1,0 +1,18 @@
+<thf-widget
+  t-height="200"
+  t-primary-label="Lectures"
+  t-secondary-label="Edit"
+  (t-secondary-action)="edit()">
+
+  <thf-avatar
+    class="thf-xl-4 thf-lg-3"
+    t-size="lg"
+    t-src="../../assets/img/{{ speaker.photo }}">
+  </thf-avatar>
+
+  <div class="thf-xl-8 thf-lg-9 card-description">
+    <p>{{ speaker.name }}</p>
+    <p>{{ speaker.email }}</p>
+  </div>
+
+</thf-widget>
