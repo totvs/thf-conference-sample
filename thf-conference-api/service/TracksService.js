@@ -20,7 +20,7 @@ var tracks = [{
 }, {
   id: "3",
   name: "Tests",
-  color: "#87F5FB",
+  color: "#8c6990",
   createdDate: new Date().toISOString(),
   updatedDate: new Date().toISOString(),
   deletedDate: undefined,
