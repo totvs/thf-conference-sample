@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { Speaker } from '../../model/speaker';
 
@@ -11,10 +12,10 @@ export class SpeakerCardComponent {
 
   @Input('speaker') speaker: Speaker;
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   edit() {
-    alert('edit speaker: ' + this.speaker.name);
+    this.router.navigate([`speakers/${this.speaker.id}`]);
   }
 
 }

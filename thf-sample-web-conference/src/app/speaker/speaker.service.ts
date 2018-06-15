@@ -18,8 +18,16 @@ export class SpeakerService {
     return this.genericService.get<TotvsResponse>(this.path).map(speakerResponse => (speakerResponse));
   }
 
+  getById(id: string): Observable<Speaker> {
+    return this.genericService.getById<Speaker>(this.path, id).map(speaker => (speaker));
+  }
+
   create(speaker: Speaker): Observable<Speaker> {
     return this.genericService.post<Speaker>(this.path, speaker).map(speakerCreated => (speakerCreated));
+  }
+
+  update(speaker: Speaker): Observable<Speaker> {
+    return this.genericService.put<Speaker>(`${this.path}/${speaker.id}`, speaker).map(speakerUpdated => (speakerUpdated));
   }
 
 }

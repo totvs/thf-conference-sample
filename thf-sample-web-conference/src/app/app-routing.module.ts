@@ -9,7 +9,8 @@ const routes: Routes = [
   { path: 'home', component: SpeakerComponent },
   { path: 'lectures', component: LectureComponent },
   { path: 'speakers', component: SpeakerComponent },
-  { path: 'speakers/create', component: SpeakerEditComponent }
+  { path: 'speakers/create', component: SpeakerEditComponent },
+  { path: 'speakers/:id', component: SpeakerEditComponent }
 ];
 
 @NgModule({

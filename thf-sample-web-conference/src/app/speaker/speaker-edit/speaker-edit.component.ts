@@ -1,5 +1,5 @@
-import { Component, Input } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, Input, OnInit } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
 
 import { ThfNotificationService } from '@totvs/thf-ui/services/thf-notification/thf-notification.service';
 import { ThfSelectOption } from '@totvs/thf-ui/components/thf-field';
@@ -12,10 +12,11 @@ import { SpeakerService } from '../speaker.service';
   templateUrl: './speaker-edit.component.html',
   styleUrls: ['./speaker-edit.component.css']
 })
-export class SpeakerEditComponent {
+export class SpeakerEditComponent implements OnInit {
 
   @Input('speaker') speaker: Speaker = this.speakerRestore();
 
+  private _isUpdate: boolean = false;
   action: string;
   photoOptions: Array<ThfSelectOption> = [{
     value: 'avatar1.png',
@@ -42,39 +43,70 @@ export class SpeakerEditComponent {
     value: 'avatar8.png',
     label: 'Picture 8'
   }];
+  title: string = 'Create speaker';
 
   constructor(
     private speakerService: SpeakerService,
     private thfNotification: ThfNotificationService,
+    private route: ActivatedRoute,
     private router: Router
   ) { }
 
-  cancel() {
-    this.navigateToUrl('speakers');
+  ngOnInit() {
+    this.route.params.subscribe(params => {
+      if (params['id']) {
+        this.getSpeakerById(params['id'].toString());
+      }
+    });
   }
 
-  save(isSaveNew?: boolean) {
+  cancel() {
+    this.navigateToPath('speakers');
+  }
+
+  create() {
     this.speakerService.create(this.speaker).subscribe(speaker => {
       this.thfNotification.success(`Speaker ${speaker.name} created successfully!`);
-      if (!isSaveNew) {
-        this.navigateToUrl('speakers');
-      }
+      this.navigateToPath('speakers');
     }, error => {
       this.thfNotification.error(error.status + ' ' + error.statusText);
     });
   }
 
-  saveNew() {
-    this.save(true);
-    this.speakerRestore();
+  edit() {
+    this.speakerService.update(this.speaker).subscribe(speaker => {
+      this.thfNotification.success(`Speaker ${speaker.name} updated successfully!`);
+      this.navigateToPath('speakers');
+    }, error => {
+      this.thfNotification.error(error.status + ' ' + error.statusText);
+    });
   }
 
-  private navigateToUrl(url: string) {
-    this.router.navigate([url]);
+  getSpeakerById(id: string) {
+    this.speakerService.getById(id).subscribe(speaker => {
+      this.speaker = speaker;
+
+      this.title = `Edit speaker ${this.speaker.name}`;
+      this._isUpdate = true;
+    }, error => {
+      this.thfNotification.error(error.status + ' ' + error.statusText);
+    });
+  }
+
+  save() {
+    if (this._isUpdate) {
+      this.edit();
+    } else {
+      this.create();
+    }
+  }
+
+  private navigateToPath(path: string) {
+    this.router.navigate([path]);
   }
 
   private speakerRestore(): Speaker {
-    return this.speaker = {
+    return {
       name: undefined,
       email: undefined,
       description: undefined,
