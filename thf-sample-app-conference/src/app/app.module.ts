@@ -1,3 +1,4 @@
+import { LoginPage } from './../pages/login/login';
 import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
@@ -23,6 +24,7 @@ import { ThfStorageModule } from '@totvs/thf-storage';
     ContactPage,
     HomePage,
     LectureDetailPage,
+    LoginPage,
     SpeakerListPage,
     SpeakerDetailPage,
     TabsPage
@@ -40,6 +42,7 @@ import { ThfStorageModule } from '@totvs/thf-storage';
     ContactPage,
     HomePage,
     LectureDetailPage,
+    LoginPage,
     SpeakerListPage,
     SpeakerDetailPage,
     TabsPage
@@ -47,7 +50,7 @@ import { ThfStorageModule } from '@totvs/thf-storage';
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    { provide: ErrorHandler, useClass: IonicErrorHandler }
   ]
 })
 export class AppModule {}

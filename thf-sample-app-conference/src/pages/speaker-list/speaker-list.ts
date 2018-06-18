@@ -35,9 +35,15 @@ export class SpeakerListPage {
   ) {}
 
   ionViewDidLoad() {
+    this.getSpeakers();
+
+    // this.thfSync.onSync().subscribe(() => this.getSpeakers());
+  }
+
+  getSpeakers() {
     this.thfSync.getModel('Speakers').find().exec().then(data => {
       this.speakers = data.items;
-    })
+    });
   }
 
   goToLectureDetail(lecture: any) {
@@ -47,7 +53,6 @@ export class SpeakerListPage {
   goToSpeakerDetail(speaker: any) {
     this.navCtrl.push(SpeakerDetailPage, { speakerId: speaker.id });
   }
-
 
   openContact(speaker: any) {
     let mode = this.config.get('mode');
@@ -67,4 +72,5 @@ export class SpeakerListPage {
 
     actionSheet.present();
   }
+
 }
