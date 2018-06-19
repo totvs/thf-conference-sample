@@ -1,12 +1,12 @@
-import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { ErrorHandler, NgModule } from '@angular/core';
 
-import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
-import { StatusBar } from '@ionic-native/status-bar';
-import { SplashScreen } from '@ionic-native/splash-screen';
+import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SpeakerListPage } from '../pages/speaker-list/speaker-list';
-import { ThfSyncModule } from '@totvs/thf-sync';
+import { SplashScreen } from '@ionic-native/splash-screen';
+import { StatusBar } from '@ionic-native/status-bar';
 import { ThfStorageModule } from '@totvs/thf-storage';
+import { ThfSyncModule } from '@totvs/thf-sync';
 
 import { AboutPage } from '../pages/about/about';
 import { ContactPage } from '../pages/contact/contact';

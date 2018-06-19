@@ -7,9 +7,11 @@ import {
   Config,
   NavController
 } from 'ionic-angular';
+
 import { ThfSyncService } from '@totvs/thf-sync';
-import { SpeakerDetailPage } from '../speaker-detail/speaker-detail';
+
 import { LectureDetailPage } from './../lecture-detail/lecture-detail';
+import { SpeakerDetailPage } from '../speaker-detail/speaker-detail';
 
 export interface ActionSheetButton {
   text?: string;
@@ -24,6 +26,7 @@ export interface ActionSheetButton {
   templateUrl: 'speaker-list.html'
 })
 export class SpeakerListPage {
+
   actionSheet: ActionSheet;
   speakers = [];
 
@@ -38,12 +41,6 @@ export class SpeakerListPage {
     this.getSpeakers();
 
     // this.thfSync.onSync().subscribe(() => this.getSpeakers());
-  }
-
-  getSpeakers() {
-    this.thfSync.getModel('Speakers').find().exec().then(data => {
-      this.speakers = data.items;
-    });
   }
 
   goToLectureDetail(lecture: any) {
@@ -71,6 +68,12 @@ export class SpeakerListPage {
     } as ActionSheetOptions);
 
     actionSheet.present();
+  }
+
+  private getSpeakers() {
+    this.thfSync.getModel('Speakers').find().exec().then(data => {
+      this.speakers = data.items;
+    });
   }
 
 }

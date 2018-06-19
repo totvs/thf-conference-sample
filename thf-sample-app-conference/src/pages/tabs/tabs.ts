@@ -11,12 +11,11 @@ import { SpeakerListPage } from '../speaker-list/speaker-list';
 })
 export class TabsPage {
 
+  isLogged = false;
+  mySelectedIndex: number;
   tab1Root = HomePage;
   tab2Root = SpeakerListPage;
   tab3Root = AboutPage;
-  mySelectedIndex: number;
-
-  isLogged = false;
 
   constructor(navParams: NavParams) {
     this.mySelectedIndex = navParams.data.tabIndex || 0;

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+
 import { NavParams } from 'ionic-angular';
 
 import { ThfSyncService } from '@totvs/thf-sync';
@@ -8,7 +9,8 @@ import { ThfSyncService } from '@totvs/thf-sync';
   templateUrl: 'lecture-detail.html'
 })
 export class LectureDetailPage {
-  lecture: any;
+
+  lecture;
 
   constructor(public navParams: NavParams, private thfSync: ThfSyncService) {}
 
@@ -17,4 +19,5 @@ export class LectureDetailPage {
       this.lecture = lecture;
     });
   }
+
 }

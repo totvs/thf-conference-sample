@@ -1,10 +1,10 @@
-import { ThfStorageService } from '@totvs/thf-storage';
 import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
 
-import { NavController, Events } from 'ionic-angular';
+import { Events, NavController } from 'ionic-angular';
 
-import { ThfSyncService, ThfHttpRequestData, ThfHttpRequestType } from '@totvs/thf-sync';
+import { ThfStorageService } from '@totvs/thf-storage';
+import { ThfHttpRequestData, ThfHttpRequestType, ThfSyncService } from '@totvs/thf-sync';
 
 import { TabsPage } from '../tabs/tabs';
 
@@ -41,7 +41,7 @@ export class SignupPage {
     }
   }
 
-  httpCommandEvents() {
+  private httpCommandEvents() {
     this.thfSync.getHttpResponses().subscribe(thfHttpClientResponse => {
 
       if (thfHttpClientResponse.customRequestId === this.signup.username) {

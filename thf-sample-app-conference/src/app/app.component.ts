@@ -1,10 +1,10 @@
 import { Component, ViewChild } from '@angular/core';
 
-import { Platform, Nav, MenuController, Events } from 'ionic-angular';
-import { StatusBar } from '@ionic-native/status-bar';
+import { Events, MenuController, Nav, Platform } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { StatusBar } from '@ionic-native/status-bar';
 
-import { ThfSyncService, ThfSyncConfig, ThfNetworkType } from '@totvs/thf-sync';
+import { ThfNetworkType, ThfSyncConfig, ThfSyncService } from '@totvs/thf-sync';
 import { ThfStorageService } from '@totvs/thf-storage';
 
 import { AboutPage } from '../pages/about/about';
@@ -30,10 +30,10 @@ export interface PageInterface {
   templateUrl: 'app.html'
 })
 export class MyApp {
-  rootPage = TabsPage;
 
   logoutPage = { title: 'Logout', name: 'TabsPage', component: TabsPage, icon: 'log-out' };
   notePage = { title: 'Notes', name: 'TabsPage', component: TabsPage, tabComponent: SpeakerListPage, index: 2, icon: 'paper' };
+  rootPage = TabsPage;
 
   @ViewChild(Nav) nav: Nav;
 
@@ -99,6 +99,23 @@ export class MyApp {
 
   }
 
+  private enableMenu(login: boolean) {
+    this.menu.enable(!login, 'loggedOutMenu');
+    this.menu.enable(login, 'loggedInMenu');
+  }
+
+  private initialDataLoad() {
+    this.thfStorage.get('firstLoad').then(firstLoad => {
+
+      if (!firstLoad) {
+        this.thfStorage.set('firstLoad', true).then(() => {
+          this.thfSync.loadData().subscribe();
+        });
+      }
+
+    });
+  }
+
   private initApp() {
     this.platform.ready().then(() => {
       this.statusBar.styleDefault();
@@ -113,18 +130,6 @@ export class MyApp {
     };
 
     this.thfSync.prepare(schemas, config).then(() => this.initialDataLoad());
-  }
-
-  private initialDataLoad() {
-    this.thfStorage.get('firstLoad').then(firstLoad => {
-
-      if (!firstLoad) {
-        this.thfStorage.set('firstLoad', true).then(() => {
-          this.thfSync.loadData().subscribe();
-        });
-      }
-
-    });
   }
 
   private isLogged() {
@@ -143,11 +148,6 @@ export class MyApp {
     this.events.subscribe('user:logout', () => {
       this.enableMenu(false);
     });
-  }
-
-  private enableMenu(login: boolean) {
-    this.menu.enable(!login, 'loggedOutMenu');
-    this.menu.enable(login, 'loggedInMenu');
   }
 
 }
