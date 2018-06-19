@@ -6,15 +6,8 @@ import { NavController, ToastController, Events } from 'ionic-angular';
 import { ThfStorageService } from '@totvs/thf-storage';
 import { ThfSyncService } from '@totvs/thf-sync';
 
+import { SignupPage } from '../signup/signup';
 import { TabsPage } from '../tabs/tabs';
-
-// import { UserData } from '../../providers/user-data';
-
-// import { UserOptions } from '../../interfaces/user-options';
-
-// import { TabsPage } from '../tabs-page/tabs-page';
-// import { SignupPage } from '../signup/signup';
-
 
 @Component({
   selector: 'page-user',
@@ -47,7 +40,7 @@ export class LoginPage {
   }
 
   onSignup() {
-    // this.navCtrl.push(SignupPage);
+    this.navCtrl.push(SignupPage);
   }
 
   createToast () {

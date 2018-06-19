@@ -11,6 +11,7 @@ import { AboutPage } from '../pages/about/about';
 import { HomePage } from './../pages/home/home';
 import { LoginPage } from './../pages/login/login';
 import { schemas } from './../schemas/schemas-list';
+import { SignupPage } from './../pages/signup/signup';
 import { SpeakerListPage } from './../pages/speaker-list/speaker-list';
 import { TabsPage } from '../pages/tabs/tabs';
 
@@ -44,7 +45,7 @@ export class MyApp {
 
   loggedOutPages: Array<PageInterface> = [
     { title: 'Login', name: 'LoginPage', component: LoginPage, icon: 'log-in' },
-    { title: 'Signup', name: 'LoginPage', component: LoginPage, icon: 'person-add' }
+    { title: 'Signup', name: 'SignupPage', component: SignupPage, icon: 'person-add' }
   ];
 
   constructor(

@@ -3,21 +3,21 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Login</ion-title>
+    <ion-title>Signup</ion-title>
   </ion-navbar>
 </ion-header>
 
-<ion-content>
+<ion-content class="login-page">
+
   <div class="logo">
-    <img src="../../assets/imgs/logo-thf.png" alt="THF logo">
+    <img src="../../assets/imgs/logo-thf.png" alt="">
   </div>
 
-  <form #loginForm="ngForm" novalidate>
+  <form #signupForm="ngForm" novalidate>
     <ion-list no-lines>
       <ion-item>
         <ion-label stacked color="primary">Username</ion-label>
-        <ion-input [(ngModel)]="login.username" name="username" type="text" #username="ngModel" spellcheck="false" autocapitalize="off"
-        required>
+        <ion-input [(ngModel)]="signup.username" name="username" type="text" #username="ngModel" required>
         </ion-input>
       </ion-item>
       <p ion-text [hidden]="username.valid || submitted == false" color="danger" padding-left>
@@ -26,7 +26,7 @@
 
       <ion-item>
         <ion-label stacked color="primary">Password</ion-label>
-        <ion-input [(ngModel)]="login.password" name="password" type="password" #password="ngModel" required>
+        <ion-input [(ngModel)]="signup.password" name="password" type="password" #password="ngModel" required>
         </ion-input>
       </ion-item>
       <p ion-text [hidden]="password.valid || submitted == false" color="danger" padding-left>
@@ -34,14 +34,9 @@
       </p>
     </ion-list>
 
-    <ion-row responsive-sm>
-      <ion-col>
-        <button ion-button (click)="onLogin(loginForm)" type="submit" block>Login</button>
-      </ion-col>
-      <ion-col>
-        <button ion-button (click)="onSignup()" color="light" class="signup-button" block>Signup</button>
-      </ion-col>
-    </ion-row>
+    <div padding>
+      <button ion-button (click)="onSignup(signupForm)" type="submit" block>Create</button>
+    </div>
   </form>
 
 </ion-content>
