@@ -1,4 +1,3 @@
-import { Speaker } from './../../models/speaker.interface';
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 
@@ -9,7 +8,7 @@ import { ThfSyncService } from '@totvs/thf-sync';
   templateUrl: 'speaker-detail.html'
 })
 export class SpeakerDetailPage {
-  speaker: Speaker;
+  speaker;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private thfSync: ThfSyncService) { }
 
