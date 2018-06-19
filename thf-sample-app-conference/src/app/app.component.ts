@@ -30,7 +30,7 @@ export interface PageInterface {
   templateUrl: 'app.html'
 })
 export class MyApp {
-  rootPage:any = TabsPage;
+  rootPage = TabsPage;
 
   logoutPage = { title: 'Logout', name: 'TabsPage', component: TabsPage, icon: 'log-out' };
   notePage = { title: 'Notes', name: 'TabsPage', component: TabsPage, tabComponent: SpeakerListPage, index: 2, icon: 'paper' };
@@ -118,16 +118,16 @@ export class MyApp {
   private initialDataLoad() {
     this.thfStorage.get('firstLoad').then(firstLoad => {
 
-      if(!firstLoad) {
+      if (!firstLoad) {
         this.thfStorage.set('firstLoad', true).then(() => {
-          this.thfSync.loadData().subscribe(() => console.log('Initial data load!'));
+          this.thfSync.loadData().subscribe();
         });
       }
 
     });
   }
 
-  private isLogged () {
+  private isLogged() {
     this.thfStorage.get('login').then(login => this.enableMenu(!!login));
   }
 

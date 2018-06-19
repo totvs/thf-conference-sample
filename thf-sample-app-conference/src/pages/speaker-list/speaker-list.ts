@@ -17,7 +17,7 @@ export interface ActionSheetButton {
   icon?: string;
   cssClass?: string;
   handler?: () => boolean|void;
-};
+}
 
 @Component({
   selector: 'page-speaker-list',
@@ -25,7 +25,7 @@ export interface ActionSheetButton {
 })
 export class SpeakerListPage {
   actionSheet: ActionSheet;
-  speakers: any[] = [];
+  speakers = [];
 
   constructor(
     public actionSheetCtrl: ActionSheetController,
@@ -55,9 +55,9 @@ export class SpeakerListPage {
   }
 
   openContact(speaker: any) {
-    let mode = this.config.get('mode');
+    const mode = this.config.get('mode');
 
-    let actionSheet = this.actionSheetCtrl.create({
+    const actionSheet = this.actionSheetCtrl.create({
       title: 'Contact ' + speaker.name,
       buttons: [
         {

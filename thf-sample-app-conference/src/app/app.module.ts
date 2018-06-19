@@ -18,8 +18,6 @@ import { SignupPage } from './../pages/signup/signup';
 import { SpeakerDetailPage } from './../pages/speaker-detail/speaker-detail';
 import { TabsPage } from '../pages/tabs/tabs';
 
-
-
 @NgModule({
   declarations: [
     MyApp,

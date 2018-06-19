@@ -8,4 +8,4 @@ export const userSchema: ThfSyncSchema = {
   idField: 'id',
   name: 'Users',
   pageSize: 1
-}
+};

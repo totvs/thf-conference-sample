@@ -34,7 +34,7 @@ export class SignupPage {
         body: this.signup
       };
 
-      this.thfSync.insertHttpCommand(requestData, this.signup.username).then(() => console.log('feito!'));
+      this.thfSync.insertHttpCommand(requestData, this.signup.username).then(() => {});
 
       this.navCtrl.push(TabsPage);
     }
@@ -43,12 +43,12 @@ export class SignupPage {
   httpCommandEvents() {
     this.thfSync.getHttpResponses().subscribe(thfHttpClientResponse => {
 
-      if(thfHttpClientResponse.customRequestId === this.signup.username) {
+      if (thfHttpClientResponse.customRequestId === this.signup.username) {
         const userId = thfHttpClientResponse.response['body'].id;
 
         this.thfStorage.set('login', { userId }).then(() => {
           this.events.publish('user:login');
-          this.navCtrl.push(TabsPage)
+          this.navCtrl.push(TabsPage);
         });
 
       }

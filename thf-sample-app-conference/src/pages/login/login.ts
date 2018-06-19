@@ -32,7 +32,7 @@ export class LoginPage {
       this.thfSync.getModel('Users').find().exec().then(data => {
         const foundUser = data.items.find(user => {
           return (user.username === this.login.username) && (user.password === this.login.password);
-        })
+        });
 
         foundUser ? this.logIn(foundUser) : this.createToast();
       });
@@ -43,7 +43,7 @@ export class LoginPage {
     this.navCtrl.push(SignupPage);
   }
 
-  createToast () {
+  createToast() {
     const toast = this.toastCtrl.create({
       message: 'User or password are incorrect',
       duration: 3000,
@@ -56,7 +56,7 @@ export class LoginPage {
   logIn(foundUser) {
     this.thfStorage.set('login', { userId: foundUser.id }).then(() => {
       this.events.publish('user:login');
-      this.navCtrl.push(TabsPage)
+      this.navCtrl.push(TabsPage);
     });
   }
 
