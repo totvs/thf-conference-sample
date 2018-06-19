@@ -3,7 +3,7 @@
 
 page-user {
   .logo {
-    padding: 20px 0;
+    padding: 54px 0;
     min-height: 200px;
     text-align: center;
 
@@ -15,4 +15,17 @@ page-user {
   .list {
     margin-bottom: 0;
   }
+}
+
+.logo ion-icon {
+  font-size: 90px;
+  color: rgba(5, 45, 62, 0.6);
+}
+
+.toaster .toast-wrapper {
+  background-color: #c64840;
+}
+
+.signup-button {
+  color: #476b75;
 }

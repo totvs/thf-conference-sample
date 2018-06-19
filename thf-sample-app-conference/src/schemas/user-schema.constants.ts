@@ -8,8 +8,7 @@ export const userSchema: ThfSyncSchema = {
     'id',
     'username',
     'password',
-    'notes',
-    { name: 'isLogged', local: true }
+    'notes'
   ],
   idField: 'id',
   name: 'Users',
