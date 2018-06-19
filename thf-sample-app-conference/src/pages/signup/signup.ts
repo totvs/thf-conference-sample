@@ -13,6 +13,7 @@ import { TabsPage } from '../tabs/tabs';
   templateUrl: 'signup.html'
 })
 export class SignupPage {
+
   signup = { username: '', password: '', isSuperUser: false };
   submitted = false;
 
