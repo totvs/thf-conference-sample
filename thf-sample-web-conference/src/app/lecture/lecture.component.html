@@ -1,3 +1,8 @@
-<thf-page-default>
-  <p>LECTURES</p>
+<thf-page-default
+  t-title='Lectures'>
+
+  <div *ngFor="let lecture of lectures" class="thf-xl-4 thf-md-6">
+    <lecture-card [lecture]="lecture"></lecture-card>
+  </div>
+
 </thf-page-default>

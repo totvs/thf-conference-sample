@@ -1,5 +1,4 @@
 <thf-page-edit
-  t-disable-submit="formSpeaker.invalid"
   t-title="{{ title }}">
 
   <form #formSpeaker="ngForm">
@@ -32,7 +31,6 @@
       [(ngModel)]="speaker.photo"
       t-label="Photo"
       [t-options]="photoOptions"
-      (t-change)="onChangePhoto()"
       t-required>
 
       <ng-template t-select-option-template let-option>

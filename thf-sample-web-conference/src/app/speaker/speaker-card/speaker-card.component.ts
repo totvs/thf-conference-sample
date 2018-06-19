@@ -14,8 +14,12 @@ export class SpeakerCardComponent {
 
   constructor(private router: Router) { }
 
+  detail() {
+    this.router.navigate([`speakers/detail/${this.speaker.id}`]);
+  }
+
   edit() {
-    this.router.navigate([`speakers/${this.speaker.id}`]);
+    this.router.navigate([`speakers/edit/${this.speaker.id}`]);
   }
 
 }

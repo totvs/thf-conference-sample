@@ -1,0 +1,38 @@
+<thf-page-detail
+  t-title="{{ title }}">
+
+  <thf-widget>
+
+    <div class="thf-md-8">
+      <thf-avatar
+        class="thf-xl-4 thf-lg-3"
+        t-size="xl"
+        t-src="../../assets/img/{{ speaker.photo }}">
+      </thf-avatar>
+
+      <thf-info
+        class="thf-xl-8 thf-lg-9"
+        t-label="Name"
+        [t-value]="speaker.name">
+      </thf-info>
+
+      <thf-info
+        class="thf-xl-8 thf-lg-9"
+        t-label="Email"
+        [t-value]="speaker.email">
+      </thf-info>
+
+      <thf-info
+        class="thf-xl-8 thf-lg-9"
+        t-label="Description"
+        [t-value]="speaker.description">
+      </thf-info>
+    </div>
+
+  </thf-widget>
+
+  <div *ngFor="let lecture of lectures" class="thf-xl-4 thf-md-6">
+    <lecture-card [lecture]="lecture"></lecture-card>
+  </div>
+
+</thf-page-detail>

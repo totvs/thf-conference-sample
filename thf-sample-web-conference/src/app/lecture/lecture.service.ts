@@ -2,13 +2,13 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 import { GenericService } from '../generic/service/generic.service';
-import { Speaker } from './../model/speaker';
+import { Lecture } from './../model/lecture';
 
 @Injectable()
-export class SpeakerService extends GenericService<Speaker> {
+export class LectureService extends GenericService<Lecture> {
 
   constructor(http: HttpClient) {
-    super(http, 'speakers');
+    super(http, 'lectures');
   }
 
 }

@@ -30,7 +30,9 @@ export class SpeakerComponent implements OnInit {
   }
 
   getSpeakers() {
-    this.speakerService.get().subscribe(speakers => this.speakers = speakers.items);
+    this.speakerService.get().subscribe(speakers => {
+      this.speakers = speakers.items.filter(speaker => speaker.deleted === false);
+    });
   }
 
   showAction() {

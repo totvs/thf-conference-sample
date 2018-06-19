@@ -1,3 +1,6 @@
+import { Speaker } from './speaker';
+import { Track } from './track';
+
 export interface Lecture {
   /**
    * Lecture id.
@@ -26,9 +29,9 @@ export interface Lecture {
   /**
    * Lecture track.
    */
-  trackId: string;
+  track: Track;
   /**
-   * Speaker id.
+   * Speaker.
    */
-  speakerId: string;
+  speaker: Speaker;
 }
