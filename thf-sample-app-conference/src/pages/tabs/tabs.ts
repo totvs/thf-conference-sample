@@ -1,3 +1,4 @@
+import { SchedulePage } from './../schedule/schedule';
 import { Component } from '@angular/core';
 
 import { NavParams } from 'ionic-angular';
@@ -13,7 +14,7 @@ export class TabsPage {
 
   isLogged = false;
   mySelectedIndex: number;
-  tab1Root = HomePage;
+  tab1Root = SchedulePage;
   tab2Root = SpeakerListPage;
   tab3Root = AboutPage;
 

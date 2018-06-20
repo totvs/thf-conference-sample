@@ -1,3 +1,4 @@
+import { SchedulePage } from './../pages/schedule/schedule';
 import { Component, ViewChild } from '@angular/core';
 
 import { Events, MenuController, Nav, Platform } from 'ionic-angular';
@@ -33,12 +34,12 @@ export class MyApp {
 
   logoutPage = { title: 'Logout', name: 'TabsPage', component: TabsPage, icon: 'log-out' };
   notePage = { title: 'Notes', name: 'TabsPage', component: TabsPage, tabComponent: SpeakerListPage, index: 2, icon: 'paper' };
-  rootPage = TabsPage;
+  rootPage;
 
   @ViewChild(Nav) nav: Nav;
 
   appPages: Array<PageInterface> = [
-    { title: 'Schedule', name: 'TabsPage', component: TabsPage, tabComponent: HomePage, index: 0, icon: 'calendar' },
+    { title: 'Schedule', name: 'TabsPage', component: TabsPage, tabComponent: SchedulePage, index: 0, icon: 'calendar' },
     { title: 'Speakers', name: 'TabsPage', component: TabsPage, tabComponent: SpeakerListPage, index: 1, icon: 'contacts' },
     { title: 'About conference', name: 'TabsPage', component: TabsPage, tabComponent: AboutPage, index: 3, icon: 'information-circle' }
   ];
@@ -58,10 +59,6 @@ export class MyApp {
     private menu: MenuController) {
 
     this.initApp();
-
-    this.initSync();
-    this.isLogged();
-    this.listenToLoginEvents();
   }
 
   isActive(page: PageInterface) {
@@ -120,6 +117,13 @@ export class MyApp {
     this.platform.ready().then(() => {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
+
+      this.listenToLoginEvents();
+      this.isLogged();
+      this.initSync().then(() => {
+        this.rootPage = TabsPage;
+      });
+
     });
   }
 
@@ -129,7 +133,7 @@ export class MyApp {
       period: 10
     };
 
-    this.thfSync.prepare(schemas, config).then(() => this.initialDataLoad());
+    return this.thfSync.prepare(schemas, config).then(() => this.initialDataLoad());
   }
 
   private isLogged() {
