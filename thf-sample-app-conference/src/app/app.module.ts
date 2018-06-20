@@ -1,20 +1,22 @@
-import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
-import { MyApp } from './app.component';
+import { ErrorHandler, NgModule } from '@angular/core';
+
+import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
+import { SpeakerListPage } from '../pages/speaker-list/speaker-list';
+import { SplashScreen } from '@ionic-native/splash-screen';
+import { StatusBar } from '@ionic-native/status-bar';
+import { ThfStorageModule } from '@totvs/thf-storage';
+import { ThfSyncModule } from '@totvs/thf-sync';
 
 import { AboutPage } from '../pages/about/about';
 import { ContactPage } from '../pages/contact/contact';
 import { HomePage } from '../pages/home/home';
 import { LectureDetailPage } from './../pages/lecture-detail/lecture-detail';
+import { LoginPage } from './../pages/login/login';
+import { MyApp } from './app.component';
+import { SignupPage } from './../pages/signup/signup';
 import { SpeakerDetailPage } from './../pages/speaker-detail/speaker-detail';
 import { TabsPage } from '../pages/tabs/tabs';
-
-import { StatusBar } from '@ionic-native/status-bar';
-import { SplashScreen } from '@ionic-native/splash-screen';
-import { SpeakerListPage } from '../pages/speaker-list/speaker-list';
-import { ThfSyncModule } from '@totvs/thf-sync';
-import { ThfStorageModule } from '@totvs/thf-storage';
 
 @NgModule({
   declarations: [
@@ -23,6 +25,8 @@ import { ThfStorageModule } from '@totvs/thf-storage';
     ContactPage,
     HomePage,
     LectureDetailPage,
+    LoginPage,
+    SignupPage,
     SpeakerListPage,
     SpeakerDetailPage,
     TabsPage
@@ -40,6 +44,8 @@ import { ThfStorageModule } from '@totvs/thf-storage';
     ContactPage,
     HomePage,
     LectureDetailPage,
+    LoginPage,
+    SignupPage,
     SpeakerListPage,
     SpeakerDetailPage,
     TabsPage
@@ -47,7 +53,7 @@ import { ThfStorageModule } from '@totvs/thf-storage';
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    { provide: ErrorHandler, useClass: IonicErrorHandler }
   ]
 })
 export class AppModule {}
