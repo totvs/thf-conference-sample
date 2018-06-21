@@ -1,7 +1,7 @@
 import { Speaker } from './speaker';
 import { Track } from './track';
 
-export interface Lecture {
+export class Lecture {
   /**
    * Lecture id.
    */
@@ -29,9 +29,19 @@ export interface Lecture {
   /**
    * Lecture track.
    */
-  track: Track;
+  track?: Track;
+  /**
+   * Lecture track.
+   */
+  trackId?: string;
   /**
    * Speaker.
    */
-  speaker: Speaker;
+  speaker?: Speaker;
+  /**
+   * Speaker id.
+   */
+  speakerId?: string;
+
+  constructor() { }
 }

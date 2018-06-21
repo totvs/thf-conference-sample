@@ -28,7 +28,7 @@ var tracks = [{
 }, {
   id: "4",
   name: "Mobile",
-  color: "#2F131E",
+  color: "#F78764",
   createdDate: new Date().toISOString(),
   updatedDate: new Date().toISOString(),
   deletedDate: undefined,

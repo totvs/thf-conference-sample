@@ -9,7 +9,8 @@ import { Lecture } from './../../model/lecture';
 })
 export class LectureCardComponent {
 
-  @Input('lecture') lecture: Lecture = undefined;
+  /** Objeto do tipo Lecture referente a palestra. */
+  @Input('lecture') lecture: Lecture = new Lecture();
 
   constructor() { }
 

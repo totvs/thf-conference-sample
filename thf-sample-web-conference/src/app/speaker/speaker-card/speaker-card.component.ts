@@ -10,6 +10,7 @@ import { Speaker } from '../../model/speaker';
 })
 export class SpeakerCardComponent {
 
+  /** Objeto do tipo Speaker referente a palestrante. */
   @Input('speaker') speaker: Speaker;
 
   constructor(private router: Router) { }

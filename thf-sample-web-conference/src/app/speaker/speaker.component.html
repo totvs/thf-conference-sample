@@ -3,10 +3,19 @@
   [t-actions]="actions"
   [t-filter]="filter">
 
-  <div class="thf-row">
+  <ng-template [ngIf]="speakers" [ngIfElse]="speakersNotFound">
     <div *ngFor="let speaker of speakers" class="thf-xl-4 thf-md-6 padding">
       <speaker-card [speaker]="speaker"></speaker-card>
     </div>
-  </div>
+  </ng-template>
+
+  <ng-template #speakersNotFound>
+      <thf-widget
+        class="thf-offset-lg-4 thf-lg-4">
+        <p class="thf-font-text-large text-lecture-not-found">
+          There is no speaker available!
+        </p>
+      </thf-widget>
+    </ng-template>
 
 </thf-page-list>

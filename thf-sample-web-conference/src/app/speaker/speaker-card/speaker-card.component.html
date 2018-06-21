@@ -14,7 +14,9 @@
   </a>
 
   <div class="thf-xl-8 thf-lg-9 card-description">
-    <p class="thf-font-text-large-bold">{{ speaker.name }}</p>
+    <a class="title-link" [routerLink]="['/speakers/detail/', speaker.id]">
+      <p class="thf-font-text-large-bold">{{ speaker.name }}</p>
+    </a>
     <p class="thf-font-text">{{ speaker.email }}</p>
   </div>
 

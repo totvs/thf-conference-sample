@@ -1,5 +1,5 @@
 import { ActivatedRoute, Router } from '@angular/router';
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 import { ThfDialogService } from '@totvs/thf-ui/services/thf-dialog/thf-dialog.service';
 import { ThfNotificationService } from '@totvs/thf-ui/services/thf-notification/thf-notification.service';
@@ -16,14 +16,8 @@ import { SpeakerService } from '../speaker.service';
 })
 export class SpeakerDetailComponent implements OnInit {
 
-  @Input('speaker') speaker: Speaker = {
-    description: undefined,
-    email: undefined,
-    name: undefined,
-    photo: undefined
-  };
-
   lectures: Array<Lecture> = new Array<Lecture>();
+  speaker: Speaker = new Speaker();
   title: string;
 
   constructor(

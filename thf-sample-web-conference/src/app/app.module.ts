@@ -10,12 +10,15 @@ import { AppRoutingModule } from './app-routing.module';
 import { GenericService } from './generic/service/generic.service';
 import { LectureCardComponent } from './lecture/lecture-card/lecture-card.component';
 import { LectureComponent } from './lecture/lecture.component';
+import { LectureDetailComponent } from './lecture/lecture-detail/lecture-detail.component';
+import { LectureEditComponent } from './lecture/lecture-edit/lecture-edit.component';
 import { LectureService } from './lecture/lecture.service';
 import { SpeakerCardComponent } from './speaker/speaker-card/speaker-card.component';
 import { SpeakerComponent } from './speaker/speaker.component';
 import { SpeakerDetailComponent } from './speaker/speaker-detail/speaker-detail.component';
 import { SpeakerEditComponent } from './speaker/speaker-edit/speaker-edit.component';
 import { SpeakerService } from './speaker/speaker.service';
+import { TrackService } from './track/track.service';
 
 @NgModule({
   imports: [
@@ -30,15 +33,18 @@ import { SpeakerService } from './speaker/speaker.service';
     AppComponent,
     LectureCardComponent,
     LectureComponent,
+    LectureDetailComponent,
+    LectureEditComponent,
     SpeakerCardComponent,
     SpeakerComponent,
     SpeakerDetailComponent,
-    SpeakerEditComponent
+    SpeakerEditComponent,
   ],
   providers: [
     GenericService,
     LectureService,
-    SpeakerService
+    SpeakerService,
+    TrackService
   ],
   bootstrap: [AppComponent]
 })

@@ -14,14 +14,7 @@ import { SpeakerService } from '../speaker.service';
 })
 export class SpeakerEditComponent implements OnInit {
 
-  @Input('speaker') speaker: Speaker = {
-    description: undefined,
-    email: undefined,
-    name: undefined,
-    photo: undefined
-  };
-
-  private _isUpdate: boolean = false;
+  isUpdate: boolean = false;
   photoOptions: Array<ThfSelectOption> = [
     {
       value: 'avatar1.png',
@@ -49,6 +42,9 @@ export class SpeakerEditComponent implements OnInit {
       label: 'Picture 8'
     }];
   title: string = 'Create speaker';
+
+  /** Objeto do tipo Speaker referente a palestrante. */
+  @Input('speaker') speaker: Speaker = new Speaker();
 
   constructor(
     private route: ActivatedRoute,
@@ -91,14 +87,14 @@ export class SpeakerEditComponent implements OnInit {
       this.speaker = speaker;
 
       this.title = `Edit speaker ${this.speaker.name}`;
-      this._isUpdate = true;
+      this.isUpdate = true;
     }, error => {
       this.thfNotification.error(error.status + ' ' + error.statusText);
     });
   }
 
   save() {
-    if (this._isUpdate) {
+    if (this.isUpdate) {
       this.edit();
     } else {
       this.create();
