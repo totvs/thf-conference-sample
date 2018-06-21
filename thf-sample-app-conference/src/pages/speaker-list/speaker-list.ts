@@ -14,10 +14,10 @@ import { LectureDetailPage } from './../lecture-detail/lecture-detail';
 import { SpeakerDetailPage } from '../speaker-detail/speaker-detail';
 
 export interface ActionSheetButton {
-  text?: string;
-  role?: string;
-  icon?: string;
   cssClass?: string;
+  icon?: string;
+  role?: string;
+  text?: string;
   handler?: () => boolean|void;
 }
 

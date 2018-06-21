@@ -4,7 +4,7 @@
 
     <ion-segment [(ngModel)]="segment" (ionChange)="lectureFilter()">
       <ion-segment-button value="all"> All </ion-segment-button>
-      <ion-segment-button value="favorites"> Favorites </ion-segment-button>
+      <ion-segment-button value="favorites" [disabled]="!userId"> Favorites </ion-segment-button>
     </ion-segment>
 
     <ion-buttons end>

@@ -143,14 +143,17 @@ export class MyApp {
   private listenToLoginEvents() {
     this.events.subscribe('user:login', () => {
       this.enableMenu(true);
+      this.nav.setRoot(TabsPage);
     });
 
     this.events.subscribe('user:signup', () => {
       this.enableMenu(true);
+      this.nav.setRoot(TabsPage);
     });
 
     this.events.subscribe('user:logout', () => {
       this.enableMenu(false);
+      this.nav.setRoot(TabsPage);
     });
   }
 
