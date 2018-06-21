@@ -1,15 +1,14 @@
 import { Injectable } from '@angular/core';
-import { ThfStorageService } from '@totvs/thf-storage';
 
 import { ThfEntity } from '@totvs/thf-sync/models';
-import { ThfSyncService } from '@totvs/thf-sync';
+import { ThfStorageService } from '@totvs/thf-storage';
+import { ThfSyncService, ThfHttpRequestData, ThfHttpRequestType } from '@totvs/thf-sync';
 
 @Injectable()
 export class UserService {
 
   loggedUser;
   userModel: ThfEntity;
-  users;
 
   constructor(private thfSync: ThfSyncService, private thfStorage: ThfStorageService) {
     this.userModel = this.thfSync.getModel('Users');
@@ -31,6 +30,16 @@ export class UserService {
 
   }
 
+  createUser(user) {
+    const requestData: ThfHttpRequestData = {
+      url: 'http://localhost:8080/conference-api/api/v1/users/',
+      method: ThfHttpRequestType.POST,
+      body: user
+    };
+
+    this.thfSync.insertHttpCommand(requestData, user.username);
+  }
+
   async getFavoriteLectures() {
     const user = await this.userModel.findById(this.loggedUser).exec();
     return user.favoriteLectures;
@@ -45,8 +54,19 @@ export class UserService {
     return this.userModel;
   }
 
-  getUsers() {
-    return this.userModel.find().exec().then(data => this.users = data.items);
+  async getUsers() {
+    const userData = await this.userModel.find().exec();
+    return userData.items;
+  }
+
+  async onLogin(username, password) {
+    const users = await this.getUsers();
+
+    const foundUser = users.find(user => {
+      return (user.username === username) && (user.password === password);
+    });
+
+    return foundUser ? this.logIn(foundUser) : Promise.reject();
   }
 
   async removeFavoriteLecture(lectureId) {
@@ -59,6 +79,10 @@ export class UserService {
 
   synchronize() {
     return this.thfSync.sync();
+  }
+
+  private logIn(foundUser) {
+    return this.thfStorage.set('login', { userId: foundUser.id });
   }
 
 }

@@ -3,15 +3,14 @@ import { NgForm } from '@angular/forms';
 
 import { Events, NavController, ToastController } from 'ionic-angular';
 
-import { ThfStorageService } from '@totvs/thf-storage';
-import { ThfSyncService } from '@totvs/thf-sync';
-
 import { SignupPage } from '../signup/signup';
 import { TabsPage } from '../tabs/tabs';
+import { UserService } from './../../services/user.service';
 
 @Component({
   selector: 'page-user',
-  templateUrl: 'login.html'
+  templateUrl: 'login.html',
+  providers: [ UserService ]
 })
 export class LoginPage {
 
@@ -22,21 +21,21 @@ export class LoginPage {
     public navCtrl: NavController,
     public events: Events,
     public toastCtrl: ToastController,
-    private thfSync: ThfSyncService,
-    private thfStorage: ThfStorageService
+    private userService: UserService,
   ) { }
 
   onLogin(form: NgForm) {
     this.submitted = true;
 
     if (form.valid) {
-      this.thfSync.getModel('Users').find().exec().then(data => {
-        const foundUser = data.items.find(user => {
-          return (user.username === this.login.username) && (user.password === this.login.password);
-        });
 
-        foundUser ? this.logIn(foundUser) : this.createToast();
-      });
+      this.userService.onLogin(this.login.username, this.login.password)
+        .then(() => {
+          this.events.publish('user:login');
+          this.navCtrl.push(TabsPage);
+        })
+        .catch(() => this.createToast());
+
     }
   }
 
@@ -52,13 +51,6 @@ export class LoginPage {
       cssClass: 'toaster'
     });
     toast.present();
-  }
-
-  private logIn(foundUser) {
-    this.thfStorage.set('login', { userId: foundUser.id }).then(() => {
-      this.events.publish('user:login');
-      this.navCtrl.push(TabsPage);
-    });
   }
 
 }

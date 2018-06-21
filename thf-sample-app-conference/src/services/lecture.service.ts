@@ -13,12 +13,12 @@ export class LectureService {
     this.lectureModel = this.thfSync.getModel('Lectures');
   }
 
-  getLectures() {
-    return this.lectureModel.find().exec().then(data => this.lectures = data.items);
+  async getLecture(lectureId) {
+    return await this.thfSync.getModel('Lectures').findById(lectureId).exec();
   }
 
-  getModel() {
-    return this.lectureModel;
+  getLectures() {
+    return this.lectureModel.find().exec().then(data => this.lectures = data.items);
   }
 
   synchronize() {

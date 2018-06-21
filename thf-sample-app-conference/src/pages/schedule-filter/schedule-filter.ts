@@ -1,11 +1,13 @@
-import { ThfSyncService } from '@totvs/thf-sync';
 import { Component } from '@angular/core';
 
 import { NavParams, ViewController } from 'ionic-angular';
 
+import { TrackService } from './../../services/track.service';
+
 @Component({
   selector: 'page-schedule-filter',
-  templateUrl: 'schedule-filter.html'
+  templateUrl: 'schedule-filter.html',
+  providers: [ TrackService ]
 })
 export class ScheduleFilterPage {
   tracks: Array<{name: string, isChecked: boolean, color: string}> = [];
@@ -13,25 +15,9 @@ export class ScheduleFilterPage {
   constructor(
     public navParams: NavParams,
     public viewCtrl: ViewController,
-    private thfSync: ThfSyncService
+    private trackService: TrackService
   ) {
-    // passed in array of track names that should be excluded (unchecked)
-    const excludedTrackNames = this.navParams.data;
-
-    this.thfSync.getModel('Tracks').find().exec().then(data => {
-      this.tracks = data.items.map(track => {
-        return {
-          name: track.name,
-          color: track.color,
-          isChecked: !excludedTrackNames.includes(track.name)
-        };
-      });
-    });
-
-  }
-
-  resetFilters() {
-    this.tracks.forEach(track => track.isChecked = true);
+    this.getTracks();
   }
 
   applyFilters() {
@@ -45,4 +31,23 @@ export class ScheduleFilterPage {
   dismiss(data?: any) {
     this.viewCtrl.dismiss(data);
   }
+
+  getTracks() {
+    const excludedTrackNames = this.navParams.data;
+
+    this.trackService.getTracks().then(tracks => {
+      this.tracks = tracks.map(track => {
+        return {
+          name: track.name,
+          color: track.color,
+          isChecked: !excludedTrackNames.includes(track.name)
+        };
+      });
+    });
+  }
+
+  resetFilters() {
+    this.tracks.forEach(track => track.isChecked = true);
+  }
+
 }
