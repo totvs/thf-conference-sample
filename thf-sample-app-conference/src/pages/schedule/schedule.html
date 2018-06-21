@@ -2,7 +2,7 @@
   <ion-navbar color="primary" no-border-bottom>
     <button ion-button menuToggle> <ion-icon name="menu"></ion-icon> </button>
 
-    <ion-segment [(ngModel)]="segment" (ionChange)="updateSchedule()">
+    <ion-segment [(ngModel)]="segment" (ionChange)="lectureFilter()">
       <ion-segment-button value="all"> All </ion-segment-button>
       <ion-segment-button value="favorites"> Favorites </ion-segment-button>
     </ion-segment>
@@ -30,12 +30,12 @@
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
 
-  <ion-list #scheduleList [hidden]="!lectures">
+  <ion-list [hidden]="!lectures">
 
-    <ion-item-sliding *ngFor="let lecture of filteredLectures" [ngStyle]="getColorTrack(lecture.track.color)">
+    <ion-item-sliding *ngFor="let lecture of filteredLectures" #slidingItem [ngStyle]="getColorTrack(lecture.track.color)">
 
       <button ion-item (click)="goToSessionDetail(lecture.id)">
-        <h3>{{ lecture.title }}</h3>
+        <h3>{{ lecture.title }} </h3>
         <p>
           {{ lecture.startTime }} &mdash;
           {{ lecture.endTime }}:
@@ -43,11 +43,11 @@
         </p>
       </button>
 
-      <ion-item-options>
-        <button ion-button color="favorite" (click)="addFavorite(slidingItem, lecture)" *ngIf="segment === 'all'">
+      <ion-item-options class="favorite">
+        <button ion-button color="favorite" (click)="addFavorite(slidingItem, lecture)" *ngIf="segment === 'all' && userId">
           Favorite
         </button>
-        <button ion-button color="danger" (click)="removeFavorite(slidingItem, lecture, 'Remove Favorite')" *ngIf="segment === 'favorites'">
+        <button ion-button color="danger" (click)="removeFavorite(slidingItem, lecture.id, 'Remove Favorite')" *ngIf="segment === 'favorites' && userId">
           Remove
         </button>
       </ion-item-options>
