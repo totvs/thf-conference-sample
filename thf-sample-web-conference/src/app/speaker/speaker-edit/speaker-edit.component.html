@@ -1,6 +1,6 @@
 <thf-page-edit
-  t-disable-submit="formSpeaker.invalid"
-  t-title="{{ title }}">
+  t-title="{{ title }}"
+  [t-disable-submit]="formSpeaker.invalid">
 
   <form #formSpeaker="ngForm">
 
@@ -17,38 +17,37 @@
 
     <div class="thf-row">
       <thf-email
-        class="thf-lg-8"
+        class="thf-lg-4 thf-md-6"
         name="email"
         [(ngModel)]="speaker.email"
         t-clean
         t-label="Email"
         t-required>
       </thf-email>
+
+      <thf-select
+        class="thf-lg-4 thf-md-6"
+        name="photo"
+        [(ngModel)]="speaker.photo"
+        t-label="Photo"
+        [t-options]="photoOptions"
+        t-required>
+
+        <ng-template t-select-option-template let-option>
+
+          <div class="select select-avatar">
+            <thf-avatar
+              class="thf-sm-2"
+              t-size="md"
+              t-src="../../assets/img/{{option.value}}">
+            </thf-avatar>
+
+            <div>{{ option.label }}</div>
+          </div>
+        </ng-template>
+      </thf-select>
     </div>
 
-    <thf-select
-      class="thf-lg-8"
-      name="photo"
-      [(ngModel)]="speaker.photo"
-      t-label="Photo"
-      [t-options]="photoOptions"
-      (t-change)="onChangePhoto()"
-      t-required>
-
-      <ng-template t-select-option-template let-option>
-
-        <div class="sample-select-option-template-container">
-          <thf-avatar
-            t-size="xs"
-            t-src="../../assets/img/{{option.value}}">
-          </thf-avatar>
-
-          <div class="sample-select-option-template-margin">
-            <div class="sample-select-option-template-label"> {{ option.label }} </div>
-          </div>
-        </div>
-      </ng-template>
-    </thf-select>
 
     <div class="thf-row">
       <thf-textarea

@@ -1,0 +1,104 @@
+<thf-page-edit
+  t-title="{{ title }}"
+  [t-disable-submit]="formLecture.invalid">
+
+  <form #formLecture="ngForm">
+
+    <div class="thf-row">
+      <thf-input
+        class="thf-lg-8"
+        name="title"
+        [(ngModel)]="lecture.title"
+        t-clean
+        t-label="Title"
+        t-required>
+      </thf-input>
+    </div>
+
+    <div class="thf-row">
+      <thf-select
+        class="thf-lg-5 thf-md-8"
+        name="speaker"
+        [(ngModel)]="lecture.speakerId"
+        t-label="Speaker"
+        [t-options]="speakerOptions"
+        t-required>
+
+        <ng-template t-select-option-template let-option>
+          <div class="select select-avatar">
+            <thf-avatar
+              class="thf-md-1"
+              t-size="md"
+              t-src="../../assets/img/{{ getSpeakerImage(option.value) }}">
+            </thf-avatar>
+
+            <div>{{ option.label }}</div>
+          </div>
+        </ng-template>
+
+      </thf-select>
+
+      <thf-select
+        class="thf-lg-3 thf-md-4"
+        name="track"
+        [(ngModel)]="lecture.trackId"
+        t-label="Track"
+        [t-options]="trackOptions"
+        t-required>
+
+        <ng-template t-select-option-template let-option>
+          <div class="select select-track">
+            <div class="thf-lg-2 thf-md-2 thf-sm-2 circle" [ngStyle]="{ 'background-color': getTrackColor(option.value) }"> </div>
+
+            <div>{{ option.label }}</div>
+          </div>
+        </ng-template>
+      </thf-select>
+    </div>
+
+    <div class="thf-row">
+      <thf-input
+        class="thf-lg-2 thf-md-4 thf-sm-6"
+        name="startTime"
+        [(ngModel)]="lecture.startTime"
+        t-clean
+        t-label="Initial hour"
+        t-mask="99:99:99"
+        t-pattern="^(2[0-3]|[01][0-9]):?([0-5][0-9]):?([0-5][0-9])$"
+        t-required>
+      </thf-input>
+
+      <thf-input
+        class="thf-lg-2 thf-md-4 thf-sm-6"
+        name="endTime"
+        [(ngModel)]="lecture.endTime"
+        t-clean
+        t-label="End hour"
+        t-mask="99:99:99"
+        t-pattern="^(2[0-3]|[01][0-9]):?([0-5][0-9]):?([0-5][0-9])$"
+        t-required>
+      </thf-input>
+
+      <thf-input
+        class="thf-lg-4"
+        name="room"
+        [(ngModel)]="lecture.room"
+        t-clean
+        t-label="Room"
+        t-required>
+      </thf-input>
+  </div>
+
+    <div class="thf-row">
+      <thf-textarea
+        class="thf-lg-8"
+        name="description"
+        [(ngModel)]="lecture.description"
+        t-label="Description"
+        t-required>
+      </thf-textarea>
+    </div>
+
+  </form>
+
+</thf-page-edit>

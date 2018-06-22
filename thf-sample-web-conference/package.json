@@ -24,6 +24,7 @@
     "@totvs/thf-ui": "^1.5.0",
     "core-js": "^2.4.1",
     "rxjs": "^5.5.6",
+    "tslint-sonarts": "^1.7.0",
     "zone.js": "^0.8.19"
   },
   "devDependencies": {

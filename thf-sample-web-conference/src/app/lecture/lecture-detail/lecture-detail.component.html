@@ -1,0 +1,72 @@
+<thf-page-detail
+  t-title="{{ title }}">
+
+  <thf-widget
+    class="thf-md-12">
+
+    <div class="thf-row">
+      <div class="thf-font-subtitle">
+        {{ lecture.title }}
+      </div>
+    </div>
+
+    <hr>
+    <br>
+
+    <div class="thf-row">
+      <thf-avatar
+        t-size="sm"
+        t-src="../../assets/img/{{ lecture.speaker?.photo }}">
+      </thf-avatar>
+
+      <thf-info
+        class="speaker-padding"
+        t-label="Speaker"
+        t-orientation="horizontal"
+        [t-value]="lecture.speaker?.name">
+      </thf-info>
+    </div>
+
+    <div class="thf-row">
+      <div
+        class="thf-sm-2 circle circle-border"
+        [ngStyle]="{ 'background-color': lecture.track?.color }"> </div>
+
+      <thf-info
+        class="track-padding"
+        t-label="Track"
+        t-orientation="horizontal"
+        [t-value]="lecture.track?.name">
+      </thf-info>
+    </div>
+
+    <br>
+
+    <div class="thf-row">
+      <thf-info
+        class="thf-md-2"
+        t-label="Initial hour"
+        [t-value]="lecture.startTime">
+      </thf-info>
+
+      <thf-info
+        class="thf-md-2"
+        t-label="End hour"
+        [t-value]="lecture.endTime">
+      </thf-info>
+
+      <thf-info
+        class="thf-md-2"
+        t-label="Room"
+        [t-value]="lecture.room">
+      </thf-info>
+
+      <thf-info
+        class="thf-md-6"
+        t-label="Description"
+        [t-value]="lecture.description">
+      </thf-info>
+    </div>
+  </thf-widget>
+
+</thf-page-detail>

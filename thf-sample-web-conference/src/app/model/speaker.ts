@@ -1,6 +1,6 @@
 import { LectureSummary } from './lectureSummary';
 
-export interface Speaker {
+export class Speaker {
   /**
    * Speaker id.
    */
@@ -41,4 +41,6 @@ export interface Speaker {
    * Lecture list of speaker.
    */
   lectures?: Array<LectureSummary>;
+
+  constructor() { }
 }
