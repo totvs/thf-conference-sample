@@ -3,6 +3,18 @@
 var utils = require('../utils/writer.js');
 var Conferences = require('../service/ConferencesService');
 
+module.exports.conferencesDiffDateGET = function conferencesDiffDateGET (req, res, next) {
+  const date = req.swagger.params['date'].value;
+
+  Conferences.conferencesDiffDateGET(date)
+    .then(function (response) {
+      utils.writeJson(res, response);
+    })
+    .catch(function (response) {
+      utils.writeJson(res, response);
+    });
+};
+
 module.exports.conferencesGET = function conferencesGET (req, res, next) {
   Conferences.conferencesGET()
     .then(function (response) {

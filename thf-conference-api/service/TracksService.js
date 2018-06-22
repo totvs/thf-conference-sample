@@ -48,12 +48,27 @@ const findTrackById = exports.findTrackById = function (id) {
 }
 
 /**
+ * Load
+ *
+ * date Date Date.
+ * returns tracksResponse
+ **/
+exports.tracksDiffDateGET = function(date) {
+  return new Promise(function(resolve, reject) {
+    totvsResponse.items = tracks.filter(track => {
+      return new Date(track.updatedDate) >= new Date(date);
+    });
+    resolve(totvsResponse)
+  });
+}
+
+/**
  * Load the list of Tracks
  *
  * returns tracksResponse
  **/
 exports.tracksGET = function () {
-  return new Promise(function (resolve, reject) {
+  return new Promise(function (resolve) {
     totvsResponse.items = tracks;
 
     resolve(totvsResponse);
@@ -73,6 +88,7 @@ exports.tracksIdDELETE = function (id) {
 
     if (track) {
       track.deletedDate = new Date().toISOString();
+      track.updatedDate = track.deletedDate;
       track.deleted = true;
       resolve();
     } else {
