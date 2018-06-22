@@ -1,4 +1,3 @@
-import { SchedulePage } from './../pages/schedule/schedule';
 import { Component, ViewChild } from '@angular/core';
 
 import { Events, MenuController, Nav, Platform } from 'ionic-angular';
@@ -9,13 +8,12 @@ import { ThfNetworkType, ThfSyncConfig, ThfSyncService } from '@totvs/thf-sync';
 import { ThfStorageService } from '@totvs/thf-storage';
 
 import { AboutPage } from '../pages/about/about';
-import { HomePage } from './../pages/home/home';
 import { LoginPage } from './../pages/login/login';
+import { SchedulePage } from './../pages/schedule/schedule';
 import { schemas } from './../schemas/schemas-list';
 import { SignupPage } from './../pages/signup/signup';
 import { SpeakerListPage } from './../pages/speaker-list/speaker-list';
 import { TabsPage } from '../pages/tabs/tabs';
-
 export interface PageInterface {
   title: string;
   name: string;
@@ -96,33 +94,39 @@ export class MyApp {
 
   }
 
+  private async checkDataInitial() {
+    const firstLoad = await this.thfStorage.get('firstLoad');
+
+    if (!firstLoad) {
+      this.loadDataInitial();
+    } else {
+      this.splashScreen.hide();
+      this.rootPage = TabsPage;
+    }
+  }
+
   private enableMenu(login: boolean) {
     this.menu.enable(!login, 'loggedOutMenu');
     this.menu.enable(login, 'loggedInMenu');
   }
 
-  private initialDataLoad() {
-    this.thfStorage.get('firstLoad').then(firstLoad => {
+  private async loadDataInitial() {
+    await this.thfStorage.set('firstLoad', true);
 
-      if (!firstLoad) {
-        this.thfStorage.set('firstLoad', true).then(() => {
-          this.thfSync.loadData().subscribe();
-        });
-      }
-
+    this.thfSync.loadData().subscribe(() => {
+      this.splashScreen.hide();
+      this.rootPage = TabsPage;
     });
+
   }
 
   private initApp() {
     this.platform.ready().then(() => {
       this.statusBar.styleDefault();
-      this.splashScreen.hide();
 
       this.listenToLoginEvents();
       this.isLogged();
-      this.initSync().then(() => {
-        this.rootPage = TabsPage;
-      });
+      this.initSync();
 
     });
   }
@@ -133,7 +137,7 @@ export class MyApp {
       period: 10
     };
 
-    return this.thfSync.prepare(schemas, config).then(() => this.initialDataLoad());
+    return this.thfSync.prepare(schemas, config).then(() => this.checkDataInitial());
   }
 
   private isLogged() {
