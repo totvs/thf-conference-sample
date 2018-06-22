@@ -16,8 +16,7 @@ import { UserService } from './../../services/user.service';
 
 @Component({
   selector: 'page-schedule',
-  templateUrl: 'schedule.html',
-  providers: [ LectureService, UserService ]
+  templateUrl: 'schedule.html'
 })
 export class SchedulePage {
 

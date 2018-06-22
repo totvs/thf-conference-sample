@@ -11,8 +11,7 @@ import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'page-user',
-  templateUrl: 'signup.html',
-  providers: [ UserService ]
+  templateUrl: 'signup.html'
 })
 export class SignupPage {
 

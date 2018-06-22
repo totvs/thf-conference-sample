@@ -6,8 +6,7 @@ import { LectureService } from '../../services/lecture.service';
 
 @Component({
   selector: 'page-lecture-detail',
-  templateUrl: 'lecture-detail.html',
-  providers: [ LectureService ]
+  templateUrl: 'lecture-detail.html'
 })
 export class LectureDetailPage {
 

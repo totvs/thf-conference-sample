@@ -9,8 +9,7 @@ import { UserService } from './../../services/user.service';
 
 @Component({
   selector: 'page-user',
-  templateUrl: 'login.html',
-  providers: [ UserService ]
+  templateUrl: 'login.html'
 })
 export class LoginPage {
 

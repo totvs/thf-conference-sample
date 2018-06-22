@@ -6,8 +6,7 @@ import { TrackService } from './../../services/track.service';
 
 @Component({
   selector: 'page-schedule-filter',
-  templateUrl: 'schedule-filter.html',
-  providers: [ TrackService ]
+  templateUrl: 'schedule-filter.html'
 })
 export class ScheduleFilterPage {
   tracks: Array<{name: string, isChecked: boolean, color: string}> = [];
