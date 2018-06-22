@@ -31,7 +31,7 @@ export interface PageInterface {
 export class MyApp {
 
   logoutPage = { title: 'Logout', name: 'TabsPage', component: TabsPage, icon: 'log-out' };
-  notePage = { title: 'Notes', name: 'TabsPage', component: TabsPage, tabComponent: SpeakerListPage, index: 2, icon: 'paper' };
+  notePage = { title: 'Notes', name: 'TabsPage', component: TabsPage, icon: 'paper' };
   rootPage;
 
   @ViewChild(Nav) nav: Nav;
@@ -39,7 +39,7 @@ export class MyApp {
   appPages: Array<PageInterface> = [
     { title: 'Schedule', name: 'TabsPage', component: TabsPage, tabComponent: SchedulePage, index: 0, icon: 'calendar' },
     { title: 'Speakers', name: 'TabsPage', component: TabsPage, tabComponent: SpeakerListPage, index: 1, icon: 'contacts' },
-    { title: 'About conference', name: 'TabsPage', component: TabsPage, tabComponent: AboutPage, index: 3, icon: 'information-circle' }
+    { title: 'About conference', name: 'TabsPage', component: TabsPage, tabComponent: AboutPage, index: 2, icon: 'information-circle' }
   ];
 
   loggedOutPages: Array<PageInterface> = [

@@ -4,7 +4,6 @@ import { Component } from '@angular/core';
 import { NavParams } from 'ionic-angular';
 
 import { AboutPage } from '../about/about';
-import { HomePage } from '../home/home';
 import { SpeakerListPage } from '../speaker-list/speaker-list';
 
 @Component({
@@ -12,7 +11,6 @@ import { SpeakerListPage } from '../speaker-list/speaker-list';
 })
 export class TabsPage {
 
-  isLogged = false;
   mySelectedIndex: number;
   tab1Root = SchedulePage;
   tab2Root = SpeakerListPage;
