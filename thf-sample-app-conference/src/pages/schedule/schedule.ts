@@ -9,6 +9,8 @@ import {
   Refresher,
 } from 'ionic-angular';
 
+import { ThfSyncService } from '@totvs/thf-sync';
+
 import { LectureDetailPage } from './../lecture-detail/lecture-detail';
 import { LectureService } from '../../services/lecture.service';
 import { ScheduleFilterPage } from '../schedule-filter/schedule-filter';
@@ -21,6 +23,7 @@ import { UserService } from './../../services/user.service';
 export class SchedulePage {
 
   excludeTracks: any = [];
+  favoriteSegment = 'favorites';
   filteredLectures = [];
   lectures = [];
   queryText = '';
@@ -34,7 +37,12 @@ export class SchedulePage {
     public navCtrl: NavController,
     private lectureService: LectureService,
     private userService: UserService,
-  ) {}
+    private thfSync: ThfSyncService,
+  ) {
+    this.thfSync.onSync().subscribe(() => {
+      this.updateSchedule();
+    });
+  }
 
   ionViewWillEnter() {
     this.app.setTitle('Schedule');
@@ -59,10 +67,7 @@ export class SchedulePage {
   }
 
   doRefresh(refresher: Refresher) {
-    // Validar se está funcionando depois de fazer o diff da lecture
-    this.lectureService.synchronize().then(() => {
-      refresher.complete();
-    });
+    this.lectureService.synchronize().then(() => refresher.complete());
   }
 
   getColorTrack(color) {
@@ -74,16 +79,18 @@ export class SchedulePage {
   }
 
   lectureFilter() {
-    this.filteredLectures = this.lectures.filter(lecture => {
+    const lectures = this.lectures.filter(lecture => {
       const isNotExcludeTrack = !this.excludeTracks.includes(lecture.track.name);
       const isEqualQueryText = lecture['title'].toLowerCase().includes(this.queryText);
 
       return this.queryText ? isEqualQueryText && isNotExcludeTrack : isNotExcludeTrack;
     });
 
-    if (this.segment === 'favorites') {
-      this.lectureFavoriteFilter()
+    if (this.segment === this.favoriteSegment) {
+      this.lectureFavoriteFilter(lectures)
         .then(favoriteLectures => this.filteredLectures = favoriteLectures);
+    } else {
+      this.filteredLectures = lectures;
     }
 
   }
@@ -121,15 +128,15 @@ export class SchedulePage {
     alert.present();
   }
 
-  private async lectureFavoriteFilter() {
+  private async lectureFavoriteFilter(lectures) {
     const favoriteLectures = await this.userService.getFavoriteLectures();
-    return this.filteredLectures.filter(lecture => favoriteLectures.includes(lecture.id));
+    return lectures.filter(lecture => favoriteLectures && favoriteLectures.includes(lecture.id));
   }
 
   private updateSchedule() {
     this.lectureService.getLectures().then(lectures => {
       this.lectures = lectures;
-      this.filteredLectures = this.lectures;
+      this.lectureFilter();
     });
 
   }
