@@ -7,16 +7,15 @@ import { ThfSyncService, ThfHttpRequestData, ThfHttpRequestType } from '@totvs/t
 @Injectable()
 export class UserService {
 
-  loggedUser;
   userModel: ThfEntity;
 
   constructor(private thfSync: ThfSyncService, private thfStorage: ThfStorageService) {
     this.userModel = this.thfSync.getModel('Users');
-    this.getLoggedUser().then(user => this.loggedUser = user);
   }
 
   async addFavoriteLecture(lectureId) {
-    const user = await this.userModel.findById(this.loggedUser).exec();
+    const loggedUser = await this.getLoggedUser();
+    const user = await this.userModel.findById(loggedUser).exec();
     user.favoriteLectures = user.favoriteLectures || [];
 
     if (!user.favoriteLectures.includes(lectureId)) {
@@ -41,8 +40,9 @@ export class UserService {
   }
 
   async getFavoriteLectures() {
-    const user = await this.userModel.findById(this.loggedUser).exec();
-    return user.favoriteLectures;
+    const loggedUser = await this.getLoggedUser();
+    const user = await this.userModel.findById(loggedUser).exec();
+    return 'favoriteLectures' in user ? user.favoriteLectures : undefined;
   }
 
   async getLoggedUser() {
@@ -66,11 +66,12 @@ export class UserService {
       return (user.username === username) && (user.password === password);
     });
 
-    return foundUser ? this.logIn(foundUser) : Promise.reject();
+    return foundUser ? this.logIn(foundUser) : Promise.reject('User not found');
   }
 
   async removeFavoriteLecture(lectureId) {
-    const user = await this.userModel.findById(this.loggedUser).exec();
+    const loggedUser = await this.getLoggedUser();
+    const user = await this.userModel.findById(loggedUser).exec();
 
     user.favoriteLectures = user.favoriteLectures.filter(id => lectureId !== id);
     await this.userModel.save(user);
