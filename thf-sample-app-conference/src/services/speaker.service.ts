@@ -12,4 +12,8 @@ export class SpeakerService {
     return speakersResponse.items;
   }
 
+  synchronize() {
+    return this.thfSync.sync();
+  }
+
 }
