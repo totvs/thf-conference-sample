@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 
-import { NavParams, ViewController } from 'ionic-angular';
+import { NavParams, ViewController, Refresher } from 'ionic-angular';
+
+import { ThfSyncService } from '@totvs/thf-sync';
 
 import { TrackService } from './../../services/track.service';
 
@@ -14,8 +16,13 @@ export class ScheduleFilterPage {
   constructor(
     public navParams: NavParams,
     public viewCtrl: ViewController,
-    private trackService: TrackService
+    private trackService: TrackService,
+    private thfSync: ThfSyncService
   ) {
+    this.thfSync.onSync().subscribe(() => this.getTracks());
+  }
+
+  ionViewWillEnter() {
     this.getTracks();
   }
 
@@ -29,6 +36,10 @@ export class ScheduleFilterPage {
 
   dismiss(data?: any) {
     this.viewCtrl.dismiss(data);
+  }
+
+  doRefresh(refresher: Refresher) {
+    this.trackService.synchronize().then(() => refresher.complete());
   }
 
   getTracks() {

@@ -12,4 +12,8 @@ export class TrackService {
     return tracksResponse.items;
   }
 
+  synchronize() {
+    return this.thfSync.sync();
+  }
+
 }
