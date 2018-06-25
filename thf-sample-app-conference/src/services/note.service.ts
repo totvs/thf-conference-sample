@@ -18,4 +18,9 @@ export class NoteService {
     return user.notes;
   }
 
+  save(note) {
+    const noteModel = this.thfSync.getModel('Notes');
+    noteModel.save(note);
+  }
+
 }

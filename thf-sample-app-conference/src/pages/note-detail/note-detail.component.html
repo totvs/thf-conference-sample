@@ -16,11 +16,11 @@
     <button ion-fab mini color="dark"><ion-icon name="arrow-dropup"></ion-icon></button>
 
     <ion-fab-list side="top">
-      <button ion-fab><ion-icon name="checkmark"></ion-icon></button>
+      <button ion-fab (click)="saveNote()"><ion-icon name="checkmark"></ion-icon></button>
       <button ion-fab><ion-icon name="trash"></ion-icon></button>
     </ion-fab-list>
   </ion-fab>
 
-  <textarea class="note" [value]="note.text" autofocus></textarea>
+  <textarea class="note" [(ngModel)]="note.text" autofocus></textarea>
 </ion-content>
 
