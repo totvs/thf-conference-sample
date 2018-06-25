@@ -9,6 +9,7 @@ import { ThfStorageService } from '@totvs/thf-storage';
 
 import { AboutPage } from '../pages/about/about';
 import { LoginPage } from './../pages/login/login';
+import { NotesPage } from './../pages/notes/notes.component';
 import { SchedulePage } from './../pages/schedule/schedule';
 import { schemas } from './../schemas/schemas-list';
 import { SignupPage } from './../pages/signup/signup';
@@ -31,7 +32,7 @@ export interface PageInterface {
 export class MyApp {
 
   logoutPage = { title: 'Logout', name: 'TabsPage', component: TabsPage, icon: 'log-out' };
-  notePage = { title: 'Notes', name: 'TabsPage', component: TabsPage, icon: 'paper' };
+  notePage = { title: 'Notes', name: 'NotesPage', component: NotesPage, icon: 'paper' };
   rootPage;
 
   @ViewChild(Nav) nav: Nav;

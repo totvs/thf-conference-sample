@@ -1,10 +1,12 @@
+import { UserService } from './../../services/user.service';
 import { Component } from '@angular/core';
 
-import { NavParams, Refresher } from 'ionic-angular';
+import { NavParams, Refresher, NavController } from 'ionic-angular';
 
 import { ThfSyncService } from '@totvs/thf-sync';
 
 import { LectureService } from '../../services/lecture.service';
+import { NoteDetailPage } from '../note-detail/note-detail.component';
 
 @Component({
   selector: 'page-lecture-detail',
@@ -13,9 +15,18 @@ import { LectureService } from '../../services/lecture.service';
 export class LectureDetailPage {
 
   lecture;
+  isLogged = false;
 
-  constructor(public navParams: NavParams, private lectureService: LectureService, private thfSync: ThfSyncService) {
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    private lectureService: LectureService,
+    private thfSync: ThfSyncService,
+    private userService: UserService,
+  ) {
     this.thfSync.onSync().subscribe(() => this.loadLecture());
+
+    this.userService.getLoggedUserId().then(user => this.isLogged = !!user);
   }
 
   ionViewWillEnter() {
@@ -24,6 +35,10 @@ export class LectureDetailPage {
 
   doRefresh(refresher: Refresher) {
     this.lectureService.synchronize().then(() => refresher.complete());
+  }
+
+  goToNoteDetail() {
+    this.navCtrl.push(NoteDetailPage, { lectureId: this.lecture.id });
   }
 
   private loadLecture() {

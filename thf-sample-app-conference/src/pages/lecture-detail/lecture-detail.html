@@ -6,6 +6,13 @@
 
 <ion-content padding>
 
+  <ion-fab top right *ngIf="isLogged">
+    <button ion-fab mini color="dark"><ion-icon name="add"></ion-icon></button>
+    <ion-fab-list>
+      <button ion-fab (click)="goToNoteDetail()"><ion-icon name="paper"></ion-icon></button>
+    </ion-fab-list>
+  </ion-fab>
+
   <ion-refresher (ionRefresh)="doRefresh($event)">
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>

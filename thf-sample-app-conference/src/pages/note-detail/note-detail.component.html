@@ -1,0 +1,26 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-title *ngIf="!newNote">
+      {{ note.title }}
+    </ion-title>
+
+    <ion-title>
+      <ion-input *ngIf="newNote" type="text" [(ngModel)]="note.title"></ion-input>
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+  <ion-fab right bottom>
+    <button ion-fab mini color="dark"><ion-icon name="arrow-dropup"></ion-icon></button>
+
+    <ion-fab-list side="top">
+      <button ion-fab><ion-icon name="checkmark"></ion-icon></button>
+      <button ion-fab><ion-icon name="trash"></ion-icon></button>
+    </ion-fab-list>
+  </ion-fab>
+
+  <textarea class="note" [value]="note.text" autofocus></textarea>
+</ion-content>
+
