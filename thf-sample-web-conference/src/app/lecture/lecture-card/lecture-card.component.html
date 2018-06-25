@@ -1,0 +1,13 @@
+<thf-widget
+  t-height="110">
+
+  <div class="thf-sm-2 circle" [ngStyle]="{ 'background-color': lecture.track.color }"> </div>
+
+  <div class="thf-sm-10">
+    <a class="title-link" [routerLink]="['/lectures/detail/', lecture.id]">
+      <p class="thf-font-text-large-bold">{{ lecture.title }}</p>
+    </a>
+    <p class="thf-font-text">{{ getCardDescription() }}</p>
+  </div>
+
+</thf-widget>

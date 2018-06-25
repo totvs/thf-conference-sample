@@ -30,6 +30,22 @@ exports.findNotesByUserId = function (userId) {
 }
 
 /**
+ * Load
+ *
+ * date Date Date.
+ * returns notesResponse
+ **/
+exports.notesDiffDateGET = function(date) {
+  return new Promise(function(resolve) {
+    totvsResponse.items = notes.filter(note => {
+      return new Date(note.updatedDate) >= new Date(date);
+    });
+    resolve(totvsResponse)
+  });
+}
+
+
+/**
  * Load the list of notes
  *
  * returns notesResponse

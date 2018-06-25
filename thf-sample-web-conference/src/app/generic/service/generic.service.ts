@@ -1,10 +1,13 @@
-import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
 
 import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/map';
+
+import { TotvsResponse } from './../../model/totvs-response.interface';
 
 @Injectable()
-export class GenericService {
+export class GenericService<T> {
 
   private host: string = 'http://localhost:';
   private port: number = 8080;
@@ -13,24 +16,26 @@ export class GenericService {
 
   private readonly urlApi: string = this.host + this.port + this.apiName + this.version;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, public path: string) { }
 
-  get<T>(path: string): Observable<T> {
-    return this.http.get<T>(`${this.urlApi}/${path}`).map(totvsResponse => (totvsResponse));
+  delete(id: string): Observable<{}> {
+    return this.http.delete<{}>(`${this.urlApi}/${this.path}/${id}`).map(() => (id), error => (error));
   }
 
-  getById<T>(path: string, id: string): Observable<T> {
-    return this.http.get<T>(`${this.urlApi}/${path}/${id}`).map(response => (response));
+  get(): Observable<TotvsResponse> {
+    return this.http.get<TotvsResponse>(`${this.urlApi}/${this.path}`).map(totvsResponse => (totvsResponse));
   }
 
-  post<T>(path: string, object: T): Observable<T> {
-    return this.http.post<T>(`${this.urlApi}/${path}`, object)
-      .map(objectCreated => (objectCreated));
+  getById(id: string): Observable<T> {
+    return this.http.get<T>(`${this.urlApi}/${this.path}/${id}`).map(response => (response));
   }
 
-  put<T>(path: string, object: T): Observable<T> {
-    return this.http.put<T>(`${this.urlApi}/${path}`, object)
-      .map(objectUpdated => (objectUpdated));
+  post(entity: any): Observable<T> {
+    return this.http.post<T>(`${this.urlApi}/${this.path}`, entity).map(objectCreated => (objectCreated));
+  }
+
+  put(entity: any): Observable<T> {
+    return this.http.put<T>(`${this.urlApi}/${this.path}/${entity.id}`, entity).map(objectUpdated => (objectUpdated));
   }
 
 }

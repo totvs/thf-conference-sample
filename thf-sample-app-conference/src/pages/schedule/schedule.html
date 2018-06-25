@@ -1,0 +1,60 @@
+<ion-header>
+  <ion-navbar color="primary" no-border-bottom>
+    <button ion-button menuToggle> <ion-icon name="menu"></ion-icon> </button>
+
+    <ion-segment [(ngModel)]="segment" (ionChange)="lectureFilter()">
+      <ion-segment-button value="all"> All </ion-segment-button>
+      <ion-segment-button value="favorites" [disabled]="!userId"> Favorites </ion-segment-button>
+    </ion-segment>
+
+    <ion-buttons end>
+      <button ion-button icon-only (click)="presentFilter()">
+        <ion-icon ios="ios-options-outline" md="md-options"></ion-icon>
+      </button>
+    </ion-buttons>
+
+  </ion-navbar>
+
+  <ion-toolbar color="primary" no-border-top>
+    <ion-searchbar color="primary"
+      [(ngModel)]="queryText"
+      (ionInput)="lectureFilter()"
+      placeholder="Search">
+    </ion-searchbar>
+  </ion-toolbar>
+
+</ion-header>
+
+<ion-content>
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+  <ion-list class="schedule-list" [hidden]="!lectures">
+
+    <ion-item-sliding *ngFor="let lecture of filteredLectures" #slidingItem [ngStyle]="getColorTrack(lecture.track.color)">
+
+      <button ion-item (click)="goToSessionDetail(lecture.id)">
+        <h3>{{ lecture.title }} </h3>
+        <p>
+          {{ lecture.startTime }} &mdash;
+          {{ lecture.endTime }}:
+          {{ lecture.room }}
+        </p>
+      </button>
+
+      <ion-item-options class="favorite">
+        <button ion-button color="favorite" (click)="addFavorite(slidingItem, lecture)" *ngIf="segment === 'all' && userId">
+          Favorite
+        </button>
+        <button ion-button color="danger" (click)="removeFavorite(slidingItem, lecture.id, 'Remove Favorite')" *ngIf="segment === 'favorites' && userId">
+          Remove
+        </button>
+      </ion-item-options>
+
+    </ion-item-sliding>
+
+  </ion-list>
+
+  <ion-list-header class="schedule-no-lectures-found" [hidden]="filteredLectures.length"> No Lectures Found </ion-list-header>
+</ion-content>

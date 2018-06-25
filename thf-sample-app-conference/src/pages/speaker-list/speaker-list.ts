@@ -5,19 +5,21 @@ import {
   ActionSheetController,
   ActionSheetOptions,
   Config,
-  NavController
+  NavController,
+  Refresher
 } from 'ionic-angular';
 
 import { ThfSyncService } from '@totvs/thf-sync';
 
 import { LectureDetailPage } from './../lecture-detail/lecture-detail';
 import { SpeakerDetailPage } from '../speaker-detail/speaker-detail';
+import { SpeakerService } from '../../services/speaker.service';
 
 export interface ActionSheetButton {
-  text?: string;
-  role?: string;
-  icon?: string;
   cssClass?: string;
+  icon?: string;
+  role?: string;
+  text?: string;
   handler?: () => boolean|void;
 }
 
@@ -34,13 +36,18 @@ export class SpeakerListPage {
     public actionSheetCtrl: ActionSheetController,
     public navCtrl: NavController,
     public config: Config,
+    private speakerService: SpeakerService,
     private thfSync: ThfSyncService
   ) {}
 
   ionViewDidLoad() {
     this.getSpeakers();
 
-    // this.thfSync.onSync().subscribe(() => this.getSpeakers());
+    this.thfSync.onSync().subscribe(() => this.getSpeakers());
+  }
+
+  doRefresh(refresher: Refresher) {
+    this.speakerService.synchronize().then(() => refresher.complete());
   }
 
   goToLectureDetail(lecture: any) {
@@ -71,8 +78,8 @@ export class SpeakerListPage {
   }
 
   private getSpeakers() {
-    this.thfSync.getModel('Speakers').find().exec().then(data => {
-      this.speakers = data.items;
+    this.speakerService.getSpeakers().then(speakers => {
+      this.speakers = speakers;
     });
   }
 

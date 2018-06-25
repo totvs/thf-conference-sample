@@ -42,6 +42,22 @@ var findNotesForUsers = function () {
 };
 
 /**
+ * Load
+ *
+ * date Date Date.
+ * returns usersResponse
+ **/
+exports.usersDiffDateGET = function(date) {
+  return new Promise(function(resolve) {
+    findNotesForUsers();
+    totvsResponse.items = users.filter(user => {
+      return new Date(user.updatedDate) >= new Date(date);
+    });
+    resolve(totvsResponse);
+  });
+}
+
+/**
  * Load the list of users
  *
  * returns usersResponse
@@ -68,6 +84,7 @@ exports.usersIdDELETE = function (id) {
 
     if (user) {
       user.deletedDate = new Date().toISOString();
+      user.updatedDate = user.deletedDate;
       user.deleted = true;
       resolve();
     } else {

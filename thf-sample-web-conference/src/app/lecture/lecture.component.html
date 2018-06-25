@@ -1,3 +1,21 @@
-<thf-page-default>
-  <p>LECTURES</p>
-</thf-page-default>
+<thf-page-list
+  t-title='Lectures'
+  [t-actions]="actions"
+  [t-filter]="filter">
+
+  <ng-template [ngIf]="lectures" [ngIfElse]="lecturesNotFound">
+    <div *ngFor="let lecture of lectures" class="thf-xl-4 thf-md-6">
+      <lecture-card [lecture]="lecture"></lecture-card>
+    </div>
+  </ng-template>
+
+  <ng-template #lecturesNotFound>
+    <thf-widget
+      class="thf-offset-lg-4 thf-lg-4">
+      <p class="thf-font-text-large text-lecture-not-found">
+        There are no lectures available!
+      </p>
+    </thf-widget>
+  </ng-template>
+
+</thf-page-list>

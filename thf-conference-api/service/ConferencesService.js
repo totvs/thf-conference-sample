@@ -14,6 +14,22 @@ var conferences = [{
 }];
 
 /**
+ * Load
+ *
+ * date Date Date.
+ * returns conferencesResponse
+ **/
+exports.conferencesDiffDateGET = function(date) {
+  return new Promise(function(resolve) {
+    totvsResponse.items = conferences.filter(conference => {
+      return new Date(conference.updatedDate) >= new Date(date);
+    });
+
+    resolve(totvsResponse);
+  });
+}
+
+/**
  * Load the list of conferences
  *
  * returns conferencesResponse

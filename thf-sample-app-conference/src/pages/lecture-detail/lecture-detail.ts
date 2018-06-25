@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
 
-import { NavParams } from 'ionic-angular';
+import { NavParams, Refresher } from 'ionic-angular';
 
 import { ThfSyncService } from '@totvs/thf-sync';
+
+import { LectureService } from '../../services/lecture.service';
 
 @Component({
   selector: 'page-lecture-detail',
@@ -12,10 +14,20 @@ export class LectureDetailPage {
 
   lecture;
 
-  constructor(public navParams: NavParams, private thfSync: ThfSyncService) {}
+  constructor(public navParams: NavParams, private lectureService: LectureService, private thfSync: ThfSyncService) {
+    this.thfSync.onSync().subscribe(() => this.loadLecture());
+  }
 
   ionViewWillEnter() {
-    this.thfSync.getModel('Lectures').findById(this.navParams.data.lectureId).exec().then(lecture => {
+    this.loadLecture();
+  }
+
+  doRefresh(refresher: Refresher) {
+    this.lectureService.synchronize().then(() => refresher.complete());
+  }
+
+  private loadLecture() {
+    this.lectureService.getLecture(this.navParams.data.lectureId).then(lecture => {
       this.lecture = lecture;
     });
   }

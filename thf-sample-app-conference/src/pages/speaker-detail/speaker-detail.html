@@ -5,13 +5,18 @@
 </ion-header>
 
 <ion-content padding class="speaker-detail">
+
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
   <div text-center *ngIf="speaker">
     <img src="../../assets/imgs/speakers-avatar/{{ speaker.photo }}" class="speaker-avatar" [alt]="speaker.name"><br>
 
     <button ion-button icon-only clear small icon-left (click)="sendMail()">
       <ion-icon name="mail"></ion-icon>
       {{ speaker.email }}
-      </button>
+    </button>
 
   </div>
 

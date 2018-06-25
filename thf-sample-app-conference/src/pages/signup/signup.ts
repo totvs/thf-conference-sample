@@ -4,9 +4,10 @@ import { NgForm } from '@angular/forms';
 import { Events, NavController } from 'ionic-angular';
 
 import { ThfStorageService } from '@totvs/thf-storage';
-import { ThfHttpRequestData, ThfHttpRequestType, ThfSyncService } from '@totvs/thf-sync';
+import { ThfSyncService } from '@totvs/thf-sync';
 
 import { TabsPage } from '../tabs/tabs';
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'page-user',
@@ -20,8 +21,9 @@ export class SignupPage {
   constructor(
     public events: Events,
     public navCtrl: NavController,
+    private thfStorage: ThfStorageService,
     private thfSync: ThfSyncService,
-    private thfStorage: ThfStorageService) {
+    private userService: UserService) {
     this.httpCommandEvents();
   }
 
@@ -29,14 +31,7 @@ export class SignupPage {
     this.submitted = true;
 
     if (form.valid) {
-      const requestData: ThfHttpRequestData = {
-        url: 'http://localhost:8080/conference-api/api/v1/users/',
-        method: ThfHttpRequestType.POST,
-        body: this.signup
-      };
-
-      this.thfSync.insertHttpCommand(requestData, this.signup.username).then(() => {});
-
+      this.userService.createUser(this.signup);
       this.navCtrl.push(TabsPage);
     }
   }

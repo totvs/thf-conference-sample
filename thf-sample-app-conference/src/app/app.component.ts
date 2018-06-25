@@ -8,13 +8,12 @@ import { ThfNetworkType, ThfSyncConfig, ThfSyncService } from '@totvs/thf-sync';
 import { ThfStorageService } from '@totvs/thf-storage';
 
 import { AboutPage } from '../pages/about/about';
-import { HomePage } from './../pages/home/home';
 import { LoginPage } from './../pages/login/login';
+import { SchedulePage } from './../pages/schedule/schedule';
 import { schemas } from './../schemas/schemas-list';
 import { SignupPage } from './../pages/signup/signup';
 import { SpeakerListPage } from './../pages/speaker-list/speaker-list';
 import { TabsPage } from '../pages/tabs/tabs';
-
 export interface PageInterface {
   title: string;
   name: string;
@@ -33,12 +32,12 @@ export class MyApp {
 
   logoutPage = { title: 'Logout', name: 'TabsPage', component: TabsPage, icon: 'log-out' };
   notePage = { title: 'Notes', name: 'TabsPage', component: TabsPage, tabComponent: SpeakerListPage, index: 2, icon: 'paper' };
-  rootPage = TabsPage;
+  rootPage;
 
   @ViewChild(Nav) nav: Nav;
 
   appPages: Array<PageInterface> = [
-    { title: 'Schedule', name: 'TabsPage', component: TabsPage, tabComponent: HomePage, index: 0, icon: 'calendar' },
+    { title: 'Schedule', name: 'TabsPage', component: TabsPage, tabComponent: SchedulePage, index: 0, icon: 'calendar' },
     { title: 'Speakers', name: 'TabsPage', component: TabsPage, tabComponent: SpeakerListPage, index: 1, icon: 'contacts' },
     { title: 'About conference', name: 'TabsPage', component: TabsPage, tabComponent: AboutPage, index: 3, icon: 'information-circle' }
   ];
@@ -58,10 +57,6 @@ export class MyApp {
     private menu: MenuController) {
 
     this.initApp();
-
-    this.initSync();
-    this.isLogged();
-    this.listenToLoginEvents();
   }
 
   isActive(page: PageInterface) {
@@ -99,27 +94,40 @@ export class MyApp {
 
   }
 
+  private async checkDataInitial() {
+    const firstLoad = await this.thfStorage.get('firstLoad');
+
+    if (!firstLoad) {
+      this.loadDataInitial();
+    } else {
+      this.splashScreen.hide();
+      this.rootPage = TabsPage;
+    }
+  }
+
   private enableMenu(login: boolean) {
     this.menu.enable(!login, 'loggedOutMenu');
     this.menu.enable(login, 'loggedInMenu');
   }
 
-  private initialDataLoad() {
-    this.thfStorage.get('firstLoad').then(firstLoad => {
+  private async loadDataInitial() {
+    await this.thfStorage.set('firstLoad', true);
 
-      if (!firstLoad) {
-        this.thfStorage.set('firstLoad', true).then(() => {
-          this.thfSync.loadData().subscribe();
-        });
-      }
-
+    this.thfSync.loadData().subscribe(() => {
+      this.splashScreen.hide();
+      this.rootPage = TabsPage;
     });
+
   }
 
   private initApp() {
     this.platform.ready().then(() => {
       this.statusBar.styleDefault();
-      this.splashScreen.hide();
+
+      this.listenToLoginEvents();
+      this.isLogged();
+      this.initSync();
+
     });
   }
 
@@ -129,7 +137,7 @@ export class MyApp {
       period: 10
     };
 
-    this.thfSync.prepare(schemas, config).then(() => this.initialDataLoad());
+    return this.thfSync.prepare(schemas, config).then(() => this.checkDataInitial());
   }
 
   private isLogged() {
@@ -139,14 +147,17 @@ export class MyApp {
   private listenToLoginEvents() {
     this.events.subscribe('user:login', () => {
       this.enableMenu(true);
+      this.nav.setRoot(TabsPage);
     });
 
     this.events.subscribe('user:signup', () => {
       this.enableMenu(true);
+      this.nav.setRoot(TabsPage);
     });
 
     this.events.subscribe('user:logout', () => {
       this.enableMenu(false);
+      this.nav.setRoot(TabsPage);
     });
   }
 

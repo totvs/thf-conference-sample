@@ -12,23 +12,31 @@ import { AboutPage } from '../pages/about/about';
 import { ContactPage } from '../pages/contact/contact';
 import { HomePage } from '../pages/home/home';
 import { LectureDetailPage } from './../pages/lecture-detail/lecture-detail';
+import { LectureService } from '../services/lecture.service';
 import { LoginPage } from './../pages/login/login';
 import { MyApp } from './app.component';
+import { ScheduleFilterPage } from './../pages/schedule-filter/schedule-filter';
+import { SchedulePage } from './../pages/schedule/schedule';
 import { SignupPage } from './../pages/signup/signup';
 import { SpeakerDetailPage } from './../pages/speaker-detail/speaker-detail';
+import { SpeakerService } from '../services/speaker.service';
 import { TabsPage } from '../pages/tabs/tabs';
+import { TrackService } from '../services/track.service';
+import { UserService } from '../services/user.service';
 
 @NgModule({
   declarations: [
-    MyApp,
     AboutPage,
     ContactPage,
     HomePage,
     LectureDetailPage,
     LoginPage,
+    MyApp,
+    ScheduleFilterPage,
+    SchedulePage,
     SignupPage,
-    SpeakerListPage,
     SpeakerDetailPage,
+    SpeakerListPage,
     TabsPage
   ],
   imports: [
@@ -39,20 +47,26 @@ import { TabsPage } from '../pages/tabs/tabs';
   ],
   bootstrap: [IonicApp],
   entryComponents: [
-    MyApp,
     AboutPage,
     ContactPage,
     HomePage,
     LectureDetailPage,
     LoginPage,
+    MyApp,
+    ScheduleFilterPage,
+    SchedulePage,
     SignupPage,
-    SpeakerListPage,
     SpeakerDetailPage,
+    SpeakerListPage,
     TabsPage
   ],
   providers: [
-    StatusBar,
     SplashScreen,
+    StatusBar,
+    UserService,
+    TrackService,
+    SpeakerService,
+    LectureService,
     { provide: ErrorHandler, useClass: IonicErrorHandler }
   ]
 })

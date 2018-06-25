@@ -73,6 +73,24 @@ exports.findLecturesBySpeakerId = function (speakerId) {
 }
 
 /**
+ * Load
+ *
+ * date Date Date.
+ * returns lecturesResponse
+ **/
+exports.lecturesDiffDateGET = function(date) {
+  return new Promise(function(resolve, reject) {
+    const lectures = findLecturesGroupRelationship();
+
+    totvsResponse.items = lectures.filter(lecture => {
+      return new Date(lecture.updatedDate) >= new Date(date);
+    });
+
+    resolve(totvsResponse);
+  });
+}
+
+/**
  * Load the list of lectures
  *
  * returns lecturesResponse
