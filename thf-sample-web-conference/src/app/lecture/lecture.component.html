@@ -19,3 +19,40 @@
   </ng-template>
 
 </thf-page-list>
+
+<thf-modal
+  #lectureFilterModal
+  t-size="sm"
+  t-title="Filter"
+  [t-primary-action]="confirm"
+  [t-secondary-action]="cancel">
+
+  <thf-switch
+    class="thf-sm-12 switch-display-all"
+    name="display-all"
+    [(ngModel)]="displayAll"
+    [t-label-position]="labelPosition"
+    t-label-off="Mostrar todos"
+    t-label-on="Mostrar todos"
+    (t-change)="selectAllTracks()"
+    ngDefaultControl>
+  </thf-switch>
+
+  <div class="thf-row" *ngFor="let track of tracks">
+    <div
+      class="thf-sm-1 circle circle-border"
+      [ngStyle]="{ 'background-color': track.color }"> </div>
+
+    <thf-switch
+      class="thf-sm-11 track-row"
+      name="switch-{{ track.id }}-{{ track.name }}"
+      [(ngModel)]="track.model"
+      [t-label-position]="labelPosition"
+      [t-label-off]="track.name"
+      [t-label-on]="track.name"
+      (t-change)="selectTrack(track.id)"
+      ngDefaultControl>
+    </thf-switch>
+  </div>
+
+</thf-modal>

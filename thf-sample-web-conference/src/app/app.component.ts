@@ -14,7 +14,9 @@ export class AppComponent {
   menus: Array<ThfMenuItem> = [
     { label: 'Home', icon: 'home', link: './' },
     { label: 'Speakers', icon: 'user', link: './speakers' },
-    { label: 'Lectures', icon: 'message', link: './lectures' }
+    { label: 'Lectures', icon: 'message', link: './lectures' },
+    { label: 'Tracks', icon: 'stock', link: './tracks' },
+    { label: 'About', icon: 'help', link: './conferences' }
   ];
 
 }
