@@ -1,0 +1,24 @@
+.notes-content {
+  background-color: #ececec;
+}
+
+.notes-button {
+  color: gray;
+}
+
+.notes-updatedDate {
+  color: gray;
+  float: right;
+  font-size: 10px;
+  width: 40%;
+  text-align: right;
+}
+
+.notes-title {
+  float: left;
+  width: 60%;
+  padding-right: 10px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
