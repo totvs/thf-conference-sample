@@ -8,6 +8,10 @@ import { UserService } from './user.service';
 export class NoteService {
   constructor(private thfSync: ThfSyncService, private userService: UserService) {}
 
+  getNoteModel() {
+    return this.thfSync.getModel('Notes');
+  }
+
   async getNote(lectureId) {
     const notes = await this.getNotes();
     return notes.find(note => note.lectureId === lectureId);
@@ -15,12 +19,16 @@ export class NoteService {
 
   async getNotes() {
     const user = await this.userService.getLoggedUser();
-    return user.notes;
+    const notes = await this.getNoteModel().find().exec();
+    return notes.items.filter(note => note.userId === user.id);
+  }
+
+  remove(note) {
+    return this.getNoteModel().remove(note);
   }
 
   save(note) {
-    const noteModel = this.thfSync.getModel('Notes');
-    noteModel.save(note);
+    return this.getNoteModel().save(note);
   }
 
 }

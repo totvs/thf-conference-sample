@@ -1,9 +1,10 @@
-import { UserService } from './../../services/user.service';
 import { Component } from '@angular/core';
 
-import { NavParams } from 'ionic-angular';
+import { AlertController, NavController, NavParams, ToastController } from 'ionic-angular';
 
+import { LectureDetailPage } from './../lecture-detail/lecture-detail';
 import { NoteService } from '../../services/note.service';
+import { UserService } from './../../services/user.service';
 
 @Component({
   selector: 'page-note-detail',
@@ -11,26 +12,53 @@ import { NoteService } from '../../services/note.service';
 })
 export class NoteDetailPage {
   note = { title: 'New note', text: null, lectureId: undefined, userId: undefined };
-  newNote;
 
   constructor(
+    public alertCtrl: AlertController,
+    public navCtrl: NavController,
     public navParams: NavParams,
+    public toastCtrl: ToastController,
     private noteService: NoteService,
-    private userService: UserService
+    private userService: UserService,
   ) {
     this.initNote();
   }
-
-  async initNote() {
-    const note = await this.noteService.getNote(this.navParams.data.lectureId);
-    note ? this.note = note : this.newNote = true;
+  alertRemoveNote() {
+    const alert = this.alertCtrl.create({
+      title: `Remove ${this.note.title}`,
+      message: 'Would you like to remove this note?',
+      buttons: [
+        { text: 'Cancel', handler: () => {} },
+        { text: 'Remove',  handler: () => this.removeNote() }
+      ]
+    });
+    alert.present();
   }
 
   async saveNote() {
     this.note.lectureId = this.navParams.data.lectureId;
     this.note.userId = await this.userService.getLoggedUserId();
 
-    this.noteService.save(this.note);
+    await this.noteService.save(this.note);
+
+    const toast = this.toastCtrl.create({
+      message: 'Saved note',
+      duration: 3000,
+      position: 'bottom'
+    });
+    toast.present();
+
+    // this.navCtrl.setRoot(this.navCtrl.getActive().component, this.navParams.data);
+  }
+
+  private async initNote() {
+    const note = await this.noteService.getNote(this.navParams.data.lectureId);
+    this.note = note || this.note;
+  }
+
+  private async removeNote() {
+    await this.noteService.remove(this.note);
+    this.navCtrl.push(LectureDetailPage, { lectureId: this.note.lectureId });
   }
 
 }

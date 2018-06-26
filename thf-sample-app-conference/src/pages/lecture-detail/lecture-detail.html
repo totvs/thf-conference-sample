@@ -6,10 +6,10 @@
 
 <ion-content padding>
 
-  <ion-fab top right *ngIf="isLogged">
+  <ion-fab right bottom *ngIf="isLogged">
     <button ion-fab mini color="dark"><ion-icon name="add"></ion-icon></button>
-    <ion-fab-list>
-      <button ion-fab (click)="goToNoteDetail()"><ion-icon name="paper"></ion-icon></button>
+    <ion-fab-list side="top">
+      <button ion-fab (click)="goToNoteDetail()" class="lecture-new-note"><ion-icon name="paper"></ion-icon></button>
     </ion-fab-list>
   </ion-fab>
 
