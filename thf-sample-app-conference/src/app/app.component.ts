@@ -1,4 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
+import { HttpErrorResponse } from '@angular/common/http';
 
 import { Events, MenuController, Nav, Platform } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -15,6 +16,7 @@ import { schemas } from './../schemas/schemas-list';
 import { SignupPage } from './../pages/signup/signup';
 import { SpeakerListPage } from './../pages/speaker-list/speaker-list';
 import { TabsPage } from '../pages/tabs/tabs';
+
 export interface PageInterface {
   title: string;
   name: string;
@@ -58,6 +60,7 @@ export class MyApp {
     private menu: MenuController) {
 
     this.initApp();
+    this.getResponses();
   }
 
   isActive(page: PageInterface) {
@@ -143,6 +146,18 @@ export class MyApp {
 
   private isLogged() {
     this.thfStorage.get('login').then(login => this.enableMenu(!!login));
+  }
+
+  private getResponses() {
+    this.thfSync.getHttpResponses().subscribe(thfHttpClientResponse => {
+
+      if (thfHttpClientResponse.response instanceof HttpErrorResponse) {
+        this.thfSync.removeItemOfSync(thfHttpClientResponse.id).then(() => {
+          this.thfSync.resumeSync();
+        });
+      }
+
+    });
   }
 
   private listenToLoginEvents() {
