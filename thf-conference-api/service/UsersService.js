@@ -50,9 +50,18 @@ var findNotesForUsers = function () {
 exports.usersDiffDateGET = function(date) {
   return new Promise(function(resolve) {
     findNotesForUsers();
+
+    const isUpdatedNote = (notes, date) => {
+      return notes.some(note => new Date(note.updatedDate) >= new Date(date))
+    }
+
     totvsResponse.items = users.filter(user => {
-      return new Date(user.updatedDate) >= new Date(date);
+      const updatedUser = new Date(user.updatedDate) >= new Date(date);
+      const updatedNotes = isUpdatedNote(user.notes, date);
+
+      return updatedNotes || updatedUser;
     });
+
     resolve(totvsResponse);
   });
 }
