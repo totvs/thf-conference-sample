@@ -16,7 +16,8 @@
   <ion-card *ngFor="let note of notes" (click)="goToNoteDetail(note.lectureId)">
     <ion-card-header>
       <span class="notes-title">{{ note.title }}</span>
-      <span class="notes-updatedDate">{{ note.updatedDate | date }} updated</span>
+      <span *ngIf="note.updatedDate" class="notes-updatedDate">{{ note.updatedDate | date }} updated</span>
+      <span *ngIf="!note.updatedDate" class="notes-updatedDate">offline</span>
     </ion-card-header>
     <ion-list>
       <button ion-item class="notes-button">

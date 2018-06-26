@@ -47,7 +47,7 @@ export class NoteDetailPage {
       position: 'bottom'
     });
     toast.present();
-    this.navCtrl.push(NotesPage);
+    this.navCtrl.setRoot(NotesPage);
   }
 
   private async initNote() {
@@ -57,7 +57,7 @@ export class NoteDetailPage {
 
   private async removeNote() {
     await this.noteService.remove(this.note);
-    this.navCtrl.push(NotesPage);
+    this.navCtrl.setRoot(NotesPage);
   }
 
 }
