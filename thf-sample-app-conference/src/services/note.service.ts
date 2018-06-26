@@ -31,4 +31,8 @@ export class NoteService {
     return this.getNoteModel().save(note);
   }
 
+  synchronize() {
+    return this.thfSync.sync();
+  }
+
 }

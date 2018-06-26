@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 
 import { AlertController, NavController, NavParams, ToastController } from 'ionic-angular';
 
-import { LectureDetailPage } from './../lecture-detail/lecture-detail';
+import { NotesPage } from './../notes/notes.component';
 import { NoteService } from '../../services/note.service';
 import { UserService } from './../../services/user.service';
 
@@ -24,7 +24,6 @@ export class NoteDetailPage {
     this.initNote();
   }
   alertRemoveNote() {
-    console.log('alert');
     const alert = this.alertCtrl.create({
       title: `Remove ${this.note.title}`,
       message: 'Would you like to remove this note?',
@@ -48,8 +47,7 @@ export class NoteDetailPage {
       position: 'bottom'
     });
     toast.present();
-
-    // this.navCtrl.setRoot(this.navCtrl.getActive().component, this.navParams.data);
+    this.navCtrl.push(NotesPage);
   }
 
   private async initNote() {
@@ -58,9 +56,8 @@ export class NoteDetailPage {
   }
 
   private async removeNote() {
-    console.log(this.noteService);
     await this.noteService.remove(this.note);
-    this.navCtrl.push(LectureDetailPage, { lectureId: this.note.lectureId });
+    this.navCtrl.push(NotesPage);
   }
 
 }

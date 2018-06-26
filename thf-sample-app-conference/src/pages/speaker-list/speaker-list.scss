@@ -13,7 +13,6 @@ page-speaker-list {
     }
   }
 
-  // Todo: remove when this issue https://github.com/ionic-team/ionic/issues/11212 is fixed
   @media(min-width: 769px) {
     .speaker-card {
       height: 370px;
@@ -28,4 +27,8 @@ page-speaker-list {
     padding-left: 0;
     padding-right: 0;
   }
+}
+
+.speakers-content {
+  background-color: #ececec;
 }

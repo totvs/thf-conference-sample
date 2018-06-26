@@ -9,13 +9,17 @@
 
 <ion-content padding class="notes-content">
 
-  <ion-card *ngFor="let note of notes">
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+  <ion-card *ngFor="let note of notes" (click)="goToNoteDetail(note.lectureId)">
     <ion-card-header>
       <span class="notes-title">{{ note.title }}</span>
       <span class="notes-updatedDate">{{ note.updatedDate | date }} updated</span>
     </ion-card-header>
     <ion-list>
-      <button ion-item class="notes-button" (click)="goToNoteDetail(note.lectureId)">
+      <button ion-item class="notes-button">
         {{ note.text }}
       </button>
     </ion-list>
