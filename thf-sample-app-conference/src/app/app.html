@@ -1,1 +1,83 @@
-<ion-nav [root]="rootPage"></ion-nav>
+<ion-split-pane>
+
+  <!-- logged out menu -->
+  <ion-menu id="loggedOutMenu" [content]="content">
+
+    <ion-header>
+      <ion-toolbar color="dark">
+        <ion-title>Menu</ion-title>
+      </ion-toolbar>
+    </ion-header>
+
+    <ion-content class="outer-content">
+
+      <ion-list>
+        <ion-list-header>
+          Navigate
+        </ion-list-header>
+        <button ion-item menuClose *ngFor="let page of appPages" (click)="openPage(page)">
+          <ion-icon item-start [name]="page.icon" [color]="isActive(page)"></ion-icon>
+          {{ page.title }}
+        </button>
+      </ion-list>
+
+      <ion-list>
+        <ion-list-header>
+          Account
+        </ion-list-header>
+        <button ion-item menuClose *ngFor="let page of loggedOutPages" (click)="openPage(page)">
+          <ion-icon item-start [name]="page.icon" [color]="isActive(page)"></ion-icon>
+          {{ page.title }}
+        </button>
+      </ion-list>
+    </ion-content>
+
+  </ion-menu>
+
+  <!-- logged in menu -->
+
+  <ion-menu id="loggedInMenu" [content]="content">
+
+    <ion-header>
+      <ion-toolbar color="dark">
+        <ion-title>Menu</ion-title>
+      </ion-toolbar>
+    </ion-header>
+
+    <ion-content class="outer-content">
+
+      <ion-list>
+        <ion-list-header>
+          Navigate
+        </ion-list-header>
+        <button ion-item menuClose *ngFor="let page of appPages" (click)="openPage(page)">
+          <ion-icon item-start [name]="page.icon" [color]="isActive(page)"></ion-icon>
+          {{ page.title }}
+        </button>
+      </ion-list>
+
+      <ion-list>
+        <ion-list-header>
+          Tools
+        </ion-list-header>
+        <button ion-item menuClose (click)="openPage(notePage)">
+          <ion-icon item-start [name]="notePage.icon" [color]="isActive(notePage)"></ion-icon>
+          {{ notePage.title }}
+        </button>
+      </ion-list>
+
+      <ion-list>
+        <ion-list-header>
+          Account
+        </ion-list-header>
+        <button ion-item menuClose (click)="logOut()">
+          <ion-icon item-start [name]="logoutPage.icon" [color]="isActive(logoutPage)"></ion-icon>
+          Logout
+        </button>
+      </ion-list>
+    </ion-content>
+
+  </ion-menu>
+
+  <ion-nav #content [root]="rootPage" swipeBackEnabled="false" main name="app"></ion-nav>
+</ion-split-pane>

@@ -1,26 +1,44 @@
-import { Speaker } from './../../models/speaker.interface';
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+
+import { NavController, NavParams, Refresher } from 'ionic-angular';
 
 import { ThfSyncService } from '@totvs/thf-sync';
+
+import { SpeakerService } from './../../services/speaker.service';
 
 @Component({
   selector: 'page-speaker-detail',
   templateUrl: 'speaker-detail.html'
 })
 export class SpeakerDetailPage {
-  speaker: Speaker;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private thfSync: ThfSyncService) { }
+  speaker;
+
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    private speakerService: SpeakerService,
+    private thfSync: ThfSyncService,
+  ) {
+    this.thfSync.onSync().subscribe(() => this.loadSpeaker());
+  }
 
   ionViewWillEnter() {
-    this.thfSync.getModel('Speakers').findById(this.navParams.data.speakerId).exec().then(speaker => {
-      this.speaker = speaker;
-    });
+    this.loadSpeaker();
+  }
 
+  doRefresh(refresher: Refresher) {
+    this.speakerService.synchronize().then(() => refresher.complete());
   }
 
   sendMail() {
     window.open('mailto:', this.speaker.email);
   }
+
+  private loadSpeaker() {
+    this.thfSync.getModel('Speakers').findById(this.navParams.data.speakerId).exec().then(speaker => {
+      this.speaker = speaker;
+    });
+  }
+
 }

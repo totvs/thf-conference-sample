@@ -1,7 +1,9 @@
+import { SchedulePage } from './../schedule/schedule';
 import { Component } from '@angular/core';
 
+import { NavParams } from 'ionic-angular';
+
 import { AboutPage } from '../about/about';
-import { ContactPage } from '../contact/contact';
 import { HomePage } from '../home/home';
 import { SpeakerListPage } from '../speaker-list/speaker-list';
 
@@ -10,12 +12,14 @@ import { SpeakerListPage } from '../speaker-list/speaker-list';
 })
 export class TabsPage {
 
-  tab1Root = HomePage;
+  isLogged = false;
+  mySelectedIndex: number;
+  tab1Root = SchedulePage;
   tab2Root = SpeakerListPage;
   tab3Root = AboutPage;
-  tab4Root = ContactPage;
 
-  constructor() {
-
+  constructor(navParams: NavParams) {
+    this.mySelectedIndex = navParams.data.tabIndex || 0;
   }
+
 }

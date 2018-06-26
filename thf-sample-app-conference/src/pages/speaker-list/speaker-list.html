@@ -8,8 +8,13 @@
 </ion-header>
 
 <ion-content class="outer-content speaker-list">
+
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
   <ion-list [virtualScroll]="speakers">
-   <ion-grid fixed>
+    <ion-grid fixed>
       <ion-row align-items-stretch>
 
         <ion-col col-12 col-md-6 align-self-stretch align-self-center *virtualItem="let speaker" approxItemHeight="457px">

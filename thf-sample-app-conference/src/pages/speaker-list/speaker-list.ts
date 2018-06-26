@@ -5,39 +5,49 @@ import {
   ActionSheetController,
   ActionSheetOptions,
   Config,
-  NavController
+  NavController,
+  Refresher
 } from 'ionic-angular';
+
 import { ThfSyncService } from '@totvs/thf-sync';
-import { SpeakerDetailPage } from '../speaker-detail/speaker-detail';
+
 import { LectureDetailPage } from './../lecture-detail/lecture-detail';
+import { SpeakerDetailPage } from '../speaker-detail/speaker-detail';
+import { SpeakerService } from '../../services/speaker.service';
 
 export interface ActionSheetButton {
-  text?: string;
-  role?: string;
-  icon?: string;
   cssClass?: string;
+  icon?: string;
+  role?: string;
+  text?: string;
   handler?: () => boolean|void;
-};
+}
 
 @Component({
   selector: 'page-speaker-list',
   templateUrl: 'speaker-list.html'
 })
 export class SpeakerListPage {
+
   actionSheet: ActionSheet;
-  speakers: any[] = [];
+  speakers = [];
 
   constructor(
     public actionSheetCtrl: ActionSheetController,
     public navCtrl: NavController,
     public config: Config,
+    private speakerService: SpeakerService,
     private thfSync: ThfSyncService
   ) {}
 
   ionViewDidLoad() {
-    this.thfSync.getModel('Speakers').find().exec().then(data => {
-      this.speakers = data.items;
-    })
+    this.getSpeakers();
+
+    this.thfSync.onSync().subscribe(() => this.getSpeakers());
+  }
+
+  doRefresh(refresher: Refresher) {
+    this.speakerService.synchronize().then(() => refresher.complete());
   }
 
   goToLectureDetail(lecture: any) {
@@ -48,11 +58,10 @@ export class SpeakerListPage {
     this.navCtrl.push(SpeakerDetailPage, { speakerId: speaker.id });
   }
 
-
   openContact(speaker: any) {
-    let mode = this.config.get('mode');
+    const mode = this.config.get('mode');
 
-    let actionSheet = this.actionSheetCtrl.create({
+    const actionSheet = this.actionSheetCtrl.create({
       title: 'Contact ' + speaker.name,
       buttons: [
         {
@@ -67,4 +76,11 @@ export class SpeakerListPage {
 
     actionSheet.present();
   }
+
+  private getSpeakers() {
+    this.speakerService.getSpeakers().then(speakers => {
+      this.speakers = speakers;
+    });
+  }
+
 }

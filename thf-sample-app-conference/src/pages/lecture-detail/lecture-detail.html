@@ -5,15 +5,15 @@
 </ion-header>
 
 <ion-content padding>
+
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
   <div *ngIf="lecture">
 
-    <ion-row>
-      <ion-col col-10> <h1>{{ lecture.title }}</h1> </ion-col>
-      <ion-col col-2>
-        <div [style.backgroundColor]="lecture.track.color" class="track">{{ lecture.track.name }}</div>
-      </ion-col>
-    </ion-row>
-
+    <h1>{{ lecture.title }}</h1>
+    <ion-badge [style.backgroundColor]="lecture.track.color" item-end>{{ lecture.track.name }}</ion-badge>
     <h4>{{ lecture.speaker.name }}</h4>
     <p>{{ lecture.startTime }} - {{ lecture.endTime }}</p>
     <p>Room: {{ lecture.room }}</p>
