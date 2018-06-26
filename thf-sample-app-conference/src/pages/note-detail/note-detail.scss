@@ -1,7 +1,22 @@
 .note {
-  width: 100%;
-  height: 100%;
-  margin: 0px;
+  background-attachment: local;
+  background-image:
+    linear-gradient(to right, white 10px, transparent 10px),
+    linear-gradient(to left, white 10px, transparent 10px),
+    repeating-linear-gradient(white, white 30px, #ccc 30px, #ccc 31px, white 31px);
   border: none;
+  font-size: 16px;
+  height: 100%;
+  line-height: 31px;
+  padding: 8px 10px;
   resize: none;
+  width: 100%;
+}
+
+.note-more {
+  color: #767676;
+}
+
+.note-more-trash {
+  color: #c64840a3;
 }
