@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 
 import { AlertController, NavController, NavParams, ToastController } from 'ionic-angular';
 
-import { NotesPage } from './../notes/notes.component';
+import { NoteListPage } from './../note-list/note-list.component';
 import { NoteService } from '../../services/note.service';
 import { UserService } from './../../services/user.service';
 
@@ -49,7 +49,7 @@ export class NoteDetailPage {
       position: 'bottom'
     });
     toast.present();
-    this.navCtrl.setRoot(NotesPage);
+    this.navCtrl.setRoot(NoteListPage);
   }
 
   private async initNote() {
@@ -59,7 +59,7 @@ export class NoteDetailPage {
 
   private async removeNote() {
     await this.noteService.remove(this.note);
-    this.navCtrl.setRoot(NotesPage);
+    this.navCtrl.setRoot(NoteListPage);
   }
 
 }

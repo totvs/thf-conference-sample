@@ -13,7 +13,7 @@ import { LectureService } from '../services/lecture.service';
 import { LoginPage } from '../pages/login/login.component';
 import { MyApp } from './app.component';
 import { NoteDetailPage } from './../pages/note-detail/note-detail.component';
-import { NotesPage } from './../pages/notes/notes.component';
+import { NoteListPage } from './../pages/note-list/note-list.component';
 import { NoteService } from './../services/note.service';
 import { ScheduleFilterPage } from '../pages/schedule-filter/schedule-filter.component';
 import { SchedulePage } from '../pages/schedule/schedule.component';
@@ -32,7 +32,7 @@ import { UserService } from '../services/user.service';
     LoginPage,
     MyApp,
     NoteDetailPage,
-    NotesPage,
+    NoteListPage,
     ScheduleFilterPage,
     SchedulePage,
     SignupPage,
@@ -53,7 +53,7 @@ import { UserService } from '../services/user.service';
     LoginPage,
     MyApp,
     NoteDetailPage,
-    NotesPage,
+    NoteListPage,
     ScheduleFilterPage,
     SchedulePage,
     SignupPage,

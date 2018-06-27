@@ -9,9 +9,9 @@ import { NoteService } from './../../services/note.service';
 
 @Component({
   selector: 'page-notes',
-  templateUrl: 'notes.component.html'
+  templateUrl: 'note-list.component.html'
 })
-export class NotesPage {
+export class NoteListPage {
   notes = [];
 
   constructor(
