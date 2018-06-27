@@ -12,7 +12,7 @@ import { NoteService } from './../../services/note.service';
   templateUrl: 'notes.component.html'
 })
 export class NotesPage {
-  notes;
+  notes = [];
 
   constructor(
     public navCtrl: NavController,

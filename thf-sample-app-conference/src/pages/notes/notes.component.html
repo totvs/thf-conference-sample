@@ -7,7 +7,7 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding class="notes-content">
+<ion-content padding [ngClass]="{ 'notes-content': notes.length }">
 
   <ion-refresher (ionRefresh)="doRefresh($event)">
     <ion-refresher-content></ion-refresher-content>
@@ -27,5 +27,7 @@
       </button>
     </ion-list>
   </ion-card>
+
+  <ion-list-header class="schedule-no-lectures-found" [hidden]="notes.length"> No saved notes </ion-list-header>
 
 </ion-content>
