@@ -3,8 +3,9 @@
   background-image:
     linear-gradient(to right, white 10px, transparent 10px),
     linear-gradient(to left, white 10px, transparent 10px),
-    repeating-linear-gradient(white, white 30px, #ccc 30px, #ccc 31px, white 31px);
+    repeating-linear-gradient(white, white 30px, white 30px, #dcdcdc 31px, white 31px);
   border: none;
+  color: #333;
   font-size: 16px;
   height: 100%;
   line-height: 31px;

@@ -8,13 +8,17 @@
 
 <ion-content padding>
 
-  <ion-fab right top edge>
+  <ion-fab right top edge *ngIf="note.id">
     <button ion-fab mini color="dark"><ion-icon name="more"></ion-icon></button>
 
     <ion-fab-list side="bottom">
       <button ion-fab (click)="saveNote()" class="note-more"><ion-icon name="checkmark"></ion-icon></button>
-      <button ion-fab *ngIf="note.id" (click)="alertRemoveNote()"><ion-icon name="trash" class="note-more-trash"></ion-icon></button>
+      <button ion-fab (click)="alertRemoveNote()"><ion-icon name="trash" class="note-more-trash"></ion-icon></button>
     </ion-fab-list>
+  </ion-fab>
+
+  <ion-fab right top edge *ngIf="!note.id">
+    <button ion-fab mini color="dark" (click)="saveNote()"><ion-icon name="checkmark"></ion-icon></button>
   </ion-fab>
 
   <textarea class="note" [(ngModel)]="note.text" autofocus></textarea>

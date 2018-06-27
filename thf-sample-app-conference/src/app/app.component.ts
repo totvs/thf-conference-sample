@@ -41,13 +41,14 @@ export class MyApp {
   ];
 
   constructor(
-    public platform: Platform,
-    public statusBar: StatusBar,
-    public splashScreen: SplashScreen,
     public events: Events,
-    private thfSync: ThfSyncService,
+    public platform: Platform,
+    public splashScreen: SplashScreen,
+    public statusBar: StatusBar,
+    private menu: MenuController,
     private thfStorage: ThfStorageService,
-    private menu: MenuController) {
+    private thfSync: ThfSyncService,
+  ) {
 
     this.initApp();
     this.getResponses();

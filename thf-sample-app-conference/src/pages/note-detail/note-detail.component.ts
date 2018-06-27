@@ -25,6 +25,7 @@ export class NoteDetailPage {
   ionViewDidLoad() {
     this.initNote();
   }
+
   alertRemoveNote() {
     const alert = this.alertCtrl.create({
       title: `Remove ${this.note.title}`,

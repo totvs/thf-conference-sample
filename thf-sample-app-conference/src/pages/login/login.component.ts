@@ -17,8 +17,8 @@ export class LoginPage {
   submitted = false;
 
   constructor(
-    public navCtrl: NavController,
     public events: Events,
+    public navCtrl: NavController,
     public toastCtrl: ToastController,
     private userService: UserService,
   ) { }

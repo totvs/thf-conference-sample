@@ -58,7 +58,7 @@ export class SpeakerListPage {
       title: 'Contact ' + speaker.name,
       buttons: [
         {
-          text: `Email ( ${speaker.email} )`,
+          text: speaker.email,
           icon: mode !== 'ios' ? 'mail' : null,
           handler: () => {
             window.open('mailto:' + speaker.email);

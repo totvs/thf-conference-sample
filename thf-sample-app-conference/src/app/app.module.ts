@@ -8,6 +8,7 @@ import { ThfStorageModule } from '@totvs/thf-storage';
 import { ThfSyncModule } from '@totvs/thf-sync';
 
 import { AboutPage } from '../pages/about/about.component';
+import { ConferenceService } from './../services/conference.service';
 import { LectureDetailPage } from '../pages/lecture-detail/lecture-detail.component';
 import { LectureService } from '../services/lecture.service';
 import { LoginPage } from '../pages/login/login.component';
@@ -64,6 +65,7 @@ import { UserService } from '../services/user.service';
   providers: [
     SplashScreen,
     StatusBar,
+    ConferenceService,
     NoteService,
     UserService,
     TrackService,

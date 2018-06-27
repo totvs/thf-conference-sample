@@ -1,13 +1,22 @@
 import { Component } from '@angular/core';
 
-import { NavController } from 'ionic-angular';
+import { ConferenceService } from './../../services/conference.service';
 
 @Component({
   selector: 'page-about',
   templateUrl: 'about.component.html'
 })
 export class AboutPage {
+  conference;
 
-  constructor(public navCtrl: NavController) { }
+  constructor(private conferenceService: ConferenceService) { }
+
+  ionViewDidLoad() {
+    this.loadConference();
+  }
+
+  async loadConference() {
+    this.conference = await this.conferenceService.getConference();
+  }
 
 }
