@@ -41,7 +41,6 @@ export class SchedulePage {
   ) { }
 
   ionViewDidLoad() {
-    this.app.setTitle('Schedule');
     this.updateSchedule();
 
     this.thfSync.onSync().subscribe(() => {
