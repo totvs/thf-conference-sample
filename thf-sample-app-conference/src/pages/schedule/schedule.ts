@@ -38,15 +38,15 @@ export class SchedulePage {
     private lectureService: LectureService,
     private userService: UserService,
     private thfSync: ThfSyncService,
-  ) {
+  ) { }
+
+  ionViewDidLoad() {
+    this.app.setTitle('Schedule');
+    this.updateSchedule();
+
     this.thfSync.onSync().subscribe(() => {
       this.updateSchedule();
     });
-  }
-
-  ionViewWillEnter() {
-    this.app.setTitle('Schedule');
-    this.updateSchedule();
 
     this.userService.getLoggedUser().then(user => this.userId = user);
   }
