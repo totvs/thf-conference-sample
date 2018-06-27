@@ -6,12 +6,20 @@
   color: gray;
 }
 
-.notes-updatedDate {
-  color: gray;
+.notes-updatedDate, .notes-updatedDate-offline {
   float: right;
-  font-size: 10px;
   width: 40%;
   text-align: right;
+}
+
+.notes-updatedDate {
+  color: gray;
+  font-size: 10px;
+}
+
+.notes-updatedDate-offline {
+  color: #ce9200;
+  font-size: 14px;
 }
 
 .notes-title {

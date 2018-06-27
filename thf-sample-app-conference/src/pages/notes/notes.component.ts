@@ -18,7 +18,9 @@ export class NotesPage {
     public navCtrl: NavController,
     private noteService: NoteService,
     private thfSync: ThfSyncService
-  ) {
+  ) { }
+
+  ionViewDidLoad() {
     this.loadNotes();
     this.thfSync.onSync().subscribe(() => this.loadNotes());
   }

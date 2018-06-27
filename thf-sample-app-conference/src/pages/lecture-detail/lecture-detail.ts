@@ -24,13 +24,12 @@ export class LectureDetailPage {
     private thfSync: ThfSyncService,
     private userService: UserService,
   ) {
-    this.thfSync.onSync().subscribe(() => this.loadLecture());
-
     this.userService.getLoggedUserId().then(user => this.isLogged = !!user);
   }
 
-  ionViewWillEnter() {
+  ionViewDidLoad() {
     this.loadLecture();
+    this.thfSync.onSync().subscribe(() => this.loadLecture());
   }
 
   doRefresh(refresher: Refresher) {

@@ -20,7 +20,9 @@ export class NoteDetailPage {
     public toastCtrl: ToastController,
     private noteService: NoteService,
     private userService: UserService,
-  ) {
+  ) { }
+
+  ionViewDidLoad() {
     this.initNote();
   }
   alertRemoveNote() {
