@@ -6,12 +6,12 @@ import { Events, NavController } from 'ionic-angular';
 import { ThfStorageService } from '@totvs/thf-storage';
 import { ThfSyncService } from '@totvs/thf-sync';
 
-import { TabsPage } from '../tabs/tabs';
+import { TabsPage } from '../tabs/tabs.component';
 import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'page-user',
-  templateUrl: 'signup.html'
+  templateUrl: 'signup.component.html'
 })
 export class SignupPage {
 

@@ -1,13 +1,13 @@
-import { SchedulePage } from './../schedule/schedule';
+import { SchedulePage } from '../schedule/schedule.component';
 import { Component } from '@angular/core';
 
 import { NavParams } from 'ionic-angular';
 
-import { AboutPage } from '../about/about';
-import { SpeakerListPage } from '../speaker-list/speaker-list';
+import { AboutPage } from '../about/about.component';
+import { SpeakerListPage } from '../speaker-list/speaker-list.component';
 
 @Component({
-  templateUrl: 'tabs.html'
+  templateUrl: 'tabs.component.html'
 })
 export class TabsPage {
 

@@ -2,30 +2,23 @@ import { Component } from '@angular/core';
 
 import {
   ActionSheet,
+  ActionSheetButton,
   ActionSheetController,
   ActionSheetOptions,
   Config,
   NavController,
-  Refresher
+  Refresher,
 } from 'ionic-angular';
 
 import { ThfSyncService } from '@totvs/thf-sync';
 
-import { LectureDetailPage } from './../lecture-detail/lecture-detail';
-import { SpeakerDetailPage } from '../speaker-detail/speaker-detail';
+import { LectureDetailPage } from '../lecture-detail/lecture-detail.component';
+import { SpeakerDetailPage } from '../speaker-detail/speaker-detail.component';
 import { SpeakerService } from '../../services/speaker.service';
-
-export interface ActionSheetButton {
-  cssClass?: string;
-  icon?: string;
-  role?: string;
-  text?: string;
-  handler?: () => boolean|void;
-}
 
 @Component({
   selector: 'page-speaker-list',
-  templateUrl: 'speaker-list.html'
+  templateUrl: 'speaker-list.component.html'
 })
 export class SpeakerListPage {
 

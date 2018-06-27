@@ -8,28 +8,18 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { ThfNetworkType, ThfSyncConfig, ThfSyncService } from '@totvs/thf-sync';
 import { ThfStorageService } from '@totvs/thf-storage';
 
-import { AboutPage } from '../pages/about/about';
-import { LoginPage } from './../pages/login/login';
+import { AboutPage } from '../pages/about/about.component';
+import { LoginPage } from '../pages/login/login.component';
 import { NotesPage } from './../pages/notes/notes.component';
-import { SchedulePage } from './../pages/schedule/schedule';
-import { schemas } from './../schemas/schemas-list';
-import { SignupPage } from './../pages/signup/signup';
-import { SpeakerListPage } from './../pages/speaker-list/speaker-list';
-import { TabsPage } from '../pages/tabs/tabs';
-
-export interface PageInterface {
-  title: string;
-  name: string;
-  component: any;
-  icon: string;
-  logsOut?: boolean;
-  index?: number;
-  tabName?: string;
-  tabComponent?: any;
-}
+import { PageInterface } from './app-page.interface';
+import { SchedulePage } from '../pages/schedule/schedule.component';
+import { schemas } from '../schemas/schemas-list.constants';
+import { SignupPage } from '../pages/signup/signup.component';
+import { SpeakerListPage } from '../pages/speaker-list/speaker-list.component';
+import { TabsPage } from '../pages/tabs/tabs.component';
 
 @Component({
-  templateUrl: 'app.html'
+  templateUrl: 'app.component.html'
 })
 export class MyApp {
 

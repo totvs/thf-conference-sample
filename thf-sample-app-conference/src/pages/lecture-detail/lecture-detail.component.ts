@@ -10,7 +10,7 @@ import { NoteDetailPage } from '../note-detail/note-detail.component';
 
 @Component({
   selector: 'page-lecture-detail',
-  templateUrl: 'lecture-detail.html'
+  templateUrl: 'lecture-detail.component.html'
 })
 export class LectureDetailPage {
 

@@ -8,7 +8,7 @@ import { SpeakerService } from './../../services/speaker.service';
 
 @Component({
   selector: 'page-speaker-detail',
-  templateUrl: 'speaker-detail.html'
+  templateUrl: 'speaker-detail.component.html'
 })
 export class SpeakerDetailPage {
 

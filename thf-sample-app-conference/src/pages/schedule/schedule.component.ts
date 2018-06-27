@@ -11,14 +11,14 @@ import {
 
 import { ThfSyncService } from '@totvs/thf-sync';
 
-import { LectureDetailPage } from './../lecture-detail/lecture-detail';
+import { LectureDetailPage } from '../lecture-detail/lecture-detail.component';
 import { LectureService } from '../../services/lecture.service';
-import { ScheduleFilterPage } from '../schedule-filter/schedule-filter';
+import { ScheduleFilterPage } from '../schedule-filter/schedule-filter.component';
 import { UserService } from './../../services/user.service';
 
 @Component({
   selector: 'page-schedule',
-  templateUrl: 'schedule.html'
+  templateUrl: 'schedule.component.html'
 })
 export class SchedulePage {
 
