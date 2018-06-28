@@ -37,7 +37,7 @@ export class SpeakerDetailComponent implements OnInit {
   }
 
   back() {
-    this.navigateToPath('speakers');
+    window.history.back();
   }
 
   edit() {

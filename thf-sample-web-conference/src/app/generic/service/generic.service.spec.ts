@@ -9,7 +9,7 @@ describe('GenericService', () => {
     });
   });
 
-  it('should be created', inject([GenericService], (service: GenericService) => {
+  it('should be created', inject([GenericService], (service: GenericService<any>) => {
     expect(service).toBeTruthy();
   }));
 });

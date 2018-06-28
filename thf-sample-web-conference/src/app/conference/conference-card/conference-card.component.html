@@ -1,0 +1,40 @@
+<thf-widget class="thf-sm-12">
+
+  <div class="thf-row">
+    <div class="thf-md-12 text-align">
+      <font
+        class="thf-font-title">{{ conference.title }}</font>
+    </div>
+  </div>
+
+  <hr>
+  <br>
+
+  <div class="thf-row">
+    <div class="thf-md-6">
+      <thf-info
+        t-label="Location"
+        [t-value]="conference.location">
+      </thf-info>
+    </div>
+
+    <div class="thf-md-6">
+      <thf-info
+        t-label="Date"
+        [t-value]="getToLocaleDateString()">
+      </thf-info>
+    </div>
+  </div>
+
+  <br>
+
+  <div class="thf-row">
+    <div class="thf-md-12">
+      <thf-info
+        t-label="Description"
+        [t-value]="conference.description">
+      </thf-info>
+    </div>
+  </div>
+
+</thf-widget>

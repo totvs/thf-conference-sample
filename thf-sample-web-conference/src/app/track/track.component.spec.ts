@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { LectureComponent } from './lecture.component';
+import { TrackComponent } from './track.component';
 
-describe('LectureComponent', () => {
-  let component: LectureComponent;
-  let fixture: ComponentFixture<LectureComponent>;
+describe('TrackComponent', () => {
+  let component: TrackComponent;
+  let fixture: ComponentFixture<TrackComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ LectureComponent ]
+      declarations: [ TrackComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(LectureComponent);
+    fixture = TestBed.createComponent(TrackComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
@@ -22,5 +22,4 @@ describe('LectureComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
-
 });

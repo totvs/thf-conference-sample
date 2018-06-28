@@ -33,7 +33,7 @@ export class LectureDetailComponent implements OnInit {
   }
 
   back() {
-    this.navigateToPath('lectures');
+    window.history.back();
   }
 
   edit() {
