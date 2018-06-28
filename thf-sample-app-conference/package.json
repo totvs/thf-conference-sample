@@ -1,8 +1,8 @@
 {
   "name": "thf-sample-conference",
-  "version": "0.0.1",
-  "author": "Ionic Framework",
-  "homepage": "http://ionicframework.com/",
+  "version": "1.0.0",
+  "author": "TOTVS HTML Framework",
+  "homepage": "https://thf.totvs.com.br/guides/sync-get-started",
   "private": true,
   "scripts": {
     "clean": "ionic-app-scripts clean",
@@ -37,5 +37,5 @@
     "@ionic/app-scripts": "3.1.9",
     "typescript": "2.8.1"
   },
-  "description": "An Ionic project"
+  "description": ""
 }
