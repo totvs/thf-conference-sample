@@ -18,7 +18,7 @@ export class LectureService {
   }
 
   getLectures() {
-    return this.lectureModel.find().exec().then(data => this.lectures = data.items);
+    return this.lectureModel.find().sort('title').exec().then(data => this.lectures = data.items);
   }
 
   synchronize() {

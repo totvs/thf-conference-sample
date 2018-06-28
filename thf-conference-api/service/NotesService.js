@@ -24,9 +24,7 @@ var notes = [{
 }];
 
 exports.findNotesByUserId = function (userId) {
-  return notes.filter(note => note.userId == userId).map(note => {
-    return { id: note.id, title: note.title }
-  });
+  return notes.filter(note => note.userId == userId);
 }
 
 /**
@@ -71,6 +69,7 @@ exports.notesIdDELETE = function (id) {
 
     if (note) {
       note.deletedDate = new Date().toISOString();
+      note.updatedDate = note.deletedDate;
       note.deleted = true;
       resolve();
     } else {

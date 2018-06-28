@@ -1,10 +1,17 @@
 <ion-header>
-  <ion-navbar color="primary">
-    <ion-title *ngIf="lecture">{{ lecture.title }}</ion-title>
-  </ion-navbar>
-</ion-header>
+    <ion-navbar color="primary">
+      <button ion-button menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+      <ion-title *ngIf="lecture">{{ lecture.title }}</ion-title>
+    </ion-navbar>
+  </ion-header>
 
 <ion-content padding>
+
+  <ion-fab right bottom *ngIf="isLogged">
+    <button ion-fab mini (click)="goToNoteDetail()"><ion-icon name="paper"></ion-icon></button>
+  </ion-fab>
 
   <ion-refresher (ionRefresh)="doRefresh($event)">
     <ion-refresher-content></ion-refresher-content>

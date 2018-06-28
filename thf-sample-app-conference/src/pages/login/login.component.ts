@@ -3,13 +3,13 @@ import { NgForm } from '@angular/forms';
 
 import { Events, NavController, ToastController } from 'ionic-angular';
 
-import { SignupPage } from '../signup/signup';
-import { TabsPage } from '../tabs/tabs';
+import { SignupPage } from '../signup/signup.component';
+import { TabsPage } from '../tabs/tabs.component';
 import { UserService } from './../../services/user.service';
 
 @Component({
   selector: 'page-user',
-  templateUrl: 'login.html'
+  templateUrl: 'login.component.html'
 })
 export class LoginPage {
 
@@ -17,8 +17,8 @@ export class LoginPage {
   submitted = false;
 
   constructor(
-    public navCtrl: NavController,
     public events: Events,
+    public navCtrl: NavController,
     public toastCtrl: ToastController,
     private userService: UserService,
   ) { }

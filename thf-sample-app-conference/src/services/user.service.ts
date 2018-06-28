@@ -14,7 +14,7 @@ export class UserService {
   }
 
   async addFavoriteLecture(lectureId) {
-    const loggedUser = await this.getLoggedUser();
+    const loggedUser = await this.getLoggedUserId();
     const user = await this.userModel.findById(loggedUser).exec();
     user.favoriteLectures = user.favoriteLectures || [];
 
@@ -40,18 +40,24 @@ export class UserService {
   }
 
   async getFavoriteLectures() {
-    const loggedUser = await this.getLoggedUser();
+    const loggedUser = await this.getLoggedUserId();
     const user = await this.userModel.findById(loggedUser).exec();
     return 'favoriteLectures' in user ? user.favoriteLectures : undefined;
   }
 
-  async getLoggedUser() {
+  async getLoggedUserId() {
     const login = await this.thfStorage.get('login');
     return login ? login.userId : undefined;
   }
 
   getModel() {
     return this.userModel;
+  }
+
+  async getLoggedUser() {
+    const userid = await this.getLoggedUserId();
+
+    return this.userModel.findById(userid).exec();
   }
 
   async getUsers() {
@@ -70,7 +76,7 @@ export class UserService {
   }
 
   async removeFavoriteLecture(lectureId) {
-    const loggedUser = await this.getLoggedUser();
+    const loggedUser = await this.getLoggedUserId();
     const user = await this.userModel.findById(loggedUser).exec();
 
     user.favoriteLectures = user.favoriteLectures.filter(id => lectureId !== id);

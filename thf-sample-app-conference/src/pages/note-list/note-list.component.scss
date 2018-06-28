@@ -1,0 +1,33 @@
+.notes-content {
+  background-color: #ececec;
+}
+
+.notes-button {
+  color: #333;
+}
+
+.notes-updatedDate, .notes-updatedDate-offline {
+  float: right;
+  width: 40%;
+  text-align: right;
+}
+
+.notes-updatedDate {
+  color: gray;
+  font-size: 10px;
+}
+
+.notes-updatedDate-offline {
+  color: #ce9200;
+  font-size: 14px;
+}
+
+.notes-title {
+  color: #425357;
+  float: left;
+  width: 60%;
+  padding-right: 10px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

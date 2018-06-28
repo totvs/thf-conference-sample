@@ -1,0 +1,18 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>About conference</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <h2 class="conference-title">{{ conference?.title }}</h2>
+  <p>{{ conference?.date | date }}</p>
+  <p>{{ conference?.location }}</p>
+
+  <br>
+
+  <p>{{ conference?.description }}</p>
+</ion-content>
