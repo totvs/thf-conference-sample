@@ -33,7 +33,7 @@ export class SpeakerListPage {
     private thfSync: ThfSyncService
   ) {}
 
-  ionViewDidLoad() {
+  ionViewWillEnter() {
     this.getSpeakers();
 
     this.thfSync.onSync().subscribe(() => this.getSpeakers());

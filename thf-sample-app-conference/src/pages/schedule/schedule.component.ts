@@ -40,7 +40,7 @@ export class SchedulePage {
     private thfSync: ThfSyncService,
   ) { }
 
-  ionViewDidLoad() {
+  ionViewWillEnter() {
     this.updateSchedule();
 
     this.thfSync.onSync().subscribe(() => {
