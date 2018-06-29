@@ -1,0 +1,1750 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "description" : "THF conference application API.\n",
+    "version" : "1.0.0",
+    "title" : "THF Conference App",
+    "termsOfService" : "",
+    "contact" : {
+      "url" : "https://thf.totvs.com.br/"
+    }
+  },
+  "host" : "localhost:8080",
+  "basePath" : "/conference-api/api/v1",
+  "schemes" : [ "http" ],
+  "consumes" : [ "application/json" ],
+  "produces" : [ "application/json" ],
+  "paths" : {
+    "/conferences/" : {
+      "get" : {
+        "tags" : [ "Conferences" ],
+        "summary" : "Load the list of conferences",
+        "produces" : [ "application/json" ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200 - OK",
+            "schema" : {
+              "$ref" : "#/definitions/conferencesResponse"
+            },
+            "examples" : {
+              "application/json" : "{\n\t\"hasNext\": false,\n\t\"items\": [{\n\t\t\"id\": 1,\n\t\t\"title\": \"THF conference 2017\",\n\t\t\"date\": \"2017-07-11T00:00:00Z\",\n\t\t\"location\": \"Av. Santos Dumont, 831 - Santo Antônio, Joinville - SC\",\n\t\t\"description\": \"Conference organized by THF\"\n\t}, {\n\t\t\"id\": 2,\n\t\t\"title\": \"THF conference 2018\",\n\t\t\"date\": \"2018-08-11T00:00:00Z\",\n\t\t\"location\": \"Av. Santos Dumont, 831 - Santo Antônio, Joinville - SC\",\n\t\t\"description\": \"Conference organized by THF\"\n\t}]\n}"
+            }
+          },
+          "500" : {
+            "description" : "Status 500 - Internal Server Error",
+            "schema" : {
+              "$ref" : "#/definitions/errorResponse"
+            },
+            "examples" : {
+              "application/json" : "{\n\t\"code\": \"500\",\n\t\"message\": \"Internal Server Error\",\n\t\"detailedMessage\": \"High system resource usage\"\n}"
+            }
+          }
+        }
+      },
+      "x-restlet" : {
+        "section" : "Conference"
+      }
+    },
+    "/conferences/{id}" : {
+      "get" : {
+        "tags" : [ "Conferences" ],
+        "summary" : "Load an individual conference",
+        "produces" : [ "application/json" ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200 - OK",
+            "schema" : {
+              "$ref" : "#/definitions/conference"
+            },
+            "examples" : {
+              "application/json" : "{\n\t\"id\": 2,\n\t\"title\": \"THF conference 2018\",\n\t\"date\": \"2018-08-11T00:00:00Z\",\n\t\"location\": \"Av. Santos Dumont, 831 - Santo Antônio, Joinville - SC\",\n\t\"description\": \"Conference organized by THF\"\n}"
+            }
+          },
+          "404" : {
+            "description" : "Status 404 - Not Found",
+            "schema" : {
+              "$ref" : "#/definitions/errorResponse"
+            },
+            "examples" : {
+              "application/json" : "{\n\t\"code\": \"404\",\n\t\"message\": \"Not Found\",\n\t\"detailedMessage\": \"Conference not found\"\n}"
+            }
+          },
+          "500" : {
+            "description" : "Status 500 - Internal Server Error",
+            "schema" : {
+              "$ref" : "#/definitions/errorResponse"
+            },
+            "examples" : {
+              "application/json" : "{\n\t\"code\": \"500\",\n\t\"message\": \"Internal Server Error\",\n\t\"detailedMessage\": \"High system resource usage\"\n}"
+            }
+          }
+        }
+      },
+      "put" : {
+        "tags" : [ "Conferences" ],
+        "summary" : "Update a conference",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "body",
+          "in" : "body",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/conference"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200 - OK",
+            "schema" : {
+              "$ref" : "#/definitions/conference"
+            },
+            "examples" : {
+              "application/json" : "{\n\t\"id\": 2,\n\t\"title\": \"THF conference 2018\",\n\t\"date\": \"2018-08-11T00:00:00Z\",\n\t\"location\": \"Av. Santos Dumont, 831 - Santo Antônio, Joinville - SC\",\n\t\"description\": \"Conference organized by THF\"\n}"
+            }
+          },
+          "404" : {
+            "description" : "Status 404 - Not Found",
+            "schema" : {
+              "$ref" : "#/definitions/errorResponse"
+            }
+          },
+          "500" : {
+            "description" : "Status 500 - Internal Server Error",
+            "schema" : {
+              "$ref" : "#/definitions/errorResponse"
+            },
+            "examples" : {
+              "application/json" : "{\n\t\"code\": \"500\",\n\t\"message\": \"Internal Server Error\",\n\t\"detailedMessage\": \"High system resource usage\"\n}"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "id",
+        "in" : "path",
+        "required" : true,
+        "type" : "string",
+        "description" : "Conference id.",
+        "x-example" : "1"
+      } ],
+      "x-restlet" : {
+        "section" : "Conference"
+      }
+    },
+    "/conferences/diff/{date}" : {
+      "get" : {
+        "tags" : [ "Conferences" ],
+        "summary" : "Load",
+        "produces" : [ "application/json" ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200 - OK",
+            "schema" : {
+              "$ref" : "#/definitions/conferencesResponse"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "date",
+        "in" : "path",
+        "required" : true,
+        "type" : "string",
+        "format" : "date-time",
+        "description" : "Date.",
+        "x-example" : "2018-06-14T13:15:35.605Z"
+      } ],
+      "x-restlet" : {
+        "section" : "Conference"
+      }
+    },
+    "/lectures/" : {
+      "get" : {
+        "tags" : [ "Lectures" ],
+        "summary" : "Load the list of lectures",
+        "produces" : [ "application/json" ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200",
+            "schema" : {
+              "$ref" : "#/definitions/lecturesResponse"
+            },
+            "examples" : {
+              "application/json" : "{\n\t\"hasNext\": false,\n\t\"items\": [{\n\t\t\"id\": \"1\",\n\t\t\"title\": \"Unit testing for beginners\",\n\t\t\"room\": \"2B\",\n\t\t\"startTime\": \"08:30:00\",\n\t\t\"endTime\": \"08:45:00\",\n\t\t\"description\": \"Unit testing for beginners\",\n\t\t\"trackId\": \"4\",\n\t\t\"speakerId\": \"4\"\n\t}, {\n\t\t\"id\": \"2\",\n\t\t\"title\": \"Chrome devtools\",\n\t\t\"room\": \"2C\",\n\t\t\"startTime\": \"08:45:00\",\n\t\t\"endTime\": \"09:00:00\",\n\t\t\"description\": \"Chrome devtools\",\n\t\t\"trackId\": \"6\",\n\t\t\"speakerId\": \"3\"\n\t}]\n}"
+            }
+          },
+          "500" : {
+            "description" : "Status 500 - Internal Server Error",
+            "schema" : {
+              "$ref" : "#/definitions/errorResponse"
+            },
+            "examples" : {
+              "application/json" : "{\n\t\"code\": \"500\",\n\t\"message\": \"Internal Server Error\",\n\t\"detailedMessage\": \"High system resource usage\"\n}"
+            }
+          }
+        }
+      },
+      "post" : {
+        "tags" : [ "Lectures" ],
+        "summary" : "Create a new lecture",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "body",
+          "in" : "body",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/lecture"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200 - OK",
+            "schema" : {
+              "$ref" : "#/definitions/lecture"
+            }
+          },
+          "500" : {
+            "description" : "Status 500 - Internal Server Error",
+            "schema" : {
+              "$ref" : "#/definitions/errorResponse"
+            },
+            "examples" : {
+              "application/json" : "{\n\t\"code\": \"500\",\n\t\"message\": \"Internal Server Error\",\n\t\"detailedMessage\": \"High system resource usage\"\n}"
+            }
+          }
+        }
+      },
+      "x-restlet" : {
+        "section" : "Lectures"
+      }
+    },
+    "/lectures/{id}" : {
+      "get" : {
+        "tags" : [ "Lectures" ],
+        "summary" : "Load an individual lecture",
+        "produces" : [ "application/json" ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200 - OK",
+            "schema" : {
+              "$ref" : "#/definitions/lecture"
+            },
+            "examples" : {
+              "application/json" : "{\n\t\t\"id\": \"1\",\n\t\t\"title\": \"Unit testing for beginners\",\n\t\t\"room\": \"2B\",\n\t\t\"startTime\": \"08:30:00\",\n\t\t\"endTime\": \"08:45:00\",\n\t\t\"description\": \"Unit testing for beginners\",\n\t\t\"trackId\": \"4\",\n\t\t\"speakerId\": \"4\"\n}"
+            }
+          },
+          "404" : {
+            "description" : "Status 404 - Not Found",
+            "schema" : {
+              "$ref" : "#/definitions/errorResponse"
+            }
+          },
+          "500" : {
+            "description" : "Status 500 - Internal Server Error",
+            "schema" : {
+              "$ref" : "#/definitions/errorResponse"
+            },
+            "examples" : {
+              "application/json" : "{\n\t\"code\": \"500\",\n\t\"message\": \"Internal Server Error\",\n  \t\"detailedMessage\": \"High system resource usage\"\n}"
+            }
+          }
+        }
+      },
+      "put" : {
+        "tags" : [ "Lectures" ],
+        "summary" : "Update a lecture",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "body",
+          "in" : "body",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/lecture"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200 - OK",
+            "schema" : {
+              "$ref" : "#/definitions/lecture"
+            },
+            "examples" : {
+              "application/json" : "{\n\t\t\"id\": \"1\",\n\t\t\"title\": \"Unit testing for beginners\",\n\t\t\"room\": \"2B\",\n\t\t\"startTime\": \"08:30:00\",\n\t\t\"endTime\": \"08:45:00\",\n\t\t\"description\": \"Unit testing for beginners\",\n\t\t\"trackId\": \"4\",\n\t\t\"speakerId\": \"4\"\n}"
+            }
+          },
+          "404" : {
+            "description" : "Status 404 - Not Found",
+            "schema" : {
+              "$ref" : "#/definitions/errorResponse"
+            }
+          },
+          "500" : {
+            "description" : "Status 500 - Internal Server Error",
+            "schema" : {
+              "$ref" : "#/definitions/errorResponse"
+            },
+            "examples" : {
+              "application/json" : "{\n\t\"code\": \"500\",\n\t\"message\": \"Internal Server Error\",\n  \t\"detailedMessage\": \"High system resource usage\"\n}"
+            }
+          }
+        }
+      },
+      "delete" : {
+        "tags" : [ "Lectures" ],
+        "summary" : "Delete a lecture",
+        "produces" : [ "application/json" ],
+        "parameters" : [ ],
+        "responses" : {
+          "204" : {
+            "description" : "Status 204 - No Content"
+          },
+          "404" : {
+            "description" : "Status 404 - Not Found",
+            "schema" : {
+              "$ref" : "#/definitions/errorResponse"
+            }
+          },
+          "500" : {
+            "description" : "Status 500 - Internal Server Error",
+            "schema" : {
+              "$ref" : "#/definitions/errorResponse"
+            },
+            "examples" : {
+              "application/json" : "{\n\t\"code\": \"500\",\n\t\"message\": \"Internal Server Error\",\n  \t\"detailedMessage\": \"High system resource usage\"\n}"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "id",
+        "in" : "path",
+        "required" : true,
+        "type" : "number",
+        "description" : "Lecture id.",
+        "x-example" : 1.0
+      } ],
+      "x-restlet" : {
+        "section" : "Lectures"
+      }
+    },
+    "/lectures/diff/{date}" : {
+      "get" : {
+        "tags" : [ "Lectures" ],
+        "summary" : "Load",
+        "produces" : [ "application/json" ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200 - OK",
+            "schema" : {
+              "$ref" : "#/definitions/lecturesResponse"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "date",
+        "in" : "path",
+        "required" : true,
+        "type" : "string",
+        "format" : "date-time",
+        "description" : "Date.",
+        "x-example" : "2018-06-14T13:15:35.605Z"
+      } ],
+      "x-restlet" : {
+        "section" : "Lectures"
+      }
+    },
+    "/notes/" : {
+      "get" : {
+        "tags" : [ "Notes" ],
+        "summary" : "Load the list of notes",
+        "produces" : [ "application/json" ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200",
+            "schema" : {
+              "$ref" : "#/definitions/notesResponse"
+            },
+            "examples" : {
+              "application/json" : "{\n\t\"hasNext\": false,\n\t\"items\": [{\n\t\t\"id\": \"1\",\n\t\t\"title\": \"Chrome DevTools\",\n\t\t\"text\": \"Note of Chrome DevTools\",\n\t\t\"lectureId\": \"1\",\n\t\t\"userId\": \"2\"\n\t}, {\n\t\t\"id\": \"2\",\n\t\t\"title\": \"Unit testing for beginners\",\n\t\t\"text\": \"Note of unit testing for beginners\",\n\t\t\"lectureId\": \"2\",\n\t\t\"userId\": \"1\"\n\t}]\n}"
+            }
+          },
+          "500" : {
+            "description" : "Status 500 - Internal Server Error",
+            "schema" : {
+              "$ref" : "#/definitions/errorResponse"
+            },
+            "examples" : {
+              "application/json" : "{\n\t\"code\": \"500\",\n\t\"message\": \"Internal Server Error\",\n  \t\"detailedMessage\": \"High system resource usage\"\n}"
+            }
+          }
+        }
+      },
+      "post" : {
+        "tags" : [ "Notes" ],
+        "summary" : "Create a new note",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "body",
+          "in" : "body",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/note"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200 - OK",
+            "schema" : {
+              "$ref" : "#/definitions/note"
+            }
+          },
+          "500" : {
+            "description" : "Status 500 - Internal Server Error",
+            "schema" : {
+              "$ref" : "#/definitions/errorResponse"
+            },
+            "examples" : {
+              "application/json" : "{\n\t\"code\": \"500\",\n\t\"message\": \"Internal Server Error\",\n  \t\"detailedMessage\": \"High system resource usage\"\n}"
+            }
+          }
+        }
+      },
+      "x-restlet" : {
+        "section" : "Notes"
+      }
+    },
+    "/notes/{id}" : {
+      "get" : {
+        "tags" : [ "Notes" ],
+        "summary" : "Load an individual note",
+        "produces" : [ "application/json" ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200 - OK",
+            "schema" : {
+              "$ref" : "#/definitions/note"
+            },
+            "examples" : {
+              "application/json" : "{\n\t\t\"id\": \"1\",\n\t\t\"title\": \"Chrome DevTools\",\n\t\t\"text\": \"Note of Chrome DevTools\",\n\t\t\"lectureId\": \"1\",\n\t\t\"userId\": \"2\"\n}"
+            }
+          },
+          "404" : {
+            "description" : "Status 404 - Not Found",
+            "schema" : {
+              "$ref" : "#/definitions/errorResponse"
+            },
+            "examples" : {
+              "application/json" : "{\n\t\"code\": \"404\",\n\t\"message\": \"Not Found\",\n\t\"detailedMessage\": \"Note not found\"\n}"
+            }
+          },
+          "500" : {
+            "description" : "Status 500 - Internal Server Error",
+            "schema" : {
+              "$ref" : "#/definitions/errorResponse"
+            },
+            "examples" : {
+              "application/json" : "{\n\t\"code\": \"500\",\n\t\"message\": \"Internal Server Error\",\n  \t\"detailedMessage\": \"High system resource usage\"\n}"
+            }
+          }
+        }
+      },
+      "put" : {
+        "tags" : [ "Notes" ],
+        "summary" : "Update a note",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "body",
+          "in" : "body",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/note"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200 - OK",
+            "schema" : {
+              "$ref" : "#/definitions/note"
+            }
+          },
+          "404" : {
+            "description" : "Status 404 - Not Found",
+            "schema" : {
+              "$ref" : "#/definitions/errorResponse"
+            }
+          },
+          "500" : {
+            "description" : "Status 500 - Internal Server Error",
+            "schema" : {
+              "$ref" : "#/definitions/errorResponse"
+            },
+            "examples" : {
+              "application/json" : "{\n\t\"code\": \"500\",\n\t\"message\": \"Internal Server Error\",\n  \t\"detailedMessage\": \"High system resource usage\"\n}"
+            }
+          }
+        }
+      },
+      "delete" : {
+        "tags" : [ "Notes" ],
+        "summary" : "Delete a note",
+        "produces" : [ "application/json" ],
+        "parameters" : [ ],
+        "responses" : {
+          "204" : {
+            "description" : "Status 204 - No Content"
+          },
+          "404" : {
+            "description" : "Status 404 - Not Found",
+            "schema" : {
+              "$ref" : "#/definitions/errorResponse"
+            }
+          },
+          "500" : {
+            "description" : "Status 500 - Internal Server Error",
+            "schema" : {
+              "$ref" : "#/definitions/errorResponse"
+            },
+            "examples" : {
+              "application/json" : "{\n\t\"code\": \"500\",\n\t\"message\": \"Internal Server Error\",\n  \t\"detailedMessage\": \"High system resource usage\"\n}"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "id",
+        "in" : "path",
+        "required" : true,
+        "type" : "number",
+        "description" : "Note id.",
+        "x-example" : 1.0
+      } ],
+      "x-restlet" : {
+        "section" : "Notes"
+      }
+    },
+    "/notes/diff/{date}" : {
+      "get" : {
+        "tags" : [ "Notes" ],
+        "summary" : "Load",
+        "produces" : [ "application/json" ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200 - OK",
+            "schema" : {
+              "$ref" : "#/definitions/notesResponse"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "date",
+        "in" : "path",
+        "required" : true,
+        "type" : "string",
+        "format" : "date-time",
+        "description" : "Date.",
+        "x-example" : "2018-06-14T13:15:35.605Z"
+      } ],
+      "x-restlet" : {
+        "section" : "Notes"
+      }
+    },
+    "/speakers/" : {
+      "get" : {
+        "tags" : [ "Speakers" ],
+        "summary" : "Load the list of speakers",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "order",
+          "in" : "query",
+          "required" : false,
+          "type" : "string",
+          "description" : "Speakers list ordenation.\nShould receive field name to ordenate by priorities and separated by commas.\nTo order fields by descendant, the field should start with the sign of \"-\".",
+          "x-example" : "order=name,-age"
+        }, {
+          "name" : "diffDate",
+          "in" : "query",
+          "required" : false,
+          "type" : "string",
+          "format" : "date-time",
+          "description" : "Date used to search data that were updated from this date.",
+          "x-example" : "diffDate=1528482645000"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200 - OK",
+            "schema" : {
+              "$ref" : "#/definitions/speakersResponse"
+            },
+            "examples" : {
+              "application/json" : "{\n\t\"hasNext\": false,\n\t\"items\": [{\n\t\t\"id\": 1,\n\t\t\"name\": \"NodeJS Developer\",\n\t\t\"email\": \"developer.nodejs@totvs.com.br\",\n\t\t\"description\": \"Nodejs developer with 4 years experience\"\n\t}, {\n\t\t\"id\": 2,\n\t\t\"name\": \"Angular Developer\",\n\t\t\"email\": \"developer.angular@totvs.com.br\",\n\t\t\"description\": \"Angular developer with 2 years experience\"\n\t}]\n}"
+            }
+          },
+          "500" : {
+            "description" : "Status 500 - Internal Server Error",
+            "schema" : {
+              "$ref" : "#/definitions/errorResponse"
+            },
+            "examples" : {
+              "application/json" : "{\n\t\"code\": \"500\",\n\t\"message\": \"Internal Server Error\",\n  \t\"detailedMessage\": \"High system resource usage\"\n}"
+            }
+          }
+        }
+      },
+      "post" : {
+        "tags" : [ "Speakers" ],
+        "summary" : "Create a new speaker",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "body",
+          "in" : "body",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/speaker"
+          },
+          "x-examples" : {
+            "application/json" : "Speaker"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200 - OK",
+            "schema" : {
+              "$ref" : "#/definitions/speaker"
+            }
+          },
+          "500" : {
+            "description" : "Status 500 - Internal Server Error",
+            "schema" : {
+              "$ref" : "#/definitions/errorResponse"
+            },
+            "examples" : {
+              "application/json" : "{\n\t\"code\": \"500\",\n\t\"message\": \"Internal Server Error\",\n  \t\"detailedMessage\": \"High system resource usage\"\n}"
+            }
+          }
+        }
+      },
+      "x-restlet" : {
+        "section" : "Speakers"
+      }
+    },
+    "/speakers/{id}" : {
+      "get" : {
+        "tags" : [ "Speakers" ],
+        "summary" : "Load an individual speaker",
+        "produces" : [ "application/json" ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200 - OK",
+            "schema" : {
+              "$ref" : "#/definitions/speaker"
+            },
+            "examples" : {
+              "application/json" : "{\n\t\"id\": 2,\n\t\"name\": \"Angular Developer\",\n\t\"email\": \"developer.angular@totvs.com.br\",\n\t\"description\": \"Angular developer with 2 years experience\"\n}"
+            }
+          },
+          "404" : {
+            "description" : "Status 404 - Not Found",
+            "schema" : {
+              "$ref" : "#/definitions/errorResponse"
+            },
+            "examples" : {
+              "application/json" : "{\n\t\"code\": \"404\",\n\t\"message\": \"Not Found\",\n\t\"detailedMessage\": \"Speaker not found\"\n}"
+            }
+          },
+          "500" : {
+            "description" : "Status 500 - Internal Server Error",
+            "schema" : {
+              "$ref" : "#/definitions/errorResponse"
+            },
+            "examples" : {
+              "application/json" : "{\n\t\"code\": \"500\",\n\t\"message\": \"Internal Server Error\",\n  \t\"detailedMessage\": \"High system resource usage\"\n}"
+            }
+          }
+        }
+      },
+      "put" : {
+        "tags" : [ "Speakers" ],
+        "summary" : "Update a speaker",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "body",
+          "in" : "body",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/speaker"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200 - OK",
+            "schema" : {
+              "$ref" : "#/definitions/speaker"
+            }
+          },
+          "404" : {
+            "description" : "Status 404 - Not Found",
+            "schema" : {
+              "$ref" : "#/definitions/errorResponse"
+            }
+          },
+          "500" : {
+            "description" : "Status 500 - Internal Server Error",
+            "schema" : {
+              "$ref" : "#/definitions/errorResponse"
+            },
+            "examples" : {
+              "application/json" : "{\n\t\"code\": \"500\",\n\t\"message\": \"Internal Server Error\",\n  \t\"detailedMessage\": \"High system resource usage\"\n}"
+            }
+          }
+        }
+      },
+      "delete" : {
+        "tags" : [ "Speakers" ],
+        "summary" : "Delete a speaker",
+        "produces" : [ "application/json" ],
+        "parameters" : [ ],
+        "responses" : {
+          "204" : {
+            "description" : "Status 204 - No Content"
+          },
+          "404" : {
+            "description" : "Status 404 - Not Found",
+            "schema" : {
+              "$ref" : "#/definitions/errorResponse"
+            }
+          },
+          "500" : {
+            "description" : "Status 500 - Internal Server Error",
+            "schema" : {
+              "$ref" : "#/definitions/errorResponse"
+            },
+            "examples" : {
+              "application/json" : "{\n\t\"code\": \"500\",\n\t\"message\": \"Internal Server Error\",\n  \t\"detailedMessage\": \"High system resource usage\"\n}"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "id",
+        "in" : "path",
+        "required" : true,
+        "type" : "number",
+        "description" : "Speaker id.",
+        "x-example" : 1.0
+      } ],
+      "x-restlet" : {
+        "section" : "Speakers"
+      }
+    },
+    "/speakers/{id}/lectures/" : {
+      "get" : {
+        "tags" : [ "Speakers" ],
+        "summary" : "Load all lectures by speakers",
+        "produces" : [ "application/json" ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200 - OK",
+            "schema" : {
+              "$ref" : "#/definitions/lecture"
+            },
+            "examples" : {
+              "application/json" : "{\n\t\"id\": 2,\n\t\"name\": \"Angular Developer\",\n\t\"email\": \"developer.angular@totvs.com.br\",\n\t\"description\": \"Angular developer with 2 years experience\",\n\t\"lectures\": [{\n\t\t\"id\": \"1\",\n\t\t\"title\": \"Unit testing for beginners\"\n\t},{\n\t\t\"id\": \"2\",\n\t\t\"title\": \"Basic RESTful API in NodeJS\"\n\t}]\n}"
+            }
+          },
+          "404" : {
+            "description" : "Status 404 - Not Found",
+            "schema" : {
+              "$ref" : "#/definitions/errorResponse"
+            },
+            "examples" : {
+              "application/json" : "{\n\t\"code\": \"404\",\n\t\"message\": \"Not Found\",\n\t\"detailedMessage\": \"Speaker not found\"\n}"
+            }
+          },
+          "500" : {
+            "description" : "Status 500 - Internal Server Error",
+            "schema" : {
+              "$ref" : "#/definitions/errorResponse"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "id",
+        "in" : "path",
+        "required" : true,
+        "type" : "string",
+        "description" : "Speaker id.",
+        "x-example" : "1"
+      } ],
+      "x-restlet" : {
+        "section" : "Speakers"
+      }
+    },
+    "/speakers/diff/{date}" : {
+      "get" : {
+        "tags" : [ "Speakers" ],
+        "summary" : "Load",
+        "produces" : [ "application/json" ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200 - OK",
+            "schema" : {
+              "$ref" : "#/definitions/speakersResponse"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "date",
+        "in" : "path",
+        "required" : true,
+        "type" : "string",
+        "format" : "date-time",
+        "description" : "Date.",
+        "x-example" : "2018-06-14T13:15:35.605Z"
+      } ],
+      "x-restlet" : {
+        "section" : "Speakers"
+      }
+    },
+    "/tracks/" : {
+      "get" : {
+        "tags" : [ "Tracks" ],
+        "summary" : "Load the list of Tracks",
+        "produces" : [ "application/json" ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200",
+            "schema" : {
+              "$ref" : "#/definitions/tracksResponse"
+            }
+          },
+          "500" : {
+            "description" : "Status 500 - Internal Server Error",
+            "schema" : {
+              "$ref" : "#/definitions/errorResponse"
+            }
+          }
+        }
+      },
+      "post" : {
+        "tags" : [ "Tracks" ],
+        "summary" : "Create a new track",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "body",
+          "in" : "body",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/track"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200 - OK",
+            "schema" : {
+              "$ref" : "#/definitions/track"
+            }
+          },
+          "500" : {
+            "description" : "Status 500 - Internal Server Error",
+            "schema" : {
+              "$ref" : "#/definitions/errorResponse"
+            }
+          }
+        }
+      },
+      "x-restlet" : {
+        "section" : "Track"
+      }
+    },
+    "/tracks/{id}" : {
+      "get" : {
+        "tags" : [ "Tracks" ],
+        "summary" : "Load an individual track",
+        "produces" : [ "application/json" ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200 - OK",
+            "schema" : {
+              "$ref" : "#/definitions/track"
+            }
+          },
+          "404" : {
+            "description" : "Status 404 - Not Found",
+            "schema" : {
+              "$ref" : "#/definitions/errorResponse"
+            },
+            "examples" : {
+              "application/json" : "{\n\t\"code\": \"404\",\n\t\"message\": \"Not Found\",\n\t\"detailedMessage\": \"Track not found\"\n}"
+            }
+          },
+          "500" : {
+            "description" : "Status 500 - Internal Server Error",
+            "schema" : {
+              "$ref" : "#/definitions/errorResponse"
+            }
+          }
+        }
+      },
+      "put" : {
+        "tags" : [ "Tracks" ],
+        "summary" : "Update a track",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "body",
+          "in" : "body",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/track"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200 - OK",
+            "schema" : {
+              "$ref" : "#/definitions/track"
+            }
+          },
+          "404" : {
+            "description" : "Status 404 - Not Found",
+            "schema" : {
+              "$ref" : "#/definitions/errorResponse"
+            }
+          },
+          "500" : {
+            "description" : "Status 500 - Internal Server Error",
+            "schema" : {
+              "$ref" : "#/definitions/errorResponse"
+            }
+          }
+        }
+      },
+      "delete" : {
+        "tags" : [ "Tracks" ],
+        "summary" : "Delete a track",
+        "produces" : [ "application/json" ],
+        "parameters" : [ ],
+        "responses" : {
+          "204" : {
+            "description" : "Status 204 - No Content"
+          },
+          "404" : {
+            "description" : "Status 404 - Not Found",
+            "schema" : {
+              "$ref" : "#/definitions/errorResponse"
+            }
+          },
+          "500" : {
+            "description" : "Status 500 - Internal Server Error",
+            "schema" : {
+              "$ref" : "#/definitions/errorResponse"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "id",
+        "in" : "path",
+        "required" : true,
+        "type" : "number",
+        "description" : "Track id.",
+        "x-example" : 1.0
+      } ],
+      "x-restlet" : {
+        "section" : "Track"
+      }
+    },
+    "/tracks/diff/{date}" : {
+      "get" : {
+        "tags" : [ "Tracks" ],
+        "summary" : "Load",
+        "produces" : [ "application/json" ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200 - OK",
+            "schema" : {
+              "$ref" : "#/definitions/tracksResponse"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "date",
+        "in" : "path",
+        "required" : true,
+        "type" : "string",
+        "format" : "date-time",
+        "description" : "Date.",
+        "x-example" : "2018-06-14T13:15:35.605Z"
+      } ],
+      "x-restlet" : {
+        "section" : "Track"
+      }
+    },
+    "/users/" : {
+      "get" : {
+        "tags" : [ "Users" ],
+        "summary" : "Load the list of users",
+        "produces" : [ "application/json" ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200",
+            "schema" : {
+              "$ref" : "#/definitions/usersResponse"
+            }
+          },
+          "500" : {
+            "description" : "Status 500 - Internal Server Error",
+            "schema" : {
+              "$ref" : "#/definitions/errorResponse"
+            },
+            "examples" : {
+              "application/json" : "{\n\t\"code\": \"500\",\n\t\"message\": \"Internal Server Error\",\n  \t\"detailedMessage\": \"High system resource usage\"\n}"
+            }
+          }
+        }
+      },
+      "post" : {
+        "tags" : [ "Users" ],
+        "summary" : "Create a new user",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "body",
+          "in" : "body",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/user"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200 - OK",
+            "schema" : {
+              "$ref" : "#/definitions/user"
+            }
+          },
+          "500" : {
+            "description" : "Status 500 - Internal Server Error",
+            "schema" : {
+              "$ref" : "#/definitions/errorResponse"
+            },
+            "examples" : {
+              "application/json" : "{\n\t\"code\": \"500\",\n\t\"message\": \"Internal Server Error\",\n  \t\"detailedMessage\": \"High system resource usage\"\n}"
+            }
+          }
+        }
+      },
+      "x-restlet" : {
+        "section" : "Users"
+      }
+    },
+    "/users/{id}" : {
+      "get" : {
+        "tags" : [ "Users" ],
+        "summary" : "Load an individual user",
+        "produces" : [ "application/json" ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200 - OK",
+            "schema" : {
+              "$ref" : "#/definitions/user"
+            }
+          },
+          "404" : {
+            "description" : "Status 404 - Not Found",
+            "schema" : {
+              "$ref" : "#/definitions/errorResponse"
+            },
+            "examples" : {
+              "application/json" : "{\n\t\"code\": \"404\",\n\t\"message\": \"Not Found\",\n\t\"detailedMessage\": \"User not found\"\n}"
+            }
+          },
+          "500" : {
+            "description" : "Status 500 - Internal Server Error",
+            "schema" : {
+              "$ref" : "#/definitions/errorResponse"
+            },
+            "examples" : {
+              "application/json" : "{\n\t\"code\": \"500\",\n\t\"message\": \"Internal Server Error\",\n  \t\"detailedMessage\": \"High system resource usage\"\n}"
+            }
+          }
+        }
+      },
+      "put" : {
+        "tags" : [ "Users" ],
+        "summary" : "Update a user",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "body",
+          "in" : "body",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/user"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200 - OK",
+            "schema" : {
+              "$ref" : "#/definitions/user"
+            }
+          },
+          "404" : {
+            "description" : "Status 404 - Not Found",
+            "schema" : {
+              "$ref" : "#/definitions/errorResponse"
+            }
+          },
+          "500" : {
+            "description" : "Status 500 - Internal Server Error",
+            "schema" : {
+              "$ref" : "#/definitions/errorResponse"
+            }
+          }
+        }
+      },
+      "delete" : {
+        "tags" : [ "Users" ],
+        "summary" : "Delete a user",
+        "produces" : [ "application/json" ],
+        "parameters" : [ ],
+        "responses" : {
+          "204" : {
+            "description" : "Status 204 - No Content"
+          },
+          "404" : {
+            "description" : "Status 404 - Not Found",
+            "schema" : {
+              "$ref" : "#/definitions/errorResponse"
+            }
+          },
+          "500" : {
+            "description" : "Status 500 - Internal Server Error",
+            "schema" : {
+              "$ref" : "#/definitions/errorResponse"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "id",
+        "in" : "path",
+        "required" : true,
+        "type" : "number",
+        "description" : "User id.",
+        "x-example" : 1.0
+      } ],
+      "x-restlet" : {
+        "section" : "Users"
+      }
+    },
+    "/users/{id}/notes/" : {
+      "get" : {
+        "tags" : [ "Users" ],
+        "summary" : "Load all notes by users",
+        "produces" : [ "application/json" ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200 - OK",
+            "schema" : {
+              "$ref" : "#/definitions/user"
+            }
+          },
+          "404" : {
+            "description" : "Status 404 - Not Found",
+            "schema" : {
+              "$ref" : "#/definitions/errorResponse"
+            }
+          },
+          "500" : {
+            "description" : "Status 500 - Internal Server Error"
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "id",
+        "in" : "path",
+        "required" : true,
+        "type" : "string",
+        "description" : "User id.",
+        "x-example" : "1"
+      } ],
+      "x-restlet" : {
+        "section" : "Users"
+      }
+    },
+    "/users/diff/{date}" : {
+      "get" : {
+        "tags" : [ "Users" ],
+        "summary" : "Load",
+        "produces" : [ "application/json" ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200 - OK",
+            "schema" : {
+              "$ref" : "#/definitions/usersResponse"
+            }
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "date",
+        "in" : "path",
+        "required" : true,
+        "type" : "string",
+        "format" : "date-time",
+        "description" : "Date.",
+        "x-example" : "2018-06-14T13:15:35.605Z"
+      } ],
+      "x-restlet" : {
+        "section" : "Users"
+      }
+    },
+    "/auth/login" : {
+      "post" : {
+        "tags" : [ "Auth" ],
+        "summary" : "Endpoint for login in application",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "body",
+          "in" : "body",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/userLogin"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200 - OK",
+            "schema" : {
+              "$ref" : "#/definitions/user"
+            }
+          },
+          "500" : {
+            "description" : "Status 500 - Internal Server Error",
+            "schema" : {
+              "$ref" : "#/definitions/errorResponse"
+            }
+          }
+        }
+      },
+      "x-restlet" : {
+        "section" : "Auth"
+      }
+    },
+    "/auth/logout" : {
+      "post" : {
+        "tags" : [ "Auth" ],
+        "summary" : "Endpoint for logout in application",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "body",
+          "in" : "body",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/userLogin"
+          }
+        } ],
+        "responses" : {
+          "204" : {
+            "description" : "Status 204 - No Content"
+          },
+          "500" : {
+            "description" : "Status 500 - Internal Server Error",
+            "schema" : {
+              "$ref" : "#/definitions/errorResponse"
+            }
+          }
+        }
+      },
+      "x-restlet" : {
+        "section" : "Auth"
+      }
+    }
+  },
+  "definitions" : {
+    "errorResponse" : {
+      "type" : "object",
+      "required" : [ "code", "detailedMessage", "message" ],
+      "properties" : {
+        "code" : {
+          "type" : "string",
+          "description" : "Error code."
+        },
+        "message" : {
+          "type" : "string",
+          "description" : "Error message."
+        },
+        "detailedMessage" : {
+          "type" : "string",
+          "description" : "Message detail."
+        },
+        "helpUrl" : {
+          "type" : "string",
+          "description" : "Help URL."
+        },
+        "details" : {
+          "type" : "string",
+          "description" : "Details."
+        }
+      },
+      "description" : "This general error structure is used throughout this API.",
+      "x-restlet" : {
+        "section" : "General"
+      }
+    },
+    "conference" : {
+      "type" : "object",
+      "required" : [ "date", "description", "location", "title" ],
+      "properties" : {
+        "id" : {
+          "type" : "string",
+          "description" : "Conference id."
+        },
+        "title" : {
+          "type" : "string",
+          "description" : "Conference title."
+        },
+        "date" : {
+          "type" : "string",
+          "format" : "date-time",
+          "description" : "Conference date."
+        },
+        "location" : {
+          "type" : "string",
+          "description" : "Conference location."
+        },
+        "description" : {
+          "type" : "string",
+          "description" : "Conference description."
+        }
+      },
+      "x-restlet" : {
+        "section" : "Conference"
+      }
+    },
+    "conferencesResponse" : {
+      "type" : "object",
+      "required" : [ "hasNext", "items" ],
+      "properties" : {
+        "hasNext" : {
+          "type" : "boolean",
+          "description" : "Indicate if has next page of data."
+        },
+        "items" : {
+          "type" : "array",
+          "description" : "Conference list.",
+          "items" : {
+            "$ref" : "#/definitions/conference"
+          }
+        }
+      },
+      "x-restlet" : {
+        "section" : "Conference"
+      }
+    },
+    "lecture" : {
+      "type" : "object",
+      "required" : [ "description", "endTime", "room", "speakerId", "startTime", "title", "trackId" ],
+      "properties" : {
+        "id" : {
+          "type" : "string",
+          "description" : "Lecture id."
+        },
+        "title" : {
+          "type" : "string",
+          "description" : "Lecture title."
+        },
+        "description" : {
+          "type" : "string",
+          "description" : "Lecture description."
+        },
+        "room" : {
+          "type" : "string",
+          "description" : "Lecture room."
+        },
+        "startTime" : {
+          "type" : "string",
+          "description" : "Lecture start."
+        },
+        "endTime" : {
+          "type" : "string",
+          "description" : "Lecture end."
+        },
+        "trackId" : {
+          "type" : "string",
+          "description" : "Lecture track."
+        },
+        "speakerId" : {
+          "type" : "string",
+          "description" : "Speaker id."
+        }
+      },
+      "x-restlet" : {
+        "section" : "Lectures"
+      }
+    },
+    "lectureSummary" : {
+      "type" : "object",
+      "required" : [ "id", "title" ],
+      "properties" : {
+        "id" : {
+          "type" : "string",
+          "description" : "Lecture id."
+        },
+        "title" : {
+          "type" : "string",
+          "description" : "Lecture title."
+        }
+      },
+      "x-restlet" : {
+        "section" : "Lectures"
+      }
+    },
+    "lecturesResponse" : {
+      "type" : "object",
+      "required" : [ "hasNext", "items" ],
+      "properties" : {
+        "hasNext" : {
+          "type" : "boolean",
+          "description" : "Indicate if has next page of data."
+        },
+        "items" : {
+          "type" : "array",
+          "description" : "Lecture list.",
+          "items" : {
+            "$ref" : "#/definitions/lecture"
+          }
+        }
+      },
+      "x-restlet" : {
+        "section" : "Lectures"
+      }
+    },
+    "note" : {
+      "type" : "object",
+      "required" : [ "lectureId", "text", "title", "userId" ],
+      "properties" : {
+        "id" : {
+          "type" : "string",
+          "description" : "Note id."
+        },
+        "title" : {
+          "type" : "string",
+          "description" : "Note title."
+        },
+        "text" : {
+          "type" : "string",
+          "description" : "Note text."
+        },
+        "lectureId" : {
+          "type" : "string",
+          "description" : "Lecture id."
+        },
+        "userId" : {
+          "type" : "string",
+          "description" : "User id."
+        }
+      },
+      "x-restlet" : {
+        "section" : "Notes"
+      }
+    },
+    "noteSummary" : {
+      "type" : "object",
+      "required" : [ "title" ],
+      "properties" : {
+        "id" : {
+          "type" : "string",
+          "description" : "Note id."
+        },
+        "title" : {
+          "type" : "string",
+          "description" : "Note title."
+        }
+      },
+      "x-restlet" : {
+        "section" : "Notes"
+      }
+    },
+    "notesResponse" : {
+      "type" : "object",
+      "required" : [ "hasNext", "items" ],
+      "properties" : {
+        "hasNext" : {
+          "type" : "boolean",
+          "description" : "Indicate if has next page of data."
+        },
+        "items" : {
+          "type" : "array",
+          "description" : "Note list.",
+          "items" : {
+            "$ref" : "#/definitions/note"
+          }
+        }
+      },
+      "x-restlet" : {
+        "section" : "Notes"
+      }
+    },
+    "speaker" : {
+      "type" : "object",
+      "required" : [ "description", "email", "name", "photo" ],
+      "properties" : {
+        "id" : {
+          "type" : "string",
+          "description" : "Speaker id."
+        },
+        "name" : {
+          "type" : "string",
+          "description" : "Speaker name."
+        },
+        "email" : {
+          "type" : "string",
+          "description" : "Speaker email."
+        },
+        "description" : {
+          "type" : "string",
+          "description" : "Speaker mini bio."
+        },
+        "photo" : {
+          "type" : "string",
+          "description" : "Speaker photo."
+        },
+        "deleted" : {
+          "type" : "boolean",
+          "description" : "Logic field to indicate if record was deleted."
+        },
+        "createdDate" : {
+          "type" : "string",
+          "format" : "date-time",
+          "description" : "Record create date."
+        },
+        "updatedDate" : {
+          "type" : "string",
+          "format" : "date-time",
+          "description" : "Record last update date."
+        },
+        "deletedDate" : {
+          "type" : "string",
+          "format" : "date-time",
+          "description" : "Record delete date."
+        },
+        "lectures" : {
+          "type" : "array",
+          "description" : "Lecture list of speaker.",
+          "items" : {
+            "$ref" : "#/definitions/lectureSummary"
+          }
+        }
+      },
+      "x-restlet" : {
+        "section" : "Speakers"
+      }
+    },
+    "speakersResponse" : {
+      "type" : "object",
+      "required" : [ "hasNext", "items" ],
+      "properties" : {
+        "hasNext" : {
+          "type" : "boolean",
+          "description" : "Indicate if has next page of data."
+        },
+        "items" : {
+          "type" : "array",
+          "description" : "Speakers list.",
+          "items" : {
+            "$ref" : "#/definitions/speaker"
+          }
+        }
+      },
+      "description" : "Pattern data type of return to speakers list.",
+      "x-restlet" : {
+        "section" : "Speakers"
+      }
+    },
+    "track" : {
+      "type" : "object",
+      "required" : [ "color", "name" ],
+      "properties" : {
+        "id" : {
+          "type" : "string",
+          "description" : "Track id."
+        },
+        "name" : {
+          "type" : "string",
+          "description" : "Track name."
+        },
+        "color" : {
+          "type" : "string",
+          "description" : "Track color."
+        }
+      },
+      "x-restlet" : {
+        "section" : "Track"
+      }
+    },
+    "tracksResponse" : {
+      "type" : "object",
+      "required" : [ "hasNext", "items" ],
+      "properties" : {
+        "hasNext" : {
+          "type" : "boolean",
+          "description" : "Indicate if has next page of data."
+        },
+        "items" : {
+          "type" : "array",
+          "description" : "Track list.",
+          "items" : {
+            "$ref" : "#/definitions/track"
+          }
+        }
+      },
+      "x-restlet" : {
+        "section" : "Track"
+      }
+    },
+    "user" : {
+      "type" : "object",
+      "required" : [ "isSuperUser", "password", "username" ],
+      "properties" : {
+        "id" : {
+          "type" : "string",
+          "description" : "User id."
+        },
+        "username" : {
+          "type" : "string",
+          "description" : "Username."
+        },
+        "password" : {
+          "type" : "string",
+          "description" : "Password."
+        },
+        "isSuperUser" : {
+          "type" : "boolean",
+          "description" : "Define if is a super user."
+        },
+        "notes" : {
+          "type" : "array",
+          "description" : "Notes list of user.",
+          "items" : {
+            "$ref" : "#/definitions/noteSummary"
+          }
+        }
+      },
+      "x-restlet" : {
+        "section" : "Users"
+      }
+    },
+    "userLogin" : {
+      "type" : "object",
+      "required" : [ "password", "username" ],
+      "properties" : {
+        "id" : {
+          "type" : "string",
+          "description" : "User id."
+        },
+        "username" : {
+          "type" : "string",
+          "description" : "Username."
+        },
+        "password" : {
+          "type" : "string",
+          "description" : "Password."
+        }
+      },
+      "x-restlet" : {
+        "section" : "Users"
+      }
+    },
+    "usersResponse" : {
+      "type" : "object",
+      "required" : [ "hasNext", "items" ],
+      "properties" : {
+        "hasNext" : {
+          "type" : "boolean",
+          "description" : "Indicate if has next page of data."
+        },
+        "items" : {
+          "type" : "array",
+          "description" : "User list.",
+          "items" : {
+            "$ref" : "#/definitions/user"
+          }
+        }
+      },
+      "x-restlet" : {
+        "section" : "Users"
+      }
+    }
+  },
+  "x-restlet" : {
+    "sections" : {
+      "General" : { },
+      "Conference" : { },
+      "Lectures" : { },
+      "Notes" : { },
+      "Speakers" : {
+        "description" : ""
+      },
+      "Track" : { },
+      "Users" : { },
+      "Auth" : { }
+    },
+    "texts" : {
+      "hm8ia4i" : {
+        "title" : "Docs designed and hosted with Restlet Studio",
+        "content" : "This API was designed and documented using [Restlet Studio](https://studio.restlet.com/). \n\nHead over to Restlet Studio now to design your API documentation for free.\n\n![](https://thecontactsapi.apispark.net/v1/img/studio_right_dark_64.png)"
+      },
+      "poav2t9" : {
+        "title" : "API built with Restlet Cloud",
+        "content" : "The Contacts API implementation was built and deployed in less that 10 minutes using [Restlet Cloud](https://cloud.restlet.com). Feel free to check out the API's [public overview](https://cloud.restlet.com/apis/23363/versions/1/overview) on Restlet Cloud. \n\n\n\n![](https://thecontactsapi.apispark.net/v1/img/cloud_right_dark_64.png)"
+      },
+      "dpfogvi" : {
+        "title" : "Authentication",
+        "content" : "This API is secured using Basic Authentication.\n\nAll **read operations are open** and don't require authentication. However, all **write operations require authentication**. ",
+        "section" : "General"
+      },
+      "wb9ms4i" : {
+        "title" : "Error handling",
+        "content" : "This API uses standard HTTP status codes to indicate the status of a response.\n\nThere are two main categories of error responses. Each have a different response payload structure.\n\n* Simple errors\n* Detailed errors\n\n\n# Simple errors\n\n| Name | Code | Description |\n| -------- | -------- | -------- |\n| Bad request     | 400     | The request was unacceptable     |\n| Unauthorized     | 401     | The request has not been applied because it lacks valid authentication credentials for the target resource.     |\n| Forbidden     | 403     | The server understood the request, but is refusing to fulfill it     |\n| Not Found     | 404     | The server has not found anything matching the request URI     |\n| Not acceptable     | 406     | The server is unable to return a response in the format that was requested by the client     |\n| Unsupported Media Type     | 415     | The server is refusing to service the request because the entity of the request is in a format not supported by the requested resource for the requested method     |\n| Too many requests     | 429     | Too many requests hit the API too quickly     |\n| Server error     | 500     | A technical error occured in Restlet Cloud     |\n\n\n\n\n\n\n# Detailed errors\n| Name | Code | Description |\n| -------- | -------- | -------- |\n| Unprocessable entity     | 422     | The server understands the content type of the request entity, and the syntax of the request entity is correct, but was unable to process the contained instructions.     |\n\n\n\n\n",
+        "section" : "General"
+      }
+    }
+  }
+}
