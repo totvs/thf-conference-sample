@@ -12,7 +12,7 @@ export class AppComponent {
   title = 'THF Conference App';
 
   menus: Array<ThfMenuItem> = [
-    { label: 'Home', icon: 'home', link: './' },
+    { label: 'Home', icon: 'home', link: './home' },
     { label: 'Speakers', icon: 'user', link: './speakers' },
     { label: 'Lectures', icon: 'message', link: './lectures' },
     { label: 'Tracks', icon: 'stock', link: './tracks' },

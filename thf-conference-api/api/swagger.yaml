@@ -33,11 +33,11 @@ paths:
           examples:
             application/json: "{\n\t\"hasNext\": false,\n\t\"items\": [{\n\t\t\"id\"\
               : 1,\n\t\t\"title\": \"THF conference 2017\",\n\t\t\"date\": \"2017-07-11T00:00:00Z\"\
-              ,\n\t\t\"location\": \"Av. Santos Dumont, 831 - Santo AntÃ´nio, Joinville\
+              ,\n\t\t\"location\": \"Av. Santos Dumont, 831 - Santo Antônio, Joinville\
               \ - SC\",\n\t\t\"description\": \"Conference organized by THF\"\n\t\
               }, {\n\t\t\"id\": 2,\n\t\t\"title\": \"THF conference 2018\",\n\t\t\"\
               date\": \"2018-08-11T00:00:00Z\",\n\t\t\"location\": \"Av. Santos Dumont,\
-              \ 831 - Santo AntÃ´nio, Joinville - SC\",\n\t\t\"description\": \"Conference\
+              \ 831 - Santo Antônio, Joinville - SC\",\n\t\t\"description\": \"Conference\
               \ organized by THF\"\n\t}]\n}"
         500:
           description: "Status 500 - Internal Server Error"
@@ -48,6 +48,8 @@ paths:
               \ Server Error\",\n\t\"detailedMessage\": \"High system resource usage\"\
               \n}"
       x-swagger-router-controller: "Conferences"
+    x-restlet:
+      section: "Conference"
   /conferences/{id}:
     get:
       tags:
@@ -71,7 +73,7 @@ paths:
           examples:
             application/json: "{\n\t\"id\": 2,\n\t\"title\": \"THF conference 2018\"\
               ,\n\t\"date\": \"2018-08-11T00:00:00Z\",\n\t\"location\": \"Av. Santos\
-              \ Dumont, 831 - Santo AntÃ´nio, Joinville - SC\",\n\t\"description\"\
+              \ Dumont, 831 - Santo Antônio, Joinville - SC\",\n\t\"description\"\
               : \"Conference organized by THF\"\n}"
         404:
           description: "Status 404 - Not Found"
@@ -118,7 +120,7 @@ paths:
           examples:
             application/json: "{\n\t\"id\": 2,\n\t\"title\": \"THF conference 2018\"\
               ,\n\t\"date\": \"2018-08-11T00:00:00Z\",\n\t\"location\": \"Av. Santos\
-              \ Dumont, 831 - Santo AntÃ´nio, Joinville - SC\",\n\t\"description\"\
+              \ Dumont, 831 - Santo Antônio, Joinville - SC\",\n\t\"description\"\
               : \"Conference organized by THF\"\n}"
         404:
           description: "Status 404 - Not Found"
@@ -133,6 +135,8 @@ paths:
               \ Server Error\",\n\t\"detailedMessage\": \"High system resource usage\"\
               \n}"
       x-swagger-router-controller: "Conferences"
+    x-restlet:
+      section: "Conference"
   /conferences/diff/{date}:
     get:
       tags:
@@ -155,6 +159,8 @@ paths:
           schema:
             $ref: "#/definitions/conferencesResponse"
       x-swagger-router-controller: "Conferences"
+    x-restlet:
+      section: "Conference"
   /lectures/:
     get:
       tags:
@@ -217,6 +223,8 @@ paths:
               \ Server Error\",\n\t\"detailedMessage\": \"High system resource usage\"\
               \n}"
       x-swagger-router-controller: "Lectures"
+    x-restlet:
+      section: "Lectures"
   /lectures/{id}:
     get:
       tags:
@@ -331,6 +339,8 @@ paths:
               \ Server Error\",\n  \t\"detailedMessage\": \"High system resource usage\"\
               \n}"
       x-swagger-router-controller: "Lectures"
+    x-restlet:
+      section: "Lectures"
   /lectures/diff/{date}:
     get:
       tags:
@@ -353,6 +363,8 @@ paths:
           schema:
             $ref: "#/definitions/lecturesResponse"
       x-swagger-router-controller: "Lectures"
+    x-restlet:
+      section: "Lectures"
   /notes/:
     get:
       tags:
@@ -412,6 +424,8 @@ paths:
               \ Server Error\",\n  \t\"detailedMessage\": \"High system resource usage\"\
               \n}"
       x-swagger-router-controller: "Notes"
+    x-restlet:
+      section: "Notes"
   /notes/{id}:
     get:
       tags:
@@ -521,6 +535,8 @@ paths:
               \ Server Error\",\n  \t\"detailedMessage\": \"High system resource usage\"\
               \n}"
       x-swagger-router-controller: "Notes"
+    x-restlet:
+      section: "Notes"
   /notes/diff/{date}:
     get:
       tags:
@@ -543,6 +559,8 @@ paths:
           schema:
             $ref: "#/definitions/notesResponse"
       x-swagger-router-controller: "Notes"
+    x-restlet:
+      section: "Notes"
   /speakers/:
     get:
       tags:
@@ -619,6 +637,8 @@ paths:
               \ Server Error\",\n  \t\"detailedMessage\": \"High system resource usage\"\
               \n}"
       x-swagger-router-controller: "Speakers"
+    x-restlet:
+      section: "Speakers"
   /speakers/{id}:
     get:
       tags:
@@ -728,6 +748,8 @@ paths:
               \ Server Error\",\n  \t\"detailedMessage\": \"High system resource usage\"\
               \n}"
       x-swagger-router-controller: "Speakers"
+    x-restlet:
+      section: "Speakers"
   /speakers/{id}/lectures/:
     get:
       tags:
@@ -767,6 +789,8 @@ paths:
           schema:
             $ref: "#/definitions/errorResponse"
       x-swagger-router-controller: "Speakers"
+    x-restlet:
+      section: "Speakers"
   /speakers/diff/{date}:
     get:
       tags:
@@ -789,6 +813,8 @@ paths:
           schema:
             $ref: "#/definitions/speakersResponse"
       x-swagger-router-controller: "Speakers"
+    x-restlet:
+      section: "Speakers"
   /tracks/:
     get:
       tags:
@@ -833,6 +859,8 @@ paths:
           schema:
             $ref: "#/definitions/errorResponse"
       x-swagger-router-controller: "Tracks"
+    x-restlet:
+      section: "Track"
   /tracks/{id}:
     get:
       tags:
@@ -926,6 +954,8 @@ paths:
           schema:
             $ref: "#/definitions/errorResponse"
       x-swagger-router-controller: "Tracks"
+    x-restlet:
+      section: "Track"
   /tracks/diff/{date}:
     get:
       tags:
@@ -948,6 +978,8 @@ paths:
           schema:
             $ref: "#/definitions/tracksResponse"
       x-swagger-router-controller: "Tracks"
+    x-restlet:
+      section: "Track"
   /users/:
     get:
       tags:
@@ -1000,6 +1032,8 @@ paths:
               \ Server Error\",\n  \t\"detailedMessage\": \"High system resource usage\"\
               \n}"
       x-swagger-router-controller: "Users"
+    x-restlet:
+      section: "Users"
   /users/{id}:
     get:
       tags:
@@ -1097,6 +1131,8 @@ paths:
           schema:
             $ref: "#/definitions/errorResponse"
       x-swagger-router-controller: "Users"
+    x-restlet:
+      section: "Users"
   /users/{id}/notes/:
     get:
       tags:
@@ -1124,6 +1160,8 @@ paths:
         500:
           description: "Status 500 - Internal Server Error"
       x-swagger-router-controller: "Users"
+    x-restlet:
+      section: "Users"
   /users/diff/{date}:
     get:
       tags:
@@ -1146,6 +1184,62 @@ paths:
           schema:
             $ref: "#/definitions/usersResponse"
       x-swagger-router-controller: "Users"
+    x-restlet:
+      section: "Users"
+  /auth/login:
+    post:
+      tags:
+      - "Auth"
+      summary: "Endpoint for login in application"
+      operationId: "authLoginPOST"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        required: true
+        schema:
+          $ref: "#/definitions/userLogin"
+      responses:
+        200:
+          description: "Status 200 - OK"
+          schema:
+            $ref: "#/definitions/user"
+        500:
+          description: "Status 500 - Internal Server Error"
+          schema:
+            $ref: "#/definitions/errorResponse"
+      x-swagger-router-controller: "Auth"
+    x-restlet:
+      section: "Auth"
+  /auth/logout:
+    post:
+      tags:
+      - "Auth"
+      summary: "Endpoint for logout in application"
+      operationId: "authLogoutPOST"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        required: true
+        schema:
+          $ref: "#/definitions/userLogin"
+      responses:
+        204:
+          description: "Status 204 - No Content"
+        500:
+          description: "Status 500 - Internal Server Error"
+          schema:
+            $ref: "#/definitions/errorResponse"
+      x-swagger-router-controller: "Auth"
+    x-restlet:
+      section: "Auth"
 definitions:
   errorResponse:
     type: "object"
@@ -1170,6 +1264,8 @@ definitions:
         type: "string"
         description: "Details."
     description: "This general error structure is used throughout this API."
+    x-restlet:
+      section: "General"
   conference:
     type: "object"
     required:
@@ -1200,6 +1296,8 @@ definitions:
       location: "location"
       id: "id"
       title: "title"
+    x-restlet:
+      section: "Conference"
   conferencesResponse:
     type: "object"
     required:
@@ -1227,6 +1325,8 @@ definitions:
         location: "location"
         id: "id"
         title: "title"
+    x-restlet:
+      section: "Conference"
   lecture:
     type: "object"
     required:
@@ -1271,6 +1371,8 @@ definitions:
       endTime: "endTime"
       title: "title"
       room: "room"
+    x-restlet:
+      section: "Lectures"
   lectureSummary:
     type: "object"
     required:
@@ -1286,6 +1388,8 @@ definitions:
     example:
       id: "id"
       title: "title"
+    x-restlet:
+      section: "Lectures"
   lecturesResponse:
     type: "object"
     required:
@@ -1319,6 +1423,8 @@ definitions:
         endTime: "endTime"
         title: "title"
         room: "room"
+    x-restlet:
+      section: "Lectures"
   note:
     type: "object"
     required:
@@ -1348,6 +1454,8 @@ definitions:
       title: "title"
       userId: "userId"
       lectureId: "lectureId"
+    x-restlet:
+      section: "Notes"
   noteSummary:
     type: "object"
     required:
@@ -1362,6 +1470,8 @@ definitions:
     example:
       id: "id"
       title: "title"
+    x-restlet:
+      section: "Notes"
   notesResponse:
     type: "object"
     required:
@@ -1389,6 +1499,8 @@ definitions:
         title: "title"
         userId: "userId"
         lectureId: "lectureId"
+    x-restlet:
+      section: "Notes"
   speaker:
     type: "object"
     required:
@@ -1447,6 +1559,8 @@ definitions:
       id: "id"
       updatedDate: "2000-01-23T04:56:07.000+00:00"
       email: "email"
+    x-restlet:
+      section: "Speakers"
   speakersResponse:
     type: "object"
     required:
@@ -1493,6 +1607,8 @@ definitions:
         id: "id"
         updatedDate: "2000-01-23T04:56:07.000+00:00"
         email: "email"
+    x-restlet:
+      section: "Speakers"
   track:
     type: "object"
     required:
@@ -1512,6 +1628,8 @@ definitions:
       color: "color"
       name: "name"
       id: "id"
+    x-restlet:
+      section: "Track"
   tracksResponse:
     type: "object"
     required:
@@ -1535,6 +1653,8 @@ definitions:
       - color: "color"
         name: "name"
         id: "id"
+    x-restlet:
+      section: "Track"
   user:
     type: "object"
     required:
@@ -1569,6 +1689,25 @@ definitions:
       isSuperUser: true
       id: "id"
       username: "username"
+    x-restlet:
+      section: "Users"
+  userLogin:
+    type: "object"
+    required:
+    - "password"
+    - "username"
+    properties:
+      id:
+        type: "string"
+        description: "User id."
+      username:
+        type: "string"
+        description: "Username."
+      password:
+        type: "string"
+        description: "Password."
+    x-restlet:
+      section: "Users"
   usersResponse:
     type: "object"
     required:
@@ -1604,3 +1743,58 @@ definitions:
         isSuperUser: true
         id: "id"
         username: "username"
+    x-restlet:
+      section: "Users"
+x-restlet:
+  sections:
+    General: {}
+    Conference: {}
+    Lectures: {}
+    Notes: {}
+    Speakers:
+      description: ""
+    Track: {}
+    Users: {}
+    Auth: {}
+  texts:
+    hm8ia4i:
+      title: "Docs designed and hosted with Restlet Studio"
+      content: "This API was designed and documented using [Restlet Studio](https://studio.restlet.com/).\
+        \ \n\nHead over to Restlet Studio now to design your API documentation for\
+        \ free.\n\n![](https://thecontactsapi.apispark.net/v1/img/studio_right_dark_64.png)"
+    poav2t9:
+      title: "API built with Restlet Cloud"
+      content: "The Contacts API implementation was built and deployed in less that\
+        \ 10 minutes using [Restlet Cloud](https://cloud.restlet.com). Feel free to\
+        \ check out the API's [public overview](https://cloud.restlet.com/apis/23363/versions/1/overview)\
+        \ on Restlet Cloud. \n\n\n\n![](https://thecontactsapi.apispark.net/v1/img/cloud_right_dark_64.png)"
+    dpfogvi:
+      title: "Authentication"
+      content: "This API is secured using Basic Authentication.\n\nAll **read operations\
+        \ are open** and don't require authentication. However, all **write operations\
+        \ require authentication**. "
+      section: "General"
+    wb9ms4i:
+      title: "Error handling"
+      content: "This API uses standard HTTP status codes to indicate the status of\
+        \ a response.\n\nThere are two main categories of error responses. Each have\
+        \ a different response payload structure.\n\n* Simple errors\n* Detailed errors\n\
+        \n\n# Simple errors\n\n| Name | Code | Description |\n| -------- | --------\
+        \ | -------- |\n| Bad request     | 400     | The request was unacceptable\
+        \     |\n| Unauthorized     | 401     | The request has not been applied because\
+        \ it lacks valid authentication credentials for the target resource.     |\n\
+        | Forbidden     | 403     | The server understood the request, but is refusing\
+        \ to fulfill it     |\n| Not Found     | 404     | The server has not found\
+        \ anything matching the request URI     |\n| Not acceptable     | 406    \
+        \ | The server is unable to return a response in the format that was requested\
+        \ by the client     |\n| Unsupported Media Type     | 415     | The server\
+        \ is refusing to service the request because the entity of the request is\
+        \ in a format not supported by the requested resource for the requested method\
+        \     |\n| Too many requests     | 429     | Too many requests hit the API\
+        \ too quickly     |\n| Server error     | 500     | A technical error occured\
+        \ in Restlet Cloud     |\n\n\n\n\n\n\n# Detailed errors\n| Name | Code | Description\
+        \ |\n| -------- | -------- | -------- |\n| Unprocessable entity     | 422\
+        \     | The server understands the content type of the request entity, and\
+        \ the syntax of the request entity is correct, but was unable to process the\
+        \ contained instructions.     |\n\n\n\n\n"
+      section: "General"

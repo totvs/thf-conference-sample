@@ -34,6 +34,10 @@ export class GenericService<T> {
     return this.http.post<T>(`${this.urlApi}/${this.path}`, entity).map(objectCreated => (objectCreated));
   }
 
+  postWithPath(path: string, entity: any): Observable<T> {
+    return this.http.post<T>(`${this.urlApi}/${this.path}/${path}`, entity).map(objectCreated => (objectCreated));
+  }
+
   put(entity: any): Observable<T> {
     return this.http.put<T>(`${this.urlApi}/${this.path}/${entity.id}`, entity).map(objectUpdated => (objectUpdated));
   }
