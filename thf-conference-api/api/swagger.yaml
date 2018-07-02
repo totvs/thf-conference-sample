@@ -1359,7 +1359,7 @@ definitions:
         type: "number"
         description: "Length"
     example:
-      length: 0.80082819046101150206595775671303272247314453125
+      length: 4
     x-restlet:
       section: "General"
   conference:
