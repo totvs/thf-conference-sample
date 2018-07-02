@@ -4,6 +4,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 
+import { ObjectLength } from './../../model/objectLength';
 import { TotvsResponse } from './../../model/totvs-response.interface';
 
 @Injectable()
@@ -28,6 +29,10 @@ export class GenericService<T> {
 
   getById(id: string): Observable<T> {
     return this.http.get<T>(`${this.urlApi}/${this.path}/${id}`).map(response => (response));
+  }
+
+  getCount(): Observable<number> {
+    return this.http.get<ObjectLength>(`${this.urlApi}/${this.path}/count/`).map(result => (result.length));
   }
 
   post(entity: any): Observable<T> {

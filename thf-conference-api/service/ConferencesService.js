@@ -14,7 +14,7 @@ var conferences = [{
 }];
 
 /**
- * Load
+ * Load the difference of the conferences after informed date
  *
  * date Date Date.
  * returns conferencesResponse

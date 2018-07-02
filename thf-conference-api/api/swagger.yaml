@@ -141,7 +141,7 @@ paths:
     get:
       tags:
       - "Conferences"
-      summary: "Load"
+      summary: "Load the difference of the conferences after informed date"
       operationId: "conferencesDiffDateGET"
       produces:
       - "application/json"
@@ -341,11 +341,32 @@ paths:
       x-swagger-router-controller: "Lectures"
     x-restlet:
       section: "Lectures"
+  /lectures/count/:
+    get:
+      tags:
+      - "Lectures"
+      summary: "Count a lectures number"
+      operationId: "lecturesCountGET"
+      produces:
+      - "application/json"
+      parameters: []
+      responses:
+        200:
+          description: "Status 200 - OK"
+          schema:
+            $ref: "#/definitions/objectLength"
+        500:
+          description: "Status 500 - Internal Server Error"
+          schema:
+            $ref: "#/definitions/errorResponse"
+      x-swagger-router-controller: "Lectures"
+    x-restlet:
+      section: "Lectures"
   /lectures/diff/{date}:
     get:
       tags:
       - "Lectures"
-      summary: "Load"
+      summary: "Load the difference of the lectures after informed date"
       operationId: "lecturesDiffDateGET"
       produces:
       - "application/json"
@@ -537,11 +558,32 @@ paths:
       x-swagger-router-controller: "Notes"
     x-restlet:
       section: "Notes"
+  /notes/count/:
+    get:
+      tags:
+      - "Notes"
+      summary: "Count a notes number"
+      operationId: "notesCountGET"
+      produces:
+      - "application/json"
+      parameters: []
+      responses:
+        200:
+          description: "Status 200 - OK"
+          schema:
+            $ref: "#/definitions/objectLength"
+        500:
+          description: "Status 500 - Internal Server Error"
+          schema:
+            $ref: "#/definitions/errorResponse"
+      x-swagger-router-controller: "Notes"
+    x-restlet:
+      section: "Notes"
   /notes/diff/{date}:
     get:
       tags:
       - "Notes"
-      summary: "Load"
+      summary: "Load the difference of the notes after informed date"
       operationId: "notesDiffDateGET"
       produces:
       - "application/json"
@@ -750,6 +792,27 @@ paths:
       x-swagger-router-controller: "Speakers"
     x-restlet:
       section: "Speakers"
+  /speakers/count/:
+    get:
+      tags:
+      - "Speakers"
+      summary: "Count a speakers number"
+      operationId: "speakersCountGET"
+      produces:
+      - "application/json"
+      parameters: []
+      responses:
+        200:
+          description: "Status 200 - OK"
+          schema:
+            $ref: "#/definitions/objectLength"
+        500:
+          description: "Status 500 - Internal Server Error"
+          schema:
+            $ref: "#/definitions/errorResponse"
+      x-swagger-router-controller: "Speakers"
+    x-restlet:
+      section: "Speakers"
   /speakers/{id}/lectures/:
     get:
       tags:
@@ -795,7 +858,7 @@ paths:
     get:
       tags:
       - "Speakers"
-      summary: "Load"
+      summary: "Load the difference of the speakers after informed date"
       operationId: "speakersDiffDateGET"
       produces:
       - "application/json"
@@ -956,11 +1019,32 @@ paths:
       x-swagger-router-controller: "Tracks"
     x-restlet:
       section: "Track"
+  /tracks/count/:
+    get:
+      tags:
+      - "Tracks"
+      summary: "Count a tracks number"
+      operationId: "tracksCountGET"
+      produces:
+      - "application/json"
+      parameters: []
+      responses:
+        200:
+          description: "Status 200 - OK"
+          schema:
+            $ref: "#/definitions/objectLength"
+        500:
+          description: "Status 500 - Internal Server Error"
+          schema:
+            $ref: "#/definitions/errorResponse"
+      x-swagger-router-controller: "Tracks"
+    x-restlet:
+      section: "Track"
   /tracks/diff/{date}:
     get:
       tags:
       - "Tracks"
-      summary: "Load"
+      summary: "Load the difference of the tracks after informed date"
       operationId: "tracksDiffDateGET"
       produces:
       - "application/json"
@@ -1166,7 +1250,7 @@ paths:
     get:
       tags:
       - "Users"
-      summary: "Load"
+      summary: "Load the difference of the users after informed date"
       operationId: "usersDiffDateGET"
       produces:
       - "application/json"
@@ -1207,8 +1291,8 @@ paths:
           description: "Status 200 - OK"
           schema:
             $ref: "#/definitions/user"
-        500:
-          description: "Status 500 - Internal Server Error"
+        400:
+          description: "Status 400 - Bad Request"
           schema:
             $ref: "#/definitions/errorResponse"
       x-swagger-router-controller: "Auth"
@@ -1264,6 +1348,18 @@ definitions:
         type: "string"
         description: "Details."
     description: "This general error structure is used throughout this API."
+    x-restlet:
+      section: "General"
+  objectLength:
+    type: "object"
+    required:
+    - "length"
+    properties:
+      length:
+        type: "number"
+        description: "Length"
+    example:
+      length: 0.80082819046101150206595775671303272247314453125
     x-restlet:
       section: "General"
   conference:
