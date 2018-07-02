@@ -137,7 +137,7 @@
     "/conferences/diff/{date}" : {
       "get" : {
         "tags" : [ "Conferences" ],
-        "summary" : "Load",
+        "summary" : "Load the difference of the conferences after informed date",
         "produces" : [ "application/json" ],
         "parameters" : [ ],
         "responses" : {
@@ -335,10 +335,35 @@
         "section" : "Lectures"
       }
     },
+    "/lectures/count/" : {
+      "get" : {
+        "tags" : [ "Lectures" ],
+        "summary" : "Count a lectures number",
+        "produces" : [ "application/json" ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200 - OK",
+            "schema" : {
+              "$ref" : "#/definitions/objectLength"
+            }
+          },
+          "500" : {
+            "description" : "Status 500 - Internal Server Error",
+            "schema" : {
+              "$ref" : "#/definitions/errorResponse"
+            }
+          }
+        }
+      },
+      "x-restlet" : {
+        "section" : "Lectures"
+      }
+    },
     "/lectures/diff/{date}" : {
       "get" : {
         "tags" : [ "Lectures" ],
-        "summary" : "Load",
+        "summary" : "Load the difference of the lectures after informed date",
         "produces" : [ "application/json" ],
         "parameters" : [ ],
         "responses" : {
@@ -536,10 +561,35 @@
         "section" : "Notes"
       }
     },
+    "/notes/count/" : {
+      "get" : {
+        "tags" : [ "Notes" ],
+        "summary" : "Count a notes number",
+        "produces" : [ "application/json" ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200 - OK",
+            "schema" : {
+              "$ref" : "#/definitions/objectLength"
+            }
+          },
+          "500" : {
+            "description" : "Status 500 - Internal Server Error",
+            "schema" : {
+              "$ref" : "#/definitions/errorResponse"
+            }
+          }
+        }
+      },
+      "x-restlet" : {
+        "section" : "Notes"
+      }
+    },
     "/notes/diff/{date}" : {
       "get" : {
         "tags" : [ "Notes" ],
-        "summary" : "Load",
+        "summary" : "Load the difference of the notes after informed date",
         "produces" : [ "application/json" ],
         "parameters" : [ ],
         "responses" : {
@@ -755,6 +805,31 @@
         "section" : "Speakers"
       }
     },
+    "/speakers/count/" : {
+      "get" : {
+        "tags" : [ "Speakers" ],
+        "summary" : "Count a speakers number",
+        "produces" : [ "application/json" ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200 - OK",
+            "schema" : {
+              "$ref" : "#/definitions/objectLength"
+            }
+          },
+          "500" : {
+            "description" : "Status 500 - Internal Server Error",
+            "schema" : {
+              "$ref" : "#/definitions/errorResponse"
+            }
+          }
+        }
+      },
+      "x-restlet" : {
+        "section" : "Speakers"
+      }
+    },
     "/speakers/{id}/lectures/" : {
       "get" : {
         "tags" : [ "Speakers" ],
@@ -803,7 +878,7 @@
     "/speakers/diff/{date}" : {
       "get" : {
         "tags" : [ "Speakers" ],
-        "summary" : "Load",
+        "summary" : "Load the difference of the speakers after informed date",
         "produces" : [ "application/json" ],
         "parameters" : [ ],
         "responses" : {
@@ -980,10 +1055,35 @@
         "section" : "Track"
       }
     },
+    "/tracks/count/" : {
+      "get" : {
+        "tags" : [ "Tracks" ],
+        "summary" : "Count a tracks number",
+        "produces" : [ "application/json" ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "Status 200 - OK",
+            "schema" : {
+              "$ref" : "#/definitions/objectLength"
+            }
+          },
+          "500" : {
+            "description" : "Status 500 - Internal Server Error",
+            "schema" : {
+              "$ref" : "#/definitions/errorResponse"
+            }
+          }
+        }
+      },
+      "x-restlet" : {
+        "section" : "Track"
+      }
+    },
     "/tracks/diff/{date}" : {
       "get" : {
         "tags" : [ "Tracks" ],
-        "summary" : "Load",
+        "summary" : "Load the difference of the tracks after informed date",
         "produces" : [ "application/json" ],
         "parameters" : [ ],
         "responses" : {
@@ -1208,7 +1308,7 @@
     "/users/diff/{date}" : {
       "get" : {
         "tags" : [ "Users" ],
-        "summary" : "Load",
+        "summary" : "Load the difference of the users after informed date",
         "produces" : [ "application/json" ],
         "parameters" : [ ],
         "responses" : {
@@ -1254,8 +1354,8 @@
               "$ref" : "#/definitions/user"
             }
           },
-          "500" : {
-            "description" : "Status 500 - Internal Server Error",
+          "400" : {
+            "description" : "Status 400 - Bad Request",
             "schema" : {
               "$ref" : "#/definitions/errorResponse"
             }
@@ -1324,6 +1424,19 @@
         }
       },
       "description" : "This general error structure is used throughout this API.",
+      "x-restlet" : {
+        "section" : "General"
+      }
+    },
+    "objectLength" : {
+      "type" : "object",
+      "required" : [ "length" ],
+      "properties" : {
+        "length" : {
+          "type" : "number",
+          "description" : "Length"
+        }
+      },
       "x-restlet" : {
         "section" : "General"
       }
