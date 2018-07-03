@@ -4,7 +4,6 @@
   ],
   "rules": {
 
-    // Regras Léo
     "ban": [
       true,
       { "name": "fit", "message": "Please remove 'fit' in file tests." },

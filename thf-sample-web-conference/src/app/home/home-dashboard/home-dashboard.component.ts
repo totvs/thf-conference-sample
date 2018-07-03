@@ -12,25 +12,13 @@ import { TrackService } from '../../track/track.service';
 })
 export class HomeDashboardComponent implements OnInit {
 
-  countLectures: number;
-  countSpeakers: number;
-  countTracks: number;
-  countNotes: number;
-  iconLectures: string = 'thf-icon-chat';
-  iconTracks: string = 'thf-icon-stock';
-  iconSpeakers: string = 'thf-icon-user';
-  iconNotes: string = 'thf-icon-document';
-  lectures: string = 'lectures';
-  speakers: string = 'speakers';
-  tracks: string = 'tracks';
-  notes: string = 'notes';
+  entityCardList: Array<{ count: number, icon: string, name: string }> = [];
 
   constructor(
     private lectureService: LectureService,
-    private trackService: TrackService,
     private noteService: NoteService,
-    private speakerService: SpeakerService
-  ) { }
+    private speakerService: SpeakerService,
+    private trackService: TrackService) { }
 
   ngOnInit() {
     this.getCountLectures();
@@ -40,19 +28,27 @@ export class HomeDashboardComponent implements OnInit {
   }
 
   getCountLectures(): void {
-    this.lectureService.getCount().subscribe(length => this.countLectures = length);
+    this.lectureService.getCount().subscribe(length => {
+      this.entityCardList.push({ count: length, icon: 'thf-icon-chat', name: 'lectures' });
+    });
   }
 
   getCountSpeakers(): void {
-    this.speakerService.getCount().subscribe(length => this.countSpeakers = length);
+    this.speakerService.getCount().subscribe(length => {
+      this.entityCardList.push({ count: length, icon: 'thf-icon-user', name: 'speakers' });
+    });
   }
 
   getCountTracks() {
-    this.trackService.getCount().subscribe(length => this.countTracks = length);
+    this.trackService.getCount().subscribe(length => {
+      this.entityCardList.push({ count: length, icon: 'thf-icon-stock', name: 'tracks' });
+    });
   }
 
   getCountNotes() {
-    this.noteService.getCount().subscribe(length => this.countNotes = length);
+    this.noteService.getCount().subscribe(length => {
+      this.entityCardList.push({ count: length, icon: 'thf-icon-document', name: 'notes' });
+    });
   }
 
 }
