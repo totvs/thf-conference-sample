@@ -27,7 +27,6 @@ swaggerTools.initializeMiddleware(swaggerDoc, function (middleware) {
   app.use(cors({
 		methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     preflightContinue: false,
-    exposedHeaders: ['X-Totvs-Sync-Date', 'Date'],
 		optionsSuccessStatus: 204,
 		credentials: true,
 		origin: '*'
