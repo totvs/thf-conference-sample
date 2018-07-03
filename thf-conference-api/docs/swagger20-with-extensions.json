@@ -1485,6 +1485,11 @@
           "items" : {
             "$ref" : "#/definitions/conference"
           }
+        },
+        "totvs_sync_date" : {
+          "type" : "string",
+          "format" : "date-time",
+          "description" : "Date of response"
         }
       },
       "x-restlet" : {
@@ -1563,6 +1568,11 @@
           "items" : {
             "$ref" : "#/definitions/lecture"
           }
+        },
+        "totvs_sync_date" : {
+          "type" : "string",
+          "format" : "date-time",
+          "description" : "Date of response"
         }
       },
       "x-restlet" : {
@@ -1629,6 +1639,11 @@
           "items" : {
             "$ref" : "#/definitions/note"
           }
+        },
+        "totvs_sync_date" : {
+          "type" : "string",
+          "format" : "date-time",
+          "description" : "Date of response"
         }
       },
       "x-restlet" : {
@@ -1704,6 +1719,11 @@
           "items" : {
             "$ref" : "#/definitions/speaker"
           }
+        },
+        "totvs_sync_date" : {
+          "type" : "string",
+          "format" : "date-time",
+          "description" : "Date of response"
         }
       },
       "description" : "Pattern data type of return to speakers list.",
@@ -1746,6 +1766,11 @@
           "items" : {
             "$ref" : "#/definitions/track"
           }
+        },
+        "totvs_sync_date" : {
+          "type" : "string",
+          "format" : "date-time",
+          "description" : "Date of response"
         }
       },
       "x-restlet" : {
@@ -1819,6 +1844,11 @@
           "items" : {
             "$ref" : "#/definitions/user"
           }
+        },
+        "totvs_sync_date" : {
+          "type" : "string",
+          "format" : "date-time",
+          "description" : "Date of response"
         }
       },
       "x-restlet" : {

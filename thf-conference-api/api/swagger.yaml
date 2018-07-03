@@ -7,7 +7,7 @@ info:
   termsOfService: ""
   contact:
     url: "https://thf.totvs.com.br/"
-host: "thfservices.totvs.com.br"
+host: "localhost:8080"
 basePath: "/conference-api/api/v1"
 schemes:
 - "http"
@@ -1408,6 +1408,10 @@ definitions:
         description: "Conference list."
         items:
           $ref: "#/definitions/conference"
+      totvs_sync_date:
+        type: "string"
+        format: "date-time"
+        description: "Date of response"
     example:
       hasNext: true
       items:
@@ -1421,6 +1425,7 @@ definitions:
         location: "location"
         id: "id"
         title: "title"
+      totvs_sync_date: "2000-01-23T04:56:07.000+00:00"
     x-restlet:
       section: "Conference"
   lecture:
@@ -1500,6 +1505,10 @@ definitions:
         description: "Lecture list."
         items:
           $ref: "#/definitions/lecture"
+      totvs_sync_date:
+        type: "string"
+        format: "date-time"
+        description: "Date of response"
     example:
       hasNext: true
       items:
@@ -1519,6 +1528,7 @@ definitions:
         endTime: "endTime"
         title: "title"
         room: "room"
+      totvs_sync_date: "2000-01-23T04:56:07.000+00:00"
     x-restlet:
       section: "Lectures"
   note:
@@ -1582,6 +1592,10 @@ definitions:
         description: "Note list."
         items:
           $ref: "#/definitions/note"
+      totvs_sync_date:
+        type: "string"
+        format: "date-time"
+        description: "Date of response"
     example:
       hasNext: true
       items:
@@ -1595,6 +1609,7 @@ definitions:
         title: "title"
         userId: "userId"
         lectureId: "lectureId"
+      totvs_sync_date: "2000-01-23T04:56:07.000+00:00"
     x-restlet:
       section: "Notes"
   speaker:
@@ -1671,6 +1686,10 @@ definitions:
         description: "Speakers list."
         items:
           $ref: "#/definitions/speaker"
+      totvs_sync_date:
+        type: "string"
+        format: "date-time"
+        description: "Date of response"
     description: "Pattern data type of return to speakers list."
     example:
       hasNext: true
@@ -1703,6 +1722,7 @@ definitions:
         id: "id"
         updatedDate: "2000-01-23T04:56:07.000+00:00"
         email: "email"
+      totvs_sync_date: "2000-01-23T04:56:07.000+00:00"
     x-restlet:
       section: "Speakers"
   track:
@@ -1740,6 +1760,10 @@ definitions:
         description: "Track list."
         items:
           $ref: "#/definitions/track"
+      totvs_sync_date:
+        type: "string"
+        format: "date-time"
+        description: "Date of response"
     example:
       hasNext: true
       items:
@@ -1749,6 +1773,7 @@ definitions:
       - color: "color"
         name: "name"
         id: "id"
+      totvs_sync_date: "2000-01-23T04:56:07.000+00:00"
     x-restlet:
       section: "Track"
   user:
@@ -1818,6 +1843,10 @@ definitions:
         description: "User list."
         items:
           $ref: "#/definitions/user"
+      totvs_sync_date:
+        type: "string"
+        format: "date-time"
+        description: "Date of response"
     example:
       hasNext: true
       items:
@@ -1839,6 +1868,7 @@ definitions:
         isSuperUser: true
         id: "id"
         username: "username"
+      totvs_sync_date: "2000-01-23T04:56:07.000+00:00"
     x-restlet:
       section: "Users"
 x-restlet:
