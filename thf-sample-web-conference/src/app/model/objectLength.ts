@@ -1,6 +1,6 @@
 export interface ObjectLength {
-    /**
-     * Length
-     */
-    length: number;
+  /**
+   * Length
+   */
+  length: number;
 }
