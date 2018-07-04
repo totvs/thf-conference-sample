@@ -36,8 +36,9 @@ var writeJson = exports.writeJson = function(response, arg1, arg2) {
     code = 200;
   }
   if(typeof payload === 'object') {
+    payload['totvs_sync_date'] = new Date().toISOString();
     payload = JSON.stringify(payload, null, 2);
   }
-  response.writeHead(code, { 'Content-Type': 'application/json', 'Date': new Date().toISOString() });
+  response.writeHead(code, { 'Content-Type': 'application/json' });
   response.end(payload);
 }
