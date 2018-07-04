@@ -1,0 +1,10 @@
+<thf-page-default
+  t-title="Welcome">
+
+  <card-count *ngFor="let entity of entityCardList"
+    [entityCount]="entity.count"
+    [entityIcon]="entity.icon"
+    [entityName]="entity.name">
+  </card-count>
+
+</thf-page-default>

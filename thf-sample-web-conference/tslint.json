@@ -4,8 +4,8 @@
   ],
   "rules": {
 
-    // Regras Léo
-    "ban": [true,
+    "ban": [
+      true,
       { "name": "fit", "message": "Please remove 'fit' in file tests." },
       { "name": "xit", "message": "Please remove 'xit' in file tests." },
       { "name": "fdescribe", "message": "Please remove 'fdescribe' in file tests." },

@@ -3,6 +3,7 @@
 const tracks = require('./TracksService');
 const speakers = require('./SpeakersService');
 
+var lecturesCount = { "length": undefined };
 var totvsResponse = { "hasNext": false, "items": [] };
 var lectures = [{
   id: "1",
@@ -73,7 +74,23 @@ exports.findLecturesBySpeakerId = function (speakerId) {
 }
 
 /**
- * Load
+ * Count a lectures number
+ *
+ * returns BigDecimal
+ **/
+exports.lecturesCountGET = function() {
+  return new Promise(function(resolve, reject) {
+    if (lectures) {
+      lecturesCount.length = lectures.length;
+      resolve(lecturesCount);
+    } else {
+      reject(500);
+    }
+  });
+}
+
+/**
+ * Load the difference of the lectures after informed date
  *
  * date Date Date.
  * returns lecturesResponse

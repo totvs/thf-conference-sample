@@ -2,6 +2,7 @@
 
 const lecture = require('./LecturesService');
 
+var speakersCount = { "length": undefined };
 var totvsResponse = { "hasNext": false, "items": [] };
 var speakers = [{
   id: "1",
@@ -69,8 +70,25 @@ const findLecturesBySpeaker = function () {
 const findSpeakerById = exports.findSpeakerById = (speakerId) => {
   return speakers.find(speaker => speaker.id == speakerId);
 }
+
 /**
- * Load
+ * Count a speakers number
+ *
+ * returns BigDecimal
+ **/
+exports.speakersCountGET = function() {
+  return new Promise(function(resolve, reject) {
+    if (speakers) {
+      speakersCount.length = speakers.length;
+      resolve(speakersCount);
+    } else {
+      reject(500);
+    }
+  });
+}
+
+/**
+ * Load the difference of the speakers after informed date
  *
  * date Date Date.
  * returns speakersResponse

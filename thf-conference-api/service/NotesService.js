@@ -1,5 +1,6 @@
 'use strict';
 
+var notesCount = { "length": undefined };
 var totvsResponse = { "hasNext": false, "items": [] };
 var notes = [{
   id: "1",
@@ -28,7 +29,23 @@ exports.findNotesByUserId = function (userId) {
 }
 
 /**
- * Load
+ * Count a notes number
+ *
+ * returns BigDecimal
+ **/
+exports.notesCountGET = function() {
+  return new Promise(function(resolve, reject) {
+    if (notes) {
+      notesCount.length = notes.length;
+      resolve(notesCount);
+    } else {
+      reject(500);
+    }
+  });
+}
+
+/**
+ * Load the difference of the notes after informed date
  *
  * date Date Date.
  * returns notesResponse

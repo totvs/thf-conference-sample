@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 
+import { ThfStorageService } from '@totvs/thf-storage';
+
 import { ThfMenuItem } from '@totvs/thf-ui/components/thf-menu';
 
 @Component({
@@ -20,11 +22,12 @@ export class HomeComponent {
   ];
   title = 'THF Conference App';
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private storage: ThfStorageService) { }
 
   logout(): void {
-    localStorage.removeItem('isLoggedIn');
-    this.router.navigate(['/login']);
+    this.storage.remove('isLoggedIn').then(() => {
+      this.router.navigate(['/login']);
+    });
   }
 
 }

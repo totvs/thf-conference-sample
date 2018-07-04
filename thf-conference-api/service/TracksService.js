@@ -1,5 +1,6 @@
 'use strict';
 
+var tracksCount = { "length": undefined };
 var totvsResponse = { "hasNext": false, "items": [] };
 var tracks = [{
   id: "1",
@@ -48,7 +49,23 @@ const findTrackById = exports.findTrackById = function (id) {
 }
 
 /**
- * Load
+ * Count a tracks number
+ *
+ * returns BigDecimal
+ **/
+exports.tracksCountGET = function() {
+  return new Promise(function(resolve, reject) {
+    if (tracks) {
+      tracksCount.length = tracks.length;
+      resolve(tracksCount);
+    } else {
+      reject(500);
+    }
+  });
+}
+
+/**
+ * Load the difference of the tracks after informed date
  *
  * date Date Date.
  * returns tracksResponse

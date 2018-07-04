@@ -3,6 +3,20 @@
 var utils = require('../utils/writer.js');
 var Tracks = require('../service/TracksService');
 
+module.exports.tracksCountGET = function tracksCountGET (req, res, next) {
+  Tracks.tracksCountGET()
+    .then(function (response) {
+      utils.writeJson(res, response);
+    })
+    .catch(function (response) {
+      if (response === 500) {
+        utils.writeJson(res, "", response);
+      } else {
+        utils.writeJson(res, response);
+      }
+    });
+};
+
 module.exports.tracksDiffDateGET = function tracksDiffDateGET (req, res, next) {
   var date = req.swagger.params['date'].value;
   Tracks.tracksDiffDateGET(date)

@@ -3,6 +3,20 @@
 var utils = require('../utils/writer.js');
 var Speakers = require('../service/SpeakersService');
 
+module.exports.speakersCountGET = function speakersCountGET (req, res, next) {
+  Speakers.speakersCountGET()
+    .then(function (response) {
+      utils.writeJson(res, response);
+    })
+    .catch(function (response) {
+      if (response === 500) {
+        utils.writeJson(res, "", response);
+      } else {
+        utils.writeJson(res, response);
+      }
+    });
+};
+
 module.exports.speakersDiffDateGET = function speakersDiffDateGET (req, res, next) {
   var date = req.swagger.params['date'].value;
   Speakers.speakersDiffDateGET(date)

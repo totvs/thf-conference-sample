@@ -1,27 +1,15 @@
-# Client
+# THF Conference Application
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.7.3.
+THF Conference Application é um aplicativo de demonstração do ThfSync baseado no [Ionic Conference Application](https://github.com/ionic-team/ionic-conference-app). Tendo como objetivo, demonstrar as funcionalidades do ThfSync de forma didática.
 
-## Development server
+O THF Conference Application é formado por três partes:
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+- `APP`: aplicativo em ionic baseado no exemplo [Ionic Conference Application](https://github.com/ionic-team/ionic-conference-app), contendo as funcionalidades do [ThfSync](https://thf.totvs.com.br/guides/sync-get-started) implementadas como exemplo para a comunidade de desenvolvimento.
+- `WEB`: aplicação web desenvolvida em [THF](https://thf.totvs.com.br), para realizar a administração dos dados que serão consultados no aplicativo móvel.
+- `SERVER`: uma API em NodeJS modelada conforme o [Guia de API Totvs](http://tdn.totvs.com/pages/releaseview.action?pageId=271660444). Esta API é compartilhada pelos aplicativos `APP` e `WEB`. A API foi modelada com documentação [Swagger 2.0](https://swagger.io/) e o código fonte foi gerado automaticamente a partir da ferramenta [Editor swagger](http://editor.swagger.io) com base na modelagem previamente definida.
 
-## Code scaffolding
+> A finalidade desta aplicação é servir de exemplo para a comunidade de desenvolvimento, para utilização do [ThfSync](https://thf.totvs.com.br/guides/sync-get-started) através do aplicativo mobile e do [THF](https://thf.totvs.com.br/home) através da aplicação web. Por esta razão, alguns exemplos aqui demonstrados, como a autenticação do usuário, a API em NodeJS compartilhada pelas aplicações, foram implementados apenas de forma didática, não se preocupando com validações de segurança, por exemplo.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Para saber mais sobre o ThfSync, veja em [Começando com o ThfSync](https://thf.totvs.com.br/guides/sync-get-started).
 
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+Para saber mais sobre o THF, veja em [THF: O framework TOTVS para web e mobile](https://thf.totvs.com.br).
