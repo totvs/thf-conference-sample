@@ -25,6 +25,7 @@ import { SpeakerService } from '../services/speaker.service';
 import { TabsPage } from '../pages/tabs/tabs.component';
 import { TrackService } from '../services/track.service';
 import { UserService } from '../services/user.service';
+import { ScheduleFavoriteList } from '../pages/schedule-favorite-list/schedule-favorite-list.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { UserService } from '../services/user.service';
     MyApp,
     NoteDetailPage,
     NoteListPage,
+    ScheduleFavoriteList,
     ScheduleFilterPage,
     SchedulePage,
     SignupPage,
@@ -55,6 +57,7 @@ import { UserService } from '../services/user.service';
     MyApp,
     NoteDetailPage,
     NoteListPage,
+    ScheduleFavoriteList,
     ScheduleFilterPage,
     SchedulePage,
     SignupPage,

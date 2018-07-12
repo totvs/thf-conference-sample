@@ -1,3 +1,4 @@
+import { ScheduleFavoriteList } from './../schedule-favorite-list/schedule-favorite-list.component';
 import { Component, ViewChild, ElementRef } from '@angular/core';
 
 import {
@@ -30,9 +31,6 @@ export class SchedulePage {
   queryText = '';
   segment = 'all';
   userId;
-  showCheckbox = false;
-  selectAllLectures = false;
-  lecturesListToFavor = [];
 
   @ViewChild('popover', { read: ElementRef }) popover: ElementRef;
 
@@ -57,46 +55,10 @@ export class SchedulePage {
     this.userService.getLoggedUser().then(user => this.userId = user);
   }
 
-  selectAll() {
-    this.selectAllLectures = !this.selectAllLectures;
-  }
-
-  addLisToFavor(lectureId) {
-    const indexLecture = this.lecturesListToFavor.indexOf(lectureId);
-
-    if (indexLecture < 0) {
-      this.lecturesListToFavor.push(lectureId);
-    } else {
-      this.lecturesListToFavor.splice(indexLecture, 1);
+  lecturePress() {
+    if (this.userId) {
+      this.navCtrl.push(ScheduleFavoriteList, { lectures: this.lectures });
     }
-    console.log(this.lecturesListToFavor);
-  }
-
-  presentPopover(event) {
-    const popover = this.popoverCtrl.create(this.popover);
-    popover.present({
-      ev: event
-    });
-  }
-
-  lecturePress(event) {
-    this.showCheckbox = !!this.userId;
-  }
-
-  async favoriteLectures() {
-    try {
-      await this.userService.addFavoriteLectureList(this.lecturesListToFavor);
-      this.backSelect();
-      console.log('ok');
-    } catch {
-      console.log('erro');
-    }
-
-  }
-
-  backSelect() {
-    this.showCheckbox = false;
-    this.lecturesListToFavor.length = 0;
   }
 
   addFavorite(slidingItem: ItemSliding, lecture) {

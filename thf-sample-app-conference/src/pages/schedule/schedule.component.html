@@ -1,4 +1,4 @@
-<ion-header *ngIf="!showCheckbox">
+<ion-header>
   <ion-navbar color="primary" no-border-bottom>
     <button ion-button menuToggle> <ion-icon name="menu"></ion-icon> </button>
 
@@ -25,32 +25,6 @@
 
 </ion-header>
 
-<ion-header *ngIf="showCheckbox">
-
-  <ion-navbar no-border-bottom>
-
-    <ion-toolbar no-border-top>
-
-      <ion-buttons start class="schedule-back-button">
-        <button ion-button icon-only (click)="backSelect()">
-          <ion-icon name="arrow-round-back"></ion-icon>
-        </button>
-      </ion-buttons>
-
-      <ion-buttons end>
-        <ion-checkbox (ionChange)="selectAll()" class="schedule-selectAll" [checked]="selectAllLectures"></ion-checkbox>
-
-        <button ion-button icon-only (click)="favoriteLectures()" class="schedule-favoriteAll">
-          <ion-icon name="star-outline"></ion-icon>
-        </button>
-      </ion-buttons>
-
-    </ion-toolbar>
-
-  </ion-navbar>
-
-</ion-header>
-
 <ion-content>
   <ion-refresher (ionRefresh)="doRefresh($event)">
     <ion-refresher-content></ion-refresher-content>
@@ -58,8 +32,8 @@
 
   <ion-list class="schedule-list" [hidden]="!lectures">
 
-    <ion-item-sliding *ngFor="let lecture of filteredLectures" (press)="lecturePress($event)" #slidingItem [ngStyle]="getColorTrack(lecture.track.color)">
-      <button ion-item *ngIf="!showCheckbox" (click)="goToSessionDetail(lecture.id)">
+    <ion-item-sliding *ngFor="let lecture of filteredLectures" (press)="lecturePress()" #slidingItem [ngStyle]="getColorTrack(lecture.track.color)">
+      <button ion-item (click)="goToSessionDetail(lecture.id)">
         <h3>{{ lecture.title }} </h3>
         <p>
           {{ lecture.startTime }} &mdash;
@@ -67,18 +41,6 @@
           {{ lecture.room }}
         </p>
       </button>
-
-      <ion-item *ngIf="showCheckbox">
-        <ion-label>
-          <h3>{{ lecture.title }} </h3>
-          <p>
-            {{ lecture.startTime }} &mdash;
-            {{ lecture.endTime }}:
-            {{ lecture.room }}
-          </p>
-        </ion-label>
-        <ion-checkbox end (ionChange)="addLisToFavor(lecture.id)" [checked]="selectAllLectures"></ion-checkbox>
-      </ion-item>
 
       <ion-item-options class="favorite">
         <button ion-button color="favorite" (click)="addFavorite(slidingItem, lecture)" *ngIf="segment === 'all' && userId">
