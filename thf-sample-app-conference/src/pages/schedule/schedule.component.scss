@@ -18,3 +18,21 @@ ion-item-sliding {
 .schedule-no-lectures-found {
   border: 0;
 }
+
+.schedule-selectAll {
+  top: 9px;
+  margin-right: 10px;
+}
+
+.schedule-selectAll .checkbox-icon {
+  width: 18px;
+  height: 18px;
+}
+
+.schedule-favoriteAll {
+  color: #e6d019 !important;
+}
+
+.schedule-back-button {
+  order: 1;
+}

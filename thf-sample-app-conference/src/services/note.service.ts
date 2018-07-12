@@ -27,8 +27,20 @@ export class NoteService {
     return this.getNoteModel().remove(note);
   }
 
-  save(note) {
-    return this.getNoteModel().save(note);
+  async save(note2) {
+    const notes = [
+      {title: 'Note 1', text: '1', lectureId: '1', userId: '1'},
+      {title: 'Note 2', text: '2', lectureId: '2', userId: '1'},
+      {title: 'Note 3', text: '3', lectureId: '3', userId: '1'},
+    ];
+    console.log(notes);
+
+    for (const note of notes) {
+      console.log(note);
+      await this.getNoteModel().save(note);
+      console.log('terminou await: ', note.title);
+    }
+    // return this.getNoteModel().save(note);
   }
 
   synchronize() {

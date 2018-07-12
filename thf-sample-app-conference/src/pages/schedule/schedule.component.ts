@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild, ElementRef } from '@angular/core';
 
 import {
   AlertController,
@@ -7,6 +7,7 @@ import {
   ModalController,
   NavController,
   Refresher,
+  PopoverController,
 } from 'ionic-angular';
 
 import { ThfSyncService } from '@totvs/thf-sync';
@@ -29,12 +30,18 @@ export class SchedulePage {
   queryText = '';
   segment = 'all';
   userId;
+  showCheckbox = false;
+  selectAllLectures = false;
+  lecturesListToFavor = [];
+
+  @ViewChild('popover', { read: ElementRef }) popover: ElementRef;
 
   constructor(
     public alertCtrl: AlertController,
     public app: App,
     public modalCtrl: ModalController,
     public navCtrl: NavController,
+    public popoverCtrl: PopoverController,
     private lectureService: LectureService,
     private userService: UserService,
     private thfSync: ThfSyncService,
@@ -50,8 +57,50 @@ export class SchedulePage {
     this.userService.getLoggedUser().then(user => this.userId = user);
   }
 
+  selectAll() {
+    this.selectAllLectures = !this.selectAllLectures;
+  }
+
+  addLisToFavor(lectureId) {
+    const indexLecture = this.lecturesListToFavor.indexOf(lectureId);
+
+    if (indexLecture < 0) {
+      this.lecturesListToFavor.push(lectureId);
+    } else {
+      this.lecturesListToFavor.splice(indexLecture, 1);
+    }
+    console.log(this.lecturesListToFavor);
+  }
+
+  presentPopover(event) {
+    const popover = this.popoverCtrl.create(this.popover);
+    popover.present({
+      ev: event
+    });
+  }
+
+  lecturePress(event) {
+    this.showCheckbox = !!this.userId;
+  }
+
+  async favoriteLectures() {
+    try {
+      await this.userService.addFavoriteLectureList(this.lecturesListToFavor);
+      this.backSelect();
+      console.log('ok');
+    } catch {
+      console.log('erro');
+    }
+
+  }
+
+  backSelect() {
+    this.showCheckbox = false;
+    this.lecturesListToFavor.length = 0;
+  }
+
   addFavorite(slidingItem: ItemSliding, lecture) {
-    this.userService.addFavoriteLecture(lecture.id).then(() => {
+    this.userService.addFavoriteLectureList(lecture.id).then(() => {
       const alert = this.alertCtrl.create({
         title: 'Favorite Added',
         buttons: [{
