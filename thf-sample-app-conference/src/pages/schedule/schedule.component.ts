@@ -1,4 +1,3 @@
-import { ScheduleFavoriteList } from './../schedule-favorite-list/schedule-favorite-list.component';
 import { Component, ViewChild, ElementRef } from '@angular/core';
 
 import {
@@ -8,13 +7,13 @@ import {
   ModalController,
   NavController,
   Refresher,
-  PopoverController,
 } from 'ionic-angular';
 
 import { ThfSyncService } from '@totvs/thf-sync';
 
 import { LectureDetailPage } from '../lecture-detail/lecture-detail.component';
 import { LectureService } from '../../services/lecture.service';
+import { ScheduleFavoriteList } from './../schedule-favorite-list/schedule-favorite-list.component';
 import { ScheduleFilterPage } from '../schedule-filter/schedule-filter.component';
 import { UserService } from './../../services/user.service';
 
@@ -39,7 +38,6 @@ export class SchedulePage {
     public app: App,
     public modalCtrl: ModalController,
     public navCtrl: NavController,
-    public popoverCtrl: PopoverController,
     private lectureService: LectureService,
     private userService: UserService,
     private thfSync: ThfSyncService,
@@ -53,12 +51,6 @@ export class SchedulePage {
     });
 
     this.userService.getLoggedUser().then(user => this.userId = user);
-  }
-
-  lecturePress() {
-    if (this.userId) {
-      this.navCtrl.push(ScheduleFavoriteList, { lectures: this.lectures });
-    }
   }
 
   addFavorite(slidingItem: ItemSliding, lecture) {
@@ -103,6 +95,13 @@ export class SchedulePage {
       this.filteredLectures = lectures;
     }
 
+  }
+
+  async lecturePress() {
+    if (this.userId) {
+      const favoriteLectures = await this.userService.getFavoriteLectures();
+      this.navCtrl.push(ScheduleFavoriteList, { lectures: this.lectures, favoriteLectures: favoriteLectures });
+    }
   }
 
   presentFilter() {
