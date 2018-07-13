@@ -27,12 +27,11 @@ swaggerTools.initializeMiddleware(swaggerDoc, function (middleware) {
   app.use(cors({
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     preflightContinue: false,
-    optionsSuccessStatus: 204,
-    exposedHeaders: ['Date'],
-    credentials: true,
-    origin: '*'
-  }));
-
+		optionsSuccessStatus: 204,
+		credentials: true,
+		origin: '*'
+	}));
+  
   // Interpret Swagger resources and attach metadata to request - must be first in swagger-tools middleware chain
   app.use(middleware.swaggerMetadata());
 
