@@ -3,14 +3,19 @@
 
       <ion-toolbar no-border-top>
 
-        <ion-title>Favor lectures</ion-title>
+        <ion-title>Favorite lectures</ion-title>
 
         <ion-buttons end>
-          <ion-checkbox (ionChange)="selectAll()" class="schedule-selectAll" [checked]="selectAllLectures"></ion-checkbox>
+          <ion-checkbox (ionChange)="selectAll()" *ngIf="!favoriteAll" class="schedule-selectAll" [checked]="selectAllLectures"></ion-checkbox>
 
-          <button ion-button icon-only (click)="favoriteLectures()" class="schedule-favoriteAll">
+          <button ion-button icon-only *ngIf="!favoriteAll" (click)="favoriteLectures()" class="schedule-favoriteAll">
             <ion-icon name="star-outline"></ion-icon>
           </button>
+
+          <button ion-button icon-only *ngIf="favoriteAll" class="schedule-favoriteAll">
+            <ion-icon name="star"></ion-icon>
+          </button>
+
         </ion-buttons>
 
       </ion-toolbar>
@@ -20,10 +25,6 @@
   </ion-header>
 
   <ion-content>
-    <ion-refresher (ionRefresh)="doRefresh($event)">
-      <ion-refresher-content></ion-refresher-content>
-    </ion-refresher>
-
     <ion-list class="schedule-list">
 
       <ion-item-sliding *ngFor="let lecture of lectures" (press)="lecturePress($event)">
