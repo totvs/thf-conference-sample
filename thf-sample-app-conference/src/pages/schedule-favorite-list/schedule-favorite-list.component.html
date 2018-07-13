@@ -25,11 +25,13 @@
   </ion-header>
 
   <ion-content>
+
     <ion-list class="schedule-list">
+
 
       <ion-item-sliding *ngFor="let lecture of lectures" (press)="lecturePress($event)">
 
-        <ion-item *ngIf="!lecturesFavorited.includes(lecture.id)">
+        <ion-item *ngIf="!lecturesFavorited?.includes(lecture.id)">
           <ion-label>
             <h3>{{ lecture.title }} </h3>
             <p>
@@ -41,7 +43,7 @@
           <ion-checkbox end (ionChange)="addLisToFavor(lecture.id)" [checked]="selectAllLectures"></ion-checkbox>
         </ion-item>
 
-        <ion-item *ngIf="lecturesFavorited.includes(lecture.id)">
+        <ion-item *ngIf="lecturesFavorited?.includes(lecture.id)">
           <ion-label>
             <h3>{{ lecture.title }} </h3>
             <p>
@@ -50,7 +52,7 @@
               {{ lecture.room }}
             </p>
           </ion-label>
-          <ion-checkbox end disabled></ion-checkbox>
+          <ion-checkbox end disabled checked></ion-checkbox>
         </ion-item>
 
       </ion-item-sliding>

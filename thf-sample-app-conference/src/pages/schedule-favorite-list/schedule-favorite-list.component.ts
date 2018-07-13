@@ -24,7 +24,7 @@ export class ScheduleFavoriteList {
     private userService: UserService
   ) {
     this.lectures = this.navParams.data.lectures;
-    this.lecturesFavorited = this.navParams.data.favoriteLectures;
+    this.lecturesFavorited = this.navParams.data.favoriteLectures || [];
     this.favoriteAll = this.checkFavoriteAll();
   }
 
