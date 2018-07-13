@@ -1,4 +1,4 @@
-import { Component, ViewChild, ElementRef } from '@angular/core';
+import { Component } from '@angular/core';
 
 import {
   AlertController,
@@ -30,8 +30,6 @@ export class SchedulePage {
   queryText = '';
   segment = 'all';
   userId;
-
-  @ViewChild('popover', { read: ElementRef }) popover: ElementRef;
 
   constructor(
     public alertCtrl: AlertController,

@@ -28,7 +28,6 @@
 
     <ion-list class="schedule-list">
 
-
       <ion-item-sliding *ngFor="let lecture of lectures" (press)="lecturePress($event)">
 
         <ion-item *ngIf="!lecturesFavorited?.includes(lecture.id)">
