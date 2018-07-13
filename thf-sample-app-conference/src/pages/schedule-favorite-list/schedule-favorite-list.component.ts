@@ -1,8 +1,8 @@
-import { SchedulePage } from './../schedule/schedule.component';
 import { Component } from '@angular/core';
 
-import { NavParams, NavController } from 'ionic-angular';
+import { NavController, NavParams, ToastController } from 'ionic-angular';
 
+import { SchedulePage } from './../schedule/schedule.component';
 import { UserService } from '../../services/user.service';
 
 @Component({
@@ -11,28 +11,21 @@ import { UserService } from '../../services/user.service';
 })
 export class ScheduleFavoriteList {
 
+  favoriteAll: boolean;
   lectures;
-  lecturesFavorited = [];
-  lecturesListToFavor = [];
+  lecturesFavorited: Array<number> = [];
+  lecturesListToFavor: Array<number> = [];
   selectAllLectures: boolean;
-  showCheckbox: boolean;
-  userId: any;
 
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
+    public toastCtrl: ToastController,
     private userService: UserService
   ) {
     this.lectures = this.navParams.data.lectures;
-    this.getLecturesFavorited();
-  }
-
-  selectAll() {
-    this.selectAllLectures = !this.selectAllLectures;
-  }
-
-  async getLecturesFavorited() {
-    this.lecturesFavorited = await this.userService.getFavoriteLectures();
+    this.lecturesFavorited = this.navParams.data.favoriteLectures;
+    this.favoriteAll = this.checkFavoriteAll();
   }
 
   addLisToFavor(lectureId) {
@@ -45,14 +38,32 @@ export class ScheduleFavoriteList {
     }
   }
 
+  checkFavoriteAll() {
+    return !this.lectures.some(lecture => this.lecturesFavorited.indexOf(lecture.id) < 0);
+  }
+
   async favoriteLectures() {
     try {
       await this.userService.addFavoriteLectureList(this.lecturesListToFavor);
       this.navCtrl.setRoot(SchedulePage);
-    } catch {
-      console.log('erro');
+    } catch (error) {
+      this.createToast(error);
     }
 
+  }
+
+  selectAll() {
+    this.selectAllLectures = !this.selectAllLectures;
+  }
+
+  private createToast(message) {
+    const toast = this.toastCtrl.create({
+      message: message,
+      duration: 3000,
+      position: 'top',
+      cssClass: 'toaster'
+    });
+    toast.present();
   }
 
 }
