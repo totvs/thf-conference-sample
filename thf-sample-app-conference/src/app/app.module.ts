@@ -16,6 +16,7 @@ import { MyApp } from './app.component';
 import { NoteDetailPage } from './../pages/note-detail/note-detail.component';
 import { NoteListPage } from './../pages/note-list/note-list.component';
 import { NoteService } from './../services/note.service';
+import { ScheduleFavoriteList } from '../pages/schedule-favorite-list/schedule-favorite-list.component';
 import { ScheduleFilterPage } from '../pages/schedule-filter/schedule-filter.component';
 import { SchedulePage } from '../pages/schedule/schedule.component';
 import { SignupPage } from '../pages/signup/signup.component';
@@ -25,7 +26,6 @@ import { SpeakerService } from '../services/speaker.service';
 import { TabsPage } from '../pages/tabs/tabs.component';
 import { TrackService } from '../services/track.service';
 import { UserService } from '../services/user.service';
-import { ScheduleFavoriteList } from '../pages/schedule-favorite-list/schedule-favorite-list.component';
 
 @NgModule({
   declarations: [
