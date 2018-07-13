@@ -17,7 +17,7 @@ A seguir, tem-se uma lista de funcionalidades utilizadas no App e onde podem ser
 
 - `ThfSyncService.loadData`: src/app/app.component.ts
 
-- `ThfSyncService.getHttpResponses`: src/app/app.component.ts
+- `ThfSyncService.getResponses`: src/app/app.component.ts
 
 - `ThfSyncService.removeItemOfSync`: src/app/app.component.ts
 

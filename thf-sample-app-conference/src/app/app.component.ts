@@ -140,10 +140,10 @@ export class MyApp {
   }
 
   private getResponses() {
-    this.thfSync.getHttpResponses().subscribe(thfHttpClientResponse => {
+    this.thfSync.getResponses().subscribe(thfSyncResponse => {
 
-      if (thfHttpClientResponse.response instanceof HttpErrorResponse) {
-        this.thfSync.removeItemOfSync(thfHttpClientResponse.id).then(() => {
+      if (thfSyncResponse.response instanceof HttpErrorResponse) {
+        this.thfSync.removeItemOfSync(thfSyncResponse.id).then(() => {
           this.thfSync.resumeSync();
         });
       }
