@@ -13,8 +13,7 @@ export class UserService {
     this.userModel = this.thfSync.getModel('Users');
   }
 
-  async addFavoriteLecture(lectureId) {
-    const loggedUser = await this.getLoggedUserId();
+  async addFavoriteLecture(lectureId, loggedUser) {
     const user = await this.userModel.findById(loggedUser).exec();
     user.favoriteLectures = user.favoriteLectures || [];
 
@@ -25,6 +24,19 @@ export class UserService {
 
     } else {
       throw new Error();
+    }
+
+  }
+
+  async addFavoriteLectureList(lecturesId) {
+    const loggedUser = await this.getLoggedUserId();
+
+    if (!(lecturesId instanceof Array)) {
+      lecturesId = [lecturesId];
+    }
+
+    for (const lectureId of lecturesId) {
+      await this.addFavoriteLecture(lectureId, loggedUser);
     }
 
   }

@@ -13,6 +13,7 @@ import { ThfSyncService } from '@totvs/thf-sync';
 
 import { LectureDetailPage } from '../lecture-detail/lecture-detail.component';
 import { LectureService } from '../../services/lecture.service';
+import { ScheduleFavoriteList } from './../schedule-favorite-list/schedule-favorite-list.component';
 import { ScheduleFilterPage } from '../schedule-filter/schedule-filter.component';
 import { UserService } from './../../services/user.service';
 
@@ -51,7 +52,7 @@ export class SchedulePage {
   }
 
   addFavorite(slidingItem: ItemSliding, lecture) {
-    this.userService.addFavoriteLecture(lecture.id).then(() => {
+    this.userService.addFavoriteLectureList(lecture.id).then(() => {
       const alert = this.alertCtrl.create({
         title: 'Favorite Added',
         buttons: [{
@@ -92,6 +93,13 @@ export class SchedulePage {
       this.filteredLectures = lectures;
     }
 
+  }
+
+  async lecturePress() {
+    if (this.userId) {
+      const favoriteLectures = await this.userService.getFavoriteLectures();
+      this.navCtrl.push(ScheduleFavoriteList, { lectures: this.lectures, favoriteLectures: favoriteLectures });
+    }
   }
 
   presentFilter() {

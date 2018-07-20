@@ -32,8 +32,7 @@
 
   <ion-list class="schedule-list" [hidden]="!lectures">
 
-    <ion-item-sliding *ngFor="let lecture of filteredLectures" #slidingItem [ngStyle]="getColorTrack(lecture.track.color)">
-
+    <ion-item-sliding *ngFor="let lecture of filteredLectures" (press)="lecturePress()" #slidingItem [ngStyle]="getColorTrack(lecture.track.color)">
       <button ion-item (click)="goToSessionDetail(lecture.id)">
         <h3>{{ lecture.title }} </h3>
         <p>
