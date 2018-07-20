@@ -37,10 +37,10 @@ export class SignupPage {
   }
 
   private httpCommandEvents() {
-    this.thfSync.getHttpResponses().subscribe(thfHttpClientResponse => {
+    this.thfSync.getResponses().subscribe(thfSyncResponse => {
 
-      if (thfHttpClientResponse.customRequestId === this.signup.username) {
-        const userId = thfHttpClientResponse.response['body'].id;
+      if (thfSyncResponse.customRequestId === this.signup.username) {
+        const userId = thfSyncResponse.response['body'].id;
 
         this.thfStorage.set('login', { userId }).then(() => {
           this.events.publish('user:login');
