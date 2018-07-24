@@ -1,9 +1,12 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
+import { RouterModule } from '@angular/router';
 
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
+
+import { ThfModule } from '@totvs/thf-ui';
 import { ThfStorageModule } from '@totvs/thf-storage';
 import { ThfSyncModule } from '@totvs/thf-sync';
 
@@ -45,6 +48,8 @@ import { UserService } from '../services/user.service';
   ],
   imports: [
     BrowserModule,
+    RouterModule.forRoot([]),
+    ThfModule,
     ThfSyncModule,
     ThfStorageModule.forRoot(),
     IonicModule.forRoot(MyApp)
