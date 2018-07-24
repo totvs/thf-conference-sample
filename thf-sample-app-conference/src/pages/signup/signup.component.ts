@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
-import { NgForm } from '@angular/forms';
 
 import { Events, NavController } from 'ionic-angular';
 
+import { ThfPageLogin, ThfPageLoginLiterals } from '@totvs/thf-ui/components/thf-page';
 import { ThfStorageService } from '@totvs/thf-storage';
 import { ThfSyncService } from '@totvs/thf-sync';
 
@@ -15,8 +15,11 @@ import { UserService } from '../../services/user.service';
 })
 export class SignupPage {
 
-  signup = { username: '', password: '', isSuperUser: false };
-  submitted = false;
+  customLiterals: ThfPageLoginLiterals = {
+    submitLabel: 'Create account'
+  };
+
+  customRequestId;
 
   constructor(
     public events: Events,
@@ -27,19 +30,18 @@ export class SignupPage {
     this.httpCommandEvents();
   }
 
-  onSignup(form: NgForm) {
-    this.submitted = true;
+  onSignup(form: ThfPageLogin) {
+    const newUser = { username: form.login, password: form.password };
+    this.customRequestId = newUser.username;
 
-    if (form.valid) {
-      this.userService.createUser(this.signup);
-      this.navCtrl.push(TabsPage);
-    }
+    this.userService.createUser(newUser);
+    this.navCtrl.push(TabsPage);
   }
 
   private httpCommandEvents() {
     this.thfSync.getResponses().subscribe(thfSyncResponse => {
 
-      if (thfSyncResponse.customRequestId === this.signup.username) {
+      if (thfSyncResponse.customRequestId === this.customRequestId) {
         const userId = thfSyncResponse.response['body'].id;
 
         this.thfStorage.set('login', { userId }).then(() => {

@@ -42,6 +42,8 @@ export class UserService {
   }
 
   createUser(user) {
+    user.isSuperUser = false;
+
     const requestData: ThfHttpRequestData = {
       url: 'http://localhost:8080/conference-api/api/v1/users/',
       method: ThfHttpRequestType.POST,
