@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import { NgForm } from '@angular/forms';
 
 import { Events, NavController, ToastController } from 'ionic-angular';
+
+import { ThfPageLogin } from '@totvs/thf-ui/components/thf-page';
 
 import { SignupPage } from '../signup/signup.component';
 import { TabsPage } from '../tabs/tabs.component';
@@ -13,9 +14,6 @@ import { UserService } from './../../services/user.service';
 })
 export class LoginPage {
 
-  login = { username: '', password: '' };
-  submitted = false;
-
   constructor(
     public events: Events,
     public navCtrl: NavController,
@@ -23,19 +21,14 @@ export class LoginPage {
     private userService: UserService,
   ) { }
 
-  onLogin(form: NgForm) {
-    this.submitted = true;
+  onLogin(form: ThfPageLogin) {
+    this.userService.onLogin(form.login, form.password)
+      .then(() => {
+        this.events.publish('user:login');
+        this.navCtrl.push(TabsPage);
+      })
+      .catch(() => this.createToast());
 
-    if (form.valid) {
-
-      this.userService.onLogin(this.login.username, this.login.password)
-        .then(() => {
-          this.events.publish('user:login');
-          this.navCtrl.push(TabsPage);
-        })
-        .catch(() => this.createToast());
-
-    }
   }
 
   onSignup() {
