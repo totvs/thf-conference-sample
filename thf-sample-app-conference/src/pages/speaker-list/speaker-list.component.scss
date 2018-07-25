@@ -27,6 +27,16 @@ page-speaker-list {
     padding-left: 0;
     padding-right: 0;
   }
+
+  ion-card-content ion-label h3 {
+    color: #435357 !important;
+  }
+
+}
+
+.speaker-name {
+  color: #0c9abe;
+  font-weight: bold;
 }
 
 .speakers-content {
