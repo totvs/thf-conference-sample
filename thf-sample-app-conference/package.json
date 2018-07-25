@@ -28,6 +28,7 @@
     "@ionic-native/splash-screen": "4.7.0",
     "@ionic-native/status-bar": "4.7.0",
     "@ionic/storage": "2.1.3",
+    "@totvs/mobile-theme": "1.0.0",
     "@totvs/thf-storage": "1.7.1",
     "@totvs/thf-sync": "1.7.1",
     "@totvs/thf-ui": "1.7.1",

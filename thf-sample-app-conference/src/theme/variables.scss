@@ -33,19 +33,6 @@ $app-direction: ltr;
 // colors so you can add, rename and remove colors as needed.
 // The "primary" color is the only required color in the map.
 
-$colors: (
-  primary:    #0c9abe,
-  secondary:  #0d729c,
-  danger:     #c64840,
-  light:      #ceeaf2,
-  dark:       #4a5c60,
-  favorite:   #69BB7B,
-  twitter:    #1da1f4,
-  google:     #dc4a38,
-  vimeo:      #23b6ea,
-  facebook:   #3b5998
-);
-
 
 // App iOS Variables
 // --------------------------------------------------
@@ -75,7 +62,7 @@ $colors: (
 // so that the above variables are used and Ionic's
 // default are overridden.
 
-@import "ionic.theme.default";
+@import "node_modules/@totvs/mobile-theme/totvs.mobile.theme";
 
 
 // Ionicons

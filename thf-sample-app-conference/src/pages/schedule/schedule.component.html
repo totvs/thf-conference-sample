@@ -1,11 +1,7 @@
 <ion-header>
   <ion-navbar color="primary" no-border-bottom>
     <button ion-button menuToggle> <ion-icon name="menu"></ion-icon> </button>
-
-    <ion-segment [(ngModel)]="segment" (ionChange)="lectureFilter()">
-      <ion-segment-button value="all"> All </ion-segment-button>
-      <ion-segment-button value="favorites" [disabled]="!userId"> Favorites </ion-segment-button>
-    </ion-segment>
+    <ion-title>Schedule</ion-title>
 
     <ion-buttons end>
       <button ion-button icon-only (click)="presentFilter()">
@@ -15,8 +11,9 @@
 
   </ion-navbar>
 
-  <ion-toolbar color="primary" no-border-top>
-    <ion-searchbar color="primary"
+  <ion-toolbar no-border-top>
+    <ion-searchbar
+      class="schedule-input-search"
       [(ngModel)]="queryText"
       (ionInput)="lectureFilter()"
       placeholder="Search">
@@ -25,7 +22,13 @@
 
 </ion-header>
 
-<ion-content>
+<ion-content class="schedule">
+
+  <ion-segment [(ngModel)]="segment" (ionChange)="lectureFilter()">
+    <ion-segment-button value="all"> All </ion-segment-button>
+    <ion-segment-button value="favorites" [disabled]="!userId"> Favorites </ion-segment-button>
+  </ion-segment>
+
   <ion-refresher (ionRefresh)="doRefresh($event)">
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
