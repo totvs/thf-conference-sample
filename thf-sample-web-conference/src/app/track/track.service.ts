@@ -7,8 +7,10 @@ import { Lecture } from '../model/lecture';
 @Injectable()
 export class TrackService extends GenericService<Lecture> {
 
+  path = 'tracks';
+
   constructor(http: HttpClient) {
-    super(http, 'tracks');
+    super(http);
   }
 
 }

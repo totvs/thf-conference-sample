@@ -7,8 +7,10 @@ import { Speaker } from './../model/speaker';
 @Injectable()
 export class SpeakerService extends GenericService<Speaker> {
 
+  path = 'speakers';
+
   constructor(http: HttpClient) {
-    super(http, 'speakers');
+    super(http);
   }
 
 }

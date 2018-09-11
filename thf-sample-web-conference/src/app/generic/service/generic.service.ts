@@ -10,6 +10,8 @@ import { TotvsResponse } from './../../model/totvs-response.interface';
 @Injectable()
 export class GenericService<T> {
 
+  path: string;
+
   private host: string = 'http://localhost:';
   private port: number = 8080;
   private apiName: string = '/conference-api/api/v';
@@ -17,7 +19,7 @@ export class GenericService<T> {
 
   private readonly urlApi: string = this.host + this.port + this.apiName + this.version;
 
-  constructor(private http: HttpClient, public path: string) { }
+  constructor(private http: HttpClient) { }
 
   delete(id: string): Observable<{}> {
     return this.http.delete<{}>(`${this.urlApi}/${this.path}/${id}`).pipe(map(() => (id), error => (error)));
