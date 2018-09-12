@@ -7,8 +7,10 @@ import { Note } from '../model/note';
 @Injectable()
 export class NoteService extends GenericService<Note> {
 
+  path = 'notes';
+
   constructor(http: HttpClient) {
-    super(http, 'notes');
+    super(http);
   }
 
 }

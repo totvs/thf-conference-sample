@@ -9,8 +9,10 @@ import { User } from '../model/user';
 @Injectable()
 export class LoginService extends GenericService<User> {
 
+  path = 'auth';
+
   constructor(http: HttpClient, private storage: ThfStorageService) {
-    super(http, 'auth');
+    super(http);
   }
 
   isLoggedIn(): Promise<any> {

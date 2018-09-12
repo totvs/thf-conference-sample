@@ -30,7 +30,11 @@ export class SpeakerComponent implements OnInit {
   }
 
   filterSpeakersByName() {
-    this.speakers = this.speakers.filter(speaker => speaker.name.toLowerCase().includes(this.speakerName.toLocaleLowerCase()));
+    if (this.speakerName) {
+      this.speakers = this.speakers.filter(speaker => speaker.name.toLowerCase().includes(this.speakerName.toLocaleLowerCase()));
+    } else {
+      this.getSpeakers();
+    }
   }
 
   getSpeakers() {
@@ -38,4 +42,5 @@ export class SpeakerComponent implements OnInit {
       this.speakers = speakers.items.filter(speaker => speaker.deleted === false);
     });
   }
+
 }

@@ -89,11 +89,11 @@ export class LectureComponent implements OnInit {
   selectAllTracks() {
     this.tracks.forEach(track => {
       if (this.displayAll) {
-        Object.assign(track, { model: false });
-        this.popTrackInSelectedFilter(track.id);
-      } else {
         Object.assign(track, { model: true });
         this.pushTrackInSelectedFilter(track.id);
+      } else {
+        Object.assign(track, { model: false });
+        this.popTrackInSelectedFilter(track.id);
       }
     });
   }
