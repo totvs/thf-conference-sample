@@ -5,6 +5,7 @@ WORKDIR /sources
 
 RUN npm i
 
+
 FROM node:8-alpine
 
 RUN apk add --update tzdata
@@ -16,8 +17,6 @@ RUN chown -R node:node /var/log/thf-conference-api
 COPY --from=0 /sources /sources
 
 WORKDIR /sources
-
-USER node
 
 EXPOSE 8080
 
