@@ -19,6 +19,6 @@ WORKDIR /sources
 
 USER node
 
-EXPOSE 8200
+EXPOSE 8080
 
 CMD ["npm", "run", "start"]
