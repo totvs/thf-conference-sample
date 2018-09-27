@@ -10,8 +10,8 @@ FROM node:8-alpine
 RUN apk add --update tzdata
 ENV TZ America/Sao_Paulo
 
-RUN mkdir -p /var/log/conference-api
-RUN chown -R node:node /var/log/conference-api
+RUN mkdir -p /var/log/thf-conference-api
+RUN chown -R node:node /var/log/thf-conference-api
 
 COPY --from=0 /sources /sources
 
