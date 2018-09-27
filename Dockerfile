@@ -5,6 +5,7 @@ WORKDIR /sources
 
 RUN npm i
 
+
 FROM node:8-alpine
 
 RUN apk add --update tzdata
@@ -17,8 +18,6 @@ COPY --from=0 /sources /sources
 
 WORKDIR /sources
 
-USER node
+EXPOSE 8080:8080
 
-EXPOSE 8080
-
-CMD ["npm", "run", "start"]
+CMD ["npm", "run", "start:prod"]
