@@ -18,6 +18,6 @@ COPY --from=0 /sources /sources
 
 WORKDIR /sources
 
-EXPOSE 8080
+EXPOSE 8080:8080
 
-CMD ["npm", "run", "start"]
+CMD ["npm", "run", "start:prod"]
