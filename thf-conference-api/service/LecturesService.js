@@ -133,6 +133,7 @@ exports.lecturesIdDELETE = function (id) {
 
     if (lecture) {
       lecture.deletedDate = new Date().toISOString();
+      lecture.updatedDate = lecture.deletedDate;
       lecture.deleted = true;
       resolve();
     } else {
