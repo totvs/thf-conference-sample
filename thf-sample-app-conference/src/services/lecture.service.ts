@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
 
 import { ThfEntity } from '@totvs/thf-sync/models';
-import { ThfSyncService } from '@totvs/thf-sync';
-
+import { ThfResponseApi, ThfSyncService } from '@totvs/thf-sync';
 @Injectable()
 export class LectureService {
 
@@ -18,7 +17,7 @@ export class LectureService {
   }
 
   getLectures() {
-    return this.lectureModel.find().sort('title').exec().then(data => this.lectures = data.items);
+    return this.lectureModel.find().sort('title').exec().then((data: ThfResponseApi) => this.lectures = data.items);
   }
 
   synchronize() {

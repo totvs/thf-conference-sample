@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 
 import { ThfEntity } from '@totvs/thf-sync/models';
 import { ThfStorageService } from '@totvs/thf-storage';
-import { ThfSyncService, ThfHttpRequestData, ThfHttpRequestType } from '@totvs/thf-sync';
+import { ThfSyncService, ThfHttpRequestData, ThfHttpRequestType, ThfResponseApi } from '@totvs/thf-sync';
 
 @Injectable()
 export class UserService {
@@ -14,7 +14,7 @@ export class UserService {
   }
 
   async addFavoriteLecture(lectureId, loggedUser) {
-    const user = await this.userModel.findById(loggedUser).exec();
+    const user: any = await this.userModel.findById(loggedUser).exec();
     user.favoriteLectures = user.favoriteLectures || [];
 
     if (!user.favoriteLectures.includes(lectureId)) {
@@ -55,8 +55,9 @@ export class UserService {
 
   async getFavoriteLectures() {
     const loggedUser = await this.getLoggedUserId();
-    const user = await this.userModel.findById(loggedUser).exec();
-    return 'favoriteLectures' in user ? user.favoriteLectures : undefined;
+
+    return await this.userModel.findById(loggedUser).exec()
+      .then((user: any) => 'favoriteLectures' in user ? user.favoriteLectures : undefined);
   }
 
   async getLoggedUserId() {
@@ -75,12 +76,11 @@ export class UserService {
   }
 
   async getUsers() {
-    const userData = await this.userModel.find().exec();
-    return userData.items;
+    return await this.userModel.find().exec().then((users: ThfResponseApi) => users.items);
   }
 
   async onLogin(username, password) {
-    const users = await this.getUsers();
+    const users: any = await this.getUsers();
 
     const foundUser = users.find(user => {
       return (user.username === username) && (user.password === password);
@@ -91,7 +91,7 @@ export class UserService {
 
   async removeFavoriteLecture(lectureId) {
     const loggedUser = await this.getLoggedUserId();
-    const user = await this.userModel.findById(loggedUser).exec();
+    const user: any = await this.userModel.findById(loggedUser).exec();
 
     user.favoriteLectures = user.favoriteLectures.filter(id => lectureId !== id);
     await this.userModel.save(user);

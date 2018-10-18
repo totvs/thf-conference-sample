@@ -112,7 +112,6 @@ export class MyApp {
       this.splashScreen.hide();
       this.rootPage = TabsPage;
     });
-
   }
 
   private initApp() {
