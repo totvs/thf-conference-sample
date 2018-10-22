@@ -14,13 +14,14 @@ export class NoteService {
 
   async getNote(lectureId) {
     const notes = await this.getNotes();
-    return notes.find(note => note.lectureId === lectureId);
+    return notes.find((note: any) => note.lectureId === lectureId);
   }
 
   async getNotes() {
-    const user = await this.userService.getLoggedUser();
-    const notes = await this.getNoteModel().find().exec();
-    return notes.items.filter(note => note.userId === user.id);
+    const user: any = await this.userService.getLoggedUser();
+    const notes: any = await this.getNoteModel().find().exec();
+
+    return notes.items.filter((note: any) => note.userId === user.id);
   }
 
   remove(note) {

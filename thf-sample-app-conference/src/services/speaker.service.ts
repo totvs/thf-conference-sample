@@ -8,7 +8,7 @@ export class SpeakerService {
   constructor(private thfSync: ThfSyncService) {}
 
   async getSpeakers() {
-    const speakersResponse = await this.thfSync.getModel('Speakers').find().sort('name').exec();
+    const speakersResponse: any = await this.thfSync.getModel('Speakers').find().sort('name').exec();
     return speakersResponse.items;
   }
 

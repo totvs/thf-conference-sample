@@ -54,7 +54,7 @@ export class NoteDetailPage {
   }
 
   private async initNote() {
-    const note = await this.noteService.getNote(this.navParams.data.lectureId);
+    const note: any = await this.noteService.getNote(this.navParams.data.lectureId);
     this.note = note || this.note;
   }
 
