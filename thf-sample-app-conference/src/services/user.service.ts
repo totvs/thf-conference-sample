@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 
 import { ThfEntity } from '@totvs/thf-sync/models';
 import { ThfStorageService } from '@totvs/thf-storage';
-import { ThfSyncService, ThfHttpRequestData, ThfHttpRequestType, ThfResponseApi } from '@totvs/thf-sync';
+import { ThfSyncService, ThfHttpRequestData, ThfHttpRequestType } from '@totvs/thf-sync';
 
 @Injectable()
 export class UserService {
@@ -55,9 +55,9 @@ export class UserService {
 
   async getFavoriteLectures() {
     const loggedUser = await this.getLoggedUserId();
+    const user: any = await this.userModel.findById(loggedUser).exec();
 
-    return await this.userModel.findById(loggedUser).exec()
-      .then((user: any) => 'favoriteLectures' in user ? user.favoriteLectures : undefined);
+    return 'favoriteLectures' in user ? user.favoriteLectures : undefined;
   }
 
   async getLoggedUserId() {
@@ -76,7 +76,9 @@ export class UserService {
   }
 
   async getUsers() {
-    return await this.userModel.find().exec().then((users: ThfResponseApi) => users.items);
+    const userData: any = await this.userModel.find().exec();
+
+    return userData.items;
   }
 
   async onLogin(username, password) {

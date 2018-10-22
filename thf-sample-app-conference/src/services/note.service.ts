@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { ThfSyncService, ThfResponseApi } from '@totvs/thf-sync';
+import { ThfSyncService } from '@totvs/thf-sync';
 
 import { UserService } from './user.service';
 
@@ -19,9 +19,9 @@ export class NoteService {
 
   async getNotes() {
     const user: any = await this.userService.getLoggedUser();
+    const notes: any = await this.getNoteModel().find().exec();
 
-    return await this.getNoteModel().find().exec()
-      .then((notes: ThfResponseApi) => notes.items.filter((note: any) => note.userId === user.id));
+    return notes.items.filter((note: any) => note.userId === user.id);
   }
 
   remove(note) {

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { ThfSyncService, ThfResponseApi } from '@totvs/thf-sync';
+import { ThfSyncService } from '@totvs/thf-sync';
 
 @Injectable()
 export class TrackService {
@@ -8,7 +8,8 @@ export class TrackService {
   constructor(private thfSync: ThfSyncService) {}
 
   async getTracks() {
-    return await this.thfSync.getModel('Tracks').find().exec().then((tracks: ThfResponseApi) => tracks.items);
+    const tracksResponse: any = await this.thfSync.getModel('Tracks').find().exec();
+    return tracksResponse.items;
   }
 
   synchronize() {
