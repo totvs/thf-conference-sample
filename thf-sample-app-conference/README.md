@@ -13,15 +13,25 @@ A seguir, tem-se uma lista de funcionalidades utilizadas no App e onde podem ser
 
 ### ThfSyncService
 
-- `ThfSyncService.prepare()`: [src/app/app.component.ts](./src/app/app.component.ts#L134)
+- `ThfSyncService.prepare()`:
+  - [src/app/app.component.ts](./src/app/app.component.ts#L134)
 
-- `ThfSyncService.loadData()`: [src/app/app.component.ts](./src/app/app.component.ts#L111)
+- `ThfSyncService.loadData()`:
+  - [src/app/app.component.ts](./src/app/app.component.ts#L111)
 
-- `ThfSyncService.getResponses()`: [src/app/app.component.ts](src/app/app.component.ts#L142)
+- `ThfSyncService.getResponses()`:
+  - [src/app/app.component.ts](src/app/app.component.ts#L142)
 
-- `ThfSyncService.getModel()`: src/services/*
+- `ThfSyncService.getModel()`:
+  - [src/services/conference.service.ts](./src/services/conference.service.ts#L14)
+  - [src/services/lecture.service.ts](./src/services/lecture.service.ts)
+  - [src/services/note.service.ts](./src/services/note.service.ts#L12)
+  - [src/services/speaker.service.ts](./src/services/speaker.service.ts#L11)
+  - [src/services/track.service.ts](./src/services/track.service.ts#L11)
+  - [src/services/user.service.ts](./src/services/user.service.ts#L13)
 
-- `ThfSyncService.insertHttpCommand()`: [src/services/user.service.ts](src/services/user.service.ts#L53)
+- `ThfSyncService.insertHttpCommand()`:
+  - [src/services/user.service.ts](src/services/user.service.ts#L53)
 
 - `ThfSyncService.onSync()`:
   - [src/pages/lecture-detail/lecture-detail.component.ts](./src/pages/lecture-detail/lecture-detail.component.ts#L32)
@@ -31,50 +41,59 @@ A seguir, tem-se uma lista de funcionalidades utilizadas no App e onde podem ser
   - [src/pages/speaker-detail/speaker-detail.component.ts](./src/pages/speaker-detail/speaker-detail.component.ts#L23)
   - [src/pages/speaker-list/speaker-list.component.ts](./src/pages/speaker-list/speaker-list.component.ts#L39)
 
-- `ThfSyncService.sync`:
-  - src/services/lecture.service.ts
-  - src/services/note.service.ts
-  - src/services/speaker.service.ts
-  - src/services/track.service.ts
-  - src/services/user.service.ts
+- `ThfSyncService.sync()`:
+  - [src/services/lecture.service.ts](./src/services/lecture.service.ts#L24)
+  - [src/services/note.service.ts](./src/services/note.service.ts#L36)
+  - [src/services/speaker.service.ts](./src/services/speaker.service.ts#L16)
+  - [src/services/track.service.ts](./src/services/track.service.ts#L16)
+  - [src/services/user.service.ts](./src/services/user.service.ts#L104)
 
 ### ThfEntity
 
-- `ThfEntity.find`:
-  - src/services/lecture.service.ts
-  - src/services/note.service.ts
-  - src/services/speaker.service.ts
-  - src/services/track.service.ts
-  - src/services/user.service.ts
+- `ThfEntity.find()`:
+  - [src/services/lecture.service.ts](./src/services/lecture.service.ts#L20)
+  - [src/services/note.service.ts](./src/services/note.service.ts)
+  - [src/services/speaker.service.ts](./src/services/speaker.service.ts#L11)
+  - [src/services/track.service.ts](./src/services/track.service.ts#L11)
+  - [src/services/user.service.ts](./src/services/user.service.ts)
 
-- `ThfEntity.findById`:
-  - src/services/lecture.service.ts
-  - src/services/user.service.ts
-  - src/pages/speaker-detail/speaker-detail.component.ts
+- `ThfEntity.findById()`:
+  - [src/pages/speaker-detail/speaker-detail.component.ts](./src/pages/speaker-detail/speaker-detail.component.ts#L39)
+  - [src/services/lecture.service.ts](./src/services/lecture.service.ts#L16)
+  - [src/services/user.service.ts](./src/services/user.service.ts)
 
-- `ThfEntity.findOne`: src/services/conference.service.ts
+- `ThfEntity.findOne()`:
+  - [src/services/conference.service.ts](./src/services/conference.service.ts#L10)
 
-- `ThfEntity.save`:
-  - src/services/note.service.ts
-  - src/services/user.service.ts
+- `ThfEntity.save()`:
+  - [src/services/note.service.ts](./src/services/note.service.ts#L32)
+  - [src/services/user.service.ts](./src/services/user.service.ts)
 
-- `ThfEntity.remove`: src/services/note.service.ts
+- `ThfEntity.remove()`:
+  - [src/services/note.service.ts](./src/services/note.service.ts#L28)
 
 ### ThfQueryBuilder
 
-- `ThfQueryBuilder.exec`: src/services/*
+- `ThfQueryBuilder.exec()`:
+  - [src/services/conference.service.ts](./src/services/conference.service.ts#L10)
+  - [src/services/lecture.service.ts](./src/services/lecture.service.ts)
+  - [src/services/note.service.ts](./src/services/note.service.ts#L22)
+  - [src/services/speaker.service.ts](./src/services/speaker.service.ts#L11)
+  - [src/services/track.service.ts](./src/services/track.service.ts#L11)
+  - [src/services/user.service.ts](./src/services/user.service.ts)
 
-- `ThfQueryBuilder.sort`:
-  - src/services/lecture.service.ts
-  - src/services/speaker.service.ts
+- `ThfQueryBuilder.sort()`:
+  - [src/services/lecture.service.ts](./src/services/lecture.service.ts#L20)
+  - [src/services/speaker.service.ts](./src/services/speaker.service.ts#L11)
 
 ### ThfStorageService
 
-- `ThfStorageService.set`: 
-  - src/app/app.component.ts
-  - src/signup/signup.component.ts
+- `ThfStorageService.set()`:
+  - [src/app/app.component.ts](./app/app.component.ts#L109)
+  - [src/pages/signup/signup.component.ts](./src/pages/signup/signup.component.ts#L47)
 
-- `ThfStorageService.remove`: src/app/app.component.ts
+- `ThfStorageService.remove()`:
+  - [src/app/app.component.ts](./src/app/app.component.ts#L74)
 
 ### ThfSyncSchema
 
