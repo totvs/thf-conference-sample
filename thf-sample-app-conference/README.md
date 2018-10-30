@@ -7,7 +7,7 @@ THF Conference Application é um aplicativo de demonstração do ThfSync baseado
 
 Para saber mais sobre o ThfSync, veja em [Começando com o ThfSync](https://thf.totvs.com.br/guides/sync-get-started).
 
-As funcionalidades do ThfSync foram isoladas em serviços com exceção dos métodos que envolvem *Subscriber*. Os componentes do App concentra-se apenas na busca do serviço e nas manipulações de tela.
+As funcionalidades do ThfSync foram isoladas em serviços com exceção dos métodos que envolvem *Subscriber*. Os componentes do App concentram-se apenas na busca do serviço e nas manipulações de tela.
 
 A seguir, tem-se uma lista de funcionalidades utilizadas no App e onde podem ser encontradas.
 
@@ -89,7 +89,7 @@ A seguir, tem-se uma lista de funcionalidades utilizadas no App e onde podem ser
 ### ThfStorageService
 
 - `ThfStorageService.set()`:
-  - [src/app/app.component.ts](./app/app.component.ts#L109)
+  - [src/app/app.component.ts](./src/app/app.component.ts#L109)
   - [src/pages/signup/signup.component.ts](./src/pages/signup/signup.component.ts#L47)
 
 - `ThfStorageService.remove()`:
