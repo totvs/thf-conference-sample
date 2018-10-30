@@ -13,29 +13,25 @@ A seguir, tem-se uma lista de funcionalidades utilizadas no App e onde podem ser
 
 ### ThfSyncService
 
-- `ThfSyncService.prepare`: src/app/app.component.ts
+- `ThfSyncService.prepare()`: [src/app/app.component.ts](./src/app/app.component.ts#L134)
 
-- `ThfSyncService.loadData`: src/app/app.component.ts
+- `ThfSyncService.loadData()`: [src/app/app.component.ts](./src/app/app.component.ts#L111)
 
-- `ThfSyncService.getResponses`: src/app/app.component.ts
+- `ThfSyncService.getResponses()`: [src/app/app.component.ts](src/app/app.component.ts#L142)
 
-- `ThfSyncService.removeItemOfSync`: src/app/app.component.ts
+- `ThfSyncService.getModel()`: src/services/*
 
-- `ThfSyncService.resumeSync`: src/app/app.component.ts
+- `ThfSyncService.insertHttpCommand()`: [src/services/user.service.ts](src/services/user.service.ts#L53)
 
-- `ThfSyncService.getModel`: src/services/*
+- `ThfSyncService.onSync()`:
+  - [src/pages/lecture-detail/lecture-detail.component.ts](./src/pages/lecture-detail/lecture-detail.component.ts#L32)
+  - [src/pages/note-list/note-list.component.ts](./src/pages/note-list/note-list.component.ts#L25)
+  - [src/pages/schedule-filter/schedule-filter.component.ts](./src/pages/schedule-filter/schedule-filter.component.ts#L22)
+  - [src/pages/schedule/schedule/component.ts](./src/pages/schedule/schedule.component.ts#L47)
+  - [src/pages/speaker-detail/speaker-detail.component.ts](./src/pages/speaker-detail/speaker-detail.component.ts#L23)
+  - [src/pages/speaker-list/speaker-list.component.ts](./src/pages/speaker-list/speaker-list.component.ts#L39)
 
-- `ThfSyncService.insertHttpCommand`: src/services/user.service.ts
-
-- `ThfSyncService.onSync`:
-  - src/pages/lecture-detail/lecture-detail.component.ts
-  - src/pages/note-list/note-list.component.ts
-  - src/pages/schedule-filter/schedule-filter.component.ts
-  - src/pages/schedule/schedule/component.ts
-  - src/pages/speaker-detail/speaker-detail.component.ts
-  - src/pages/speaker-list/speaker-list.component.ts
-
-- `ThfSyncService.sync`: 
+- `ThfSyncService.sync`:
   - src/services/lecture.service.ts
   - src/services/note.service.ts
   - src/services/speaker.service.ts
