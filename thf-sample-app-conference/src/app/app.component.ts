@@ -127,7 +127,7 @@ export class MyApp {
 
   private initSync() {
     const config: ThfSyncConfig = {
-      type: ThfNetworkType.ethernet,
+      type: [ThfNetworkType.ethernet, ThfNetworkType.wifi],
       period: 10
     };
 
@@ -139,15 +139,7 @@ export class MyApp {
   }
 
   private getResponses() {
-    this.thfSync.getResponses().subscribe(thfSyncResponse => {
-
-      if (thfSyncResponse.response instanceof HttpErrorResponse) {
-        this.thfSync.removeItemOfSync(thfSyncResponse.id).then(() => {
-          this.thfSync.resumeSync();
-        });
-      }
-
-    });
+    this.thfSync.getResponses();
   }
 
   private listenToLoginEvents() {
