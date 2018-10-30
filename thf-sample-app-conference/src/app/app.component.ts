@@ -51,7 +51,6 @@ export class MyApp {
   ) {
 
     this.initApp();
-    this.getResponses();
   }
 
   isActive(page: PageInterface) {
@@ -136,10 +135,6 @@ export class MyApp {
 
   private isLogged() {
     this.thfStorage.get('login').then(login => this.enableMenu(!!login));
-  }
-
-  private getResponses() {
-    this.thfSync.getResponses();
   }
 
   private listenToLoginEvents() {

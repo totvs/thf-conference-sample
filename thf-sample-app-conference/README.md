@@ -20,7 +20,7 @@ A seguir, tem-se uma lista de funcionalidades utilizadas no App e onde podem ser
   - [src/app/app.component.ts](./src/app/app.component.ts#L111)
 
 - `ThfSyncService.getResponses()`:
-  - [src/app/app.component.ts](src/app/app.component.ts#L142)
+  - [src/pages/signup/signup.component.ts](./src/pages/signup/signup.component.ts#L42)
 
 - `ThfSyncService.getModel()`:
   - [src/services/conference.service.ts](./src/services/conference.service.ts#L14)
