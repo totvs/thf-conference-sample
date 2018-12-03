@@ -18,9 +18,9 @@ export class NoteService {
   }
 
   async getNotes() {
-    const user = await this.userService.getLoggedUser();
-    const notes = await this.getNoteModel().find().exec();
-    return notes.items.filter(note => note.userId === user.id);
+    const user: any = await this.userService.getLoggedUser();
+    const notes: any = await this.getNoteModel().find().exec();
+    return notes.items.filter((note: any) => note.userId === user.id);
   }
 
   remove(note) {

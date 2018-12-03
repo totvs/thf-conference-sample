@@ -8,7 +8,7 @@ export class TrackService {
   constructor(private thfSync: ThfSyncService) {}
 
   async getTracks() {
-    const tracksResponse = await this.thfSync.getModel('Tracks').find().exec();
+    const tracksResponse: any = await this.thfSync.getModel('Tracks').find().exec();
     return tracksResponse.items;
   }
 

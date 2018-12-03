@@ -14,7 +14,7 @@ export class UserService {
   }
 
   async addFavoriteLecture(lectureId, loggedUser) {
-    const user = await this.userModel.findById(loggedUser).exec();
+    const user: any = await this.userModel.findById(loggedUser).exec();
     user.favoriteLectures = user.favoriteLectures || [];
 
     if (!user.favoriteLectures.includes(lectureId)) {
@@ -55,7 +55,7 @@ export class UserService {
 
   async getFavoriteLectures() {
     const loggedUser = await this.getLoggedUserId();
-    const user = await this.userModel.findById(loggedUser).exec();
+    const user: any = await this.userModel.findById(loggedUser).exec();
     return 'favoriteLectures' in user ? user.favoriteLectures : undefined;
   }
 
@@ -75,7 +75,7 @@ export class UserService {
   }
 
   async getUsers() {
-    const userData = await this.userModel.find().exec();
+    const userData: any = await this.userModel.find().exec();
     return userData.items;
   }
 
@@ -91,7 +91,7 @@ export class UserService {
 
   async removeFavoriteLecture(lectureId) {
     const loggedUser = await this.getLoggedUserId();
-    const user = await this.userModel.findById(loggedUser).exec();
+    const user: any = await this.userModel.findById(loggedUser).exec();
 
     user.favoriteLectures = user.favoriteLectures.filter(id => lectureId !== id);
     await this.userModel.save(user);
