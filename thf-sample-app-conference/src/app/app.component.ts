@@ -1,5 +1,4 @@
 import { Component, ViewChild } from '@angular/core';
-import { HttpErrorResponse } from '@angular/common/http';
 
 import { Events, MenuController, Nav, Platform } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
