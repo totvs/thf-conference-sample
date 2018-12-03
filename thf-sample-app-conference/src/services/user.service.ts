@@ -80,7 +80,7 @@ export class UserService {
   }
 
   async onLogin(username, password) {
-    const users = await this.getUsers();
+    const users: any = await this.getUsers();
 
     const foundUser = users.find(user => {
       return (user.username === username) && (user.password === password);

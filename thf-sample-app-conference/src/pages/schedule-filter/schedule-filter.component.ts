@@ -46,7 +46,7 @@ export class ScheduleFilterPage {
     const excludedTrackNames = this.navParams.data;
 
     this.trackService.getTracks().then(tracks => {
-      this.tracks = tracks.map(track => {
+      this.tracks = tracks.map((track: any) => {
         return {
           name: track.name,
           color: track.color,

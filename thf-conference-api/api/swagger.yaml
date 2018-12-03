@@ -16,6 +16,33 @@ consumes:
 produces:
 - "application/json"
 paths:
+  /ping/:
+    get:
+      tags:
+      - "Ping"
+      summary: "Ping used in mingle auth"
+      operationId: "conferencesGET"
+      produces:
+      - "application/json"
+      parameters: []
+      responses:
+        200:
+          description: "Status 200 - OK"
+          schema:
+            $ref: "#/definitions/pingResponse"
+          examples:
+            application/json: "{}"
+        500:
+          description: "Status 500 - Internal Server Error"
+          schema:
+            $ref: "#/definitions/errorResponse"
+          examples:
+            application/json: "{\n\t\"code\": \"500\",\n\t\"message\": \"Internal\
+              \ Server Error\",\n\t\"detailedMessage\": \"High system resource usage\"\
+              \n}"
+      x-swagger-router-controller: "Conferences"
+    x-restlet:
+      section: "Conference"
   /conferences/:
     get:
       tags:
@@ -33,11 +60,11 @@ paths:
           examples:
             application/json: "{\n\t\"hasNext\": false,\n\t\"items\": [{\n\t\t\"id\"\
               : 1,\n\t\t\"title\": \"THF conference 2017\",\n\t\t\"date\": \"2017-07-11T00:00:00Z\"\
-              ,\n\t\t\"location\": \"Av. Santos Dumont, 831 - Santo Antônio, Joinville\
+              ,\n\t\t\"location\": \"Av. Santos Dumont, 831 - Santo AntÃ´nio, Joinville\
               \ - SC\",\n\t\t\"description\": \"Conference organized by THF\"\n\t\
               }, {\n\t\t\"id\": 2,\n\t\t\"title\": \"THF conference 2018\",\n\t\t\"\
               date\": \"2018-08-11T00:00:00Z\",\n\t\t\"location\": \"Av. Santos Dumont,\
-              \ 831 - Santo Antônio, Joinville - SC\",\n\t\t\"description\": \"Conference\
+              \ 831 - Santo AntÃ´nio, Joinville - SC\",\n\t\t\"description\": \"Conference\
               \ organized by THF\"\n\t}]\n}"
         500:
           description: "Status 500 - Internal Server Error"
@@ -73,7 +100,7 @@ paths:
           examples:
             application/json: "{\n\t\"id\": 2,\n\t\"title\": \"THF conference 2018\"\
               ,\n\t\"date\": \"2018-08-11T00:00:00Z\",\n\t\"location\": \"Av. Santos\
-              \ Dumont, 831 - Santo Antônio, Joinville - SC\",\n\t\"description\"\
+              \ Dumont, 831 - Santo AntÃ´nio, Joinville - SC\",\n\t\"description\"\
               : \"Conference organized by THF\"\n}"
         404:
           description: "Status 404 - Not Found"
@@ -120,7 +147,7 @@ paths:
           examples:
             application/json: "{\n\t\"id\": 2,\n\t\"title\": \"THF conference 2018\"\
               ,\n\t\"date\": \"2018-08-11T00:00:00Z\",\n\t\"location\": \"Av. Santos\
-              \ Dumont, 831 - Santo Antônio, Joinville - SC\",\n\t\"description\"\
+              \ Dumont, 831 - Santo AntÃ´nio, Joinville - SC\",\n\t\"description\"\
               : \"Conference organized by THF\"\n}"
         404:
           description: "Status 404 - Not Found"
@@ -1428,6 +1455,18 @@ definitions:
       totvs_sync_date: "2000-01-23T04:56:07.000+00:00"
     x-restlet:
       section: "Conference"
+  pingResponse:
+    type: "object"
+    properties:
+      hasNext:
+        type: "boolean"
+        description: "Indicate if has next page of data."
+      items:
+        type: "array"
+        description: "Empty json."
+        items: {}
+    x-restlet:
+      section: "ping"
   lecture:
     type: "object"
     required:

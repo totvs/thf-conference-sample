@@ -3,6 +3,7 @@ import { ErrorHandler, NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
+import { Network } from '@ionic-native/network';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 
@@ -74,6 +75,7 @@ import { UserService } from '../services/user.service';
     SplashScreen,
     StatusBar,
     ConferenceService,
+    Network,
     NoteService,
     UserService,
     TrackService,

@@ -14,7 +14,7 @@ export class NoteService {
 
   async getNote(lectureId) {
     const notes = await this.getNotes();
-    return notes.find(note => note.lectureId === lectureId);
+    return notes.find((note: any) => note.lectureId === lectureId);
   }
 
   async getNotes() {
