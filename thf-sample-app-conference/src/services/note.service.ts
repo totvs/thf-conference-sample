@@ -20,7 +20,6 @@ export class NoteService {
   async getNotes() {
     const user: any = await this.userService.getLoggedUser();
     const notes: any = await this.getNoteModel().find().exec();
-
     return notes.items.filter((note: any) => note.userId === user.id);
   }
 

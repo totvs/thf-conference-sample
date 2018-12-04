@@ -56,7 +56,6 @@ export class UserService {
   async getFavoriteLectures() {
     const loggedUser = await this.getLoggedUserId();
     const user: any = await this.userModel.findById(loggedUser).exec();
-
     return 'favoriteLectures' in user ? user.favoriteLectures : undefined;
   }
 
@@ -77,7 +76,6 @@ export class UserService {
 
   async getUsers() {
     const userData: any = await this.userModel.find().exec();
-
     return userData.items;
   }
 
