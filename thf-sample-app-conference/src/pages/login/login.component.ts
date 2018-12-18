@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 
 import { Events, NavController, ToastController } from 'ionic-angular';
 
-import { ThfPageLogin } from '@totvs/thf-ui/components/thf-page';
+import { ThfPageLogin } from '@totvs/thf-templates/components/thf-page-login';
 
 import { SignupPage } from '../signup/signup.component';
 import { TabsPage } from '../tabs/tabs.component';

@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { ThfNotificationService } from '@totvs/thf-ui/services/thf-notification/thf-notification.service';
-import { ThfPageLogin } from '@totvs/thf-ui/components/thf-page';
+import { ThfPageLogin } from '@totvs/thf-templates/components/thf-page-login';
 import { ThfStorageService } from '@totvs/thf-storage';
 
 import { LoginService } from './login.service';
