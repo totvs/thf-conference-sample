@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 
 import { Events, NavController } from 'ionic-angular';
 
-import { ThfPageLogin, ThfPageLoginLiterals } from '@totvs/thf-ui/components/thf-page';
+import { ThfPageLogin, ThfPageLoginLiterals } from '@totvs/thf-templates/components/thf-page-login';
 import { ThfStorageService } from '@totvs/thf-storage';
 import { ThfSyncService } from '@totvs/thf-sync';
 

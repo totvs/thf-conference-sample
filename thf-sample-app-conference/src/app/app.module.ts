@@ -8,6 +8,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 
 import { ThfModule } from '@totvs/thf-ui';
+import { ThfPageLoginModule } from '@totvs/thf-templates/components/thf-page-login';
 import { ThfStorageModule } from '@totvs/thf-storage';
 import { ThfSyncModule } from '@totvs/thf-sync';
 
@@ -53,7 +54,8 @@ import { UserService } from '../services/user.service';
     ThfModule,
     ThfSyncModule,
     ThfStorageModule.forRoot(),
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    ThfPageLoginModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
