@@ -2,9 +2,9 @@
 
 Esse repositório tem como objetivo, disponibilizar um exemplo de uma arquitetura que contém duas aplicações, uma web e uma para dispositivos móveis. Aqui você pode encontrar exemplos de utilização do **thf-ui**, **thf-sync** e **thf-storage**, e usá-los como referência para suas aplicações.
 
-![Use Extension](https://github.com/totvs/thf-conference-sample/raw/master/assets/thf-conference-app-1.gif)
+![Use Extension](https://github.com/totvs/thf-conference-sample/raw/master/assets/images/thf-conference-app-1.gif)
 
-![Use Extension](https://github.com/totvs/thf-conference-sample/raw/master/assets/thf-conference-app-2.gif)
+![Use Extension](https://github.com/totvs/thf-conference-sample/raw/master/assets/images/thf-conference-app-2.gif)
 
 No exemplo, a aplicação web funciona como um portal para o administrador da conferência, onde ele pode cadastrar, atualizar ou remover os palestrantes e as palestras. Já no aplicativo móvel, o usuário além de poder acompanhar quem são os palestrantes e a agenda de palestras, ele pode adicionar, alterar ou remover notas sobre uma determinada palestra. Todas essas informações ficam armazenadas no server, comum as duas aplicações.
 
