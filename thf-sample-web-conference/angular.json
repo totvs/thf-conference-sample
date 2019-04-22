@@ -16,20 +16,15 @@
             "main": "src/main.ts",
             "tsConfig": "src/tsconfig.app.json",
             "polyfills": "src/polyfills.ts",
-
-
-
             "assets": [
               "src/assets",
               "src/favicon.ico",
               {
                 "glob": "**\/*",
-                "input": "../node_modules/@totvs/thf-theme/images",
-                "output": "./assets/images"
+                "input": "node_modules/@totvs/thf-theme/images",
+                "output": "assets/images"
               }
             ],
-
-
             "styles": [
               "node_modules/@totvs/thf-theme/css/thf-theme-default.min.css",
               "src/styles.css"
