@@ -12,6 +12,9 @@ import { NoteModule } from './note/note.module';
 import { SharedModule } from './shared/shared.module';
 import { SpeakerModule } from './speaker/speaker.module';
 import { TrackModule } from './track/track.module';
+import { ThfPageBlockedUserModule, ThfPageLoginModule, ThfPageChangePasswordModule, ThfModalPasswordRecoveryModule } from '@totvs/thf-templates';
+import { BlockedUserComponent } from './blocked-user/blocked-user.component';
+import { ChangePasswordComponent } from './change-password/change-password.component';
 
 @NgModule({
   imports: [
@@ -24,11 +27,16 @@ import { TrackModule } from './track/track.module';
     NoteModule,
     SpeakerModule,
     TrackModule,
-
-    SharedModule
+    SharedModule,
+    ThfPageLoginModule,
+    ThfPageBlockedUserModule,
+    ThfPageChangePasswordModule,
+    ThfModalPasswordRecoveryModule,
   ],
   declarations: [
-    AppComponent
+    AppComponent,
+    BlockedUserComponent,
+    ChangePasswordComponent
   ],
   providers: [
     LoginService

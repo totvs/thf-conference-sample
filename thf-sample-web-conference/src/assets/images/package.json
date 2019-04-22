@@ -1,0 +1,68 @@
+{
+  "_from": "@totvs/thf-theme@3.15.0",
+  "_id": "@totvs/thf-theme@3.15.0",
+  "_inBundle": false,
+  "_integrity": "sha512-vGsTYUznyi9EQiHqsmnUfyIvO3UrP3bU5N8SZQ4+iLOA7AOXnwSOj+kR80xL47FhsILmKoF5yCXIwCB611VgaQ==",
+  "_location": "/@totvs/thf-theme",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "version",
+    "registry": true,
+    "raw": "@totvs/thf-theme@3.15.0",
+    "name": "@totvs/thf-theme",
+    "escapedName": "@totvs%2fthf-theme",
+    "scope": "@totvs",
+    "rawSpec": "3.15.0",
+    "saveSpec": null,
+    "fetchSpec": "3.15.0"
+  },
+  "_requiredBy": [
+    "/@totvs/thf-templates",
+    "/@totvs/thf-templates/@totvs/thf-ui"
+  ],
+  "_resolved": "https://registry.npmjs.org/@totvs/thf-theme/-/thf-theme-3.15.0.tgz",
+  "_shasum": "ed180486965a8381010a57a774b477cf1745a2e2",
+  "_spec": "@totvs/thf-theme@3.15.0",
+  "_where": "/Users/samir.ayoub/dev/thf-conference-sample/thf-sample-web-conference/node_modules/@totvs/thf-templates",
+  "bundleDependencies": false,
+  "deprecated": false,
+  "description": "TOTVS HTML Framework - Theme",
+  "devDependencies": {
+    "autoprefixer": "^9.4.2",
+    "capitalize": "^2.0.0",
+    "cssnano": "^4.1.7",
+    "del": "^3.0.0",
+    "gulp": "3.9.1",
+    "gulp-concat": "^2.6.1",
+    "gulp-copy": "^4.0.1",
+    "gulp-inject-string": "^1.1.2",
+    "gulp-json-modify": "^1.0.2",
+    "gulp-minify": "^3.1.0",
+    "gulp-postcss": "^8.0.0",
+    "gulp-remove-empty-lines": "^0.1.0",
+    "gulp-rename": "^1.4.0",
+    "gulp-strip-css-comments": "^2.0.0",
+    "gulp-tap": "^1.0.1",
+    "postcss-apply": "^0.11.0",
+    "postcss-custom-properties": "^8.0.9",
+    "postcss-import": "^12.0.1",
+    "postcss-nested": "^4.1.0",
+    "vinyl-paths": "^2.1.0",
+    "yargs": "^12.0.5"
+  },
+  "license": "MIT",
+  "name": "@totvs/thf-theme",
+  "repository": {
+    "type": "git",
+    "url": "https://totvstfs.visualstudio.com/THF/_git/cdn-thf-core"
+  },
+  "scripts": {
+    "build": "gulp build",
+    "build:all": "npm run build && npm run build:kendo",
+    "build:app": "gulp build:app",
+    "build:kendo": "gulp build --theme kendo",
+    "watch": "gulp watch"
+  },
+  "tag": "dev",
+  "version": "3.15.0"
+}

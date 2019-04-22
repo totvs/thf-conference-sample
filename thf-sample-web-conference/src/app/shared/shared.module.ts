@@ -24,7 +24,6 @@ import { GenericService } from './../generic/service/generic.service';
   exports: [
     CommonModule,
     FormsModule,
-
     ThfModule,
     ThfStorageModule
   ],

@@ -6,6 +6,8 @@ import { ThfPageLogin } from '@totvs/thf-templates/components/thf-page-login';
 import { ThfStorageService } from '@totvs/thf-storage';
 
 import { LoginService } from './login.service';
+import { ThfModalPasswordRecoveryType } from '@totvs/thf-templates';
+import { ThfPageLoginRecovery } from '@totvs/thf-templates/components/thf-page-login';
 
 @Component({
   selector: 'app-login',
@@ -15,6 +17,8 @@ import { LoginService } from './login.service';
 export class LoginComponent {
 
   hideRememberUser: boolean = true;
+  authenticationUrl = 'http://localhost:3000/users/authentication';
+  passwordRecoveryUrl: ThfPageLoginRecovery = {url: 'http://localhost:3000/users', type: ThfModalPasswordRecoveryType.All};
 
   constructor(
     private loginService: LoginService,

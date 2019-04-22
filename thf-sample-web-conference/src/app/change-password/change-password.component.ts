@@ -1,0 +1,17 @@
+import { Component, OnInit } from '@angular/core';
+
+@Component({
+  selector: 'app-change-password',
+  templateUrl: './change-password.component.html',
+  styleUrls: ['./change-password.component.css']
+})
+export class ChangePasswordComponent implements OnInit {
+
+  changePassword = 'http://localhost:3000/new-password';
+  
+  constructor() { }
+
+  ngOnInit() {
+  }
+
+}

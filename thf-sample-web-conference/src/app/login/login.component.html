@@ -1,4 +1,5 @@
 <thf-page-login
   [t-hide-remember-user]="hideRememberUser"
-  (t-login-submit)="loginSubmit($event)">
+  [t-authentication-url]= "authenticationUrl"
+  [t-recovery]="passwordRecoveryUrl">
 </thf-page-login>

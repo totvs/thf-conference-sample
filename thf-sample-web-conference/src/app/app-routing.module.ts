@@ -9,6 +9,8 @@ import { LectureEditComponent } from './lecture/lecture-edit/lecture-edit.compon
 import { SpeakerComponent } from './speaker/speaker.component';
 import { SpeakerDetailComponent } from './speaker/speaker-detail/speaker-detail.component';
 import { SpeakerEditComponent } from './speaker/speaker-edit/speaker-edit.component';
+import { BlockedUserComponent } from './blocked-user/blocked-user.component';
+import { ChangePasswordComponent } from './change-password/change-password.component';
 
 const routes: Routes = [
   {
@@ -16,9 +18,15 @@ const routes: Routes = [
     loadChildren: 'app/login/login.module#LoginModule'
   },
   {
+    path: 'blocked-user', component: BlockedUserComponent
+  },
+  {
+    path: 'change-password', component: ChangePasswordComponent
+  },
+  {
     path: '',
     component: HomeComponent,
-    canActivate: [AuthGuardService],
+    // canActivate: [AuthGuardService],
     children: [
       { path: '', redirectTo: '/home', pathMatch: 'full' },
       { path: 'home', loadChildren: 'app/home/home.module#HomeModule' },
@@ -42,7 +50,7 @@ const routes: Routes = [
         ]
       },
       { path: 'tracks', loadChildren: 'app/track/track.module#TrackModule' },
-      { path: '**', redirectTo: '/home', pathMatch: 'full'}
+      // { path: '**', redirectTo: '/home', pathMatch: 'full'}
     ]
   }
 ];
