@@ -1308,20 +1308,25 @@ paths:
       produces:
       - "application/json"
       parameters:
+      - name: "Authorization"
+        in: "header"
+        required: true
+        type: "string"
+        x-example: "Basic KGFkbWluOmFkbWluKQ=="
       - in: "body"
         name: "body"
         required: true
         schema:
-          $ref: "#/definitions/userLogin"
+          $ref: "#/definitions/loginForm"
       responses:
         200:
           description: "Status 200 - OK"
           schema:
-            $ref: "#/definitions/user"
+            $ref: "#/definitions/loginSuccess"
         400:
           description: "Status 400 - Bad Request"
           schema:
-            $ref: "#/definitions/errorResponse"
+            $ref: "#/definitions/loginError"
       x-swagger-router-controller: "Auth"
     x-restlet:
       section: "Auth"
@@ -1910,6 +1915,61 @@ definitions:
       totvs_sync_date: "2000-01-23T04:56:07.000+00:00"
     x-restlet:
       section: "Users"
+  loginForm:
+    type: "object"
+    required:
+    - "rememberUser"
+    properties:
+      rememberUser:
+        type: "boolean"
+    x-restlet:
+      section: "Auth"
+  loginSuccess:
+    type: "object"
+    required:
+    - "name"
+    - "user"
+    properties:
+      user:
+        type: "string"
+      name:
+        type: "string"
+    example:
+      name: "name"
+      user: "user"
+    x-restlet:
+      section: "Auth"
+  loginError:
+    type: "object"
+    required:
+    - "blockedUrl"
+    - "code"
+    - "detailedMessage"
+    - "loginWarnings"
+    - "maxAttemptsRemaining"
+    - "message"
+    - "passwordWarnings"
+    properties:
+      code:
+        type: "string"
+      message:
+        type: "string"
+      detailedMessage:
+        type: "string"
+      maxAttemptsRemaining:
+        type: "integer"
+      loginWarnings:
+        type: "array"
+        items:
+          type: "string"
+      passwordWarnings:
+        type: "array"
+        items:
+          type: "string"
+      blockedUrl:
+        type: "string"
+    x-restlet:
+      section: "Auth"
 x-restlet:
   sections:
     General: {}

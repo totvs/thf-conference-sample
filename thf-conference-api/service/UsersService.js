@@ -42,7 +42,9 @@ var findNotesForUsers = function () {
 };
 
 exports.userAuthentication = (userLogin) => {
-  return users.find(user => (user.username === userLogin.username && user.password === userLogin.password));
+  let user = users.find(user => (user.username === userLogin.username && user.password === userLogin.password));
+
+  return user;
 }
 
 /**
