@@ -1401,6 +1401,61 @@
       "x-restlet" : {
         "section" : "Auth"
       }
+    },
+    "/auth/recovery" : {
+      "post" : {
+        "tags" : [ "Auth" ],
+        "summary" : "Endpoint for password recovery",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "body",
+          "in" : "body",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/passwordRecovery"
+          }
+        } ],
+        "responses" : {
+          "204" : {
+            "description" : "Status 204"
+          },
+          "404" : {
+            "description" : "Invalid email",
+            "schema" : {
+              "type" : "object"
+            }
+          }
+        }
+      },
+      "x-restlet" : {
+        "section" : "Auth"
+      }
+    },
+    "/auth/new-password" : {
+      "post" : {
+        "tags" : [ "Auth" ],
+        "summary" : "Endpoint para cadastro de nova senha",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "body",
+          "in" : "body",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/new_password"
+          }
+        } ],
+        "responses" : {
+          "204" : {
+            "description" : "Status 204"
+          },
+          "401" : {
+            "description" : "Status 401"
+          }
+        }
+      },
+      "x-restlet" : {
+        "section" : "Auth"
+      }
     }
   },
   "definitions" : {
@@ -1917,6 +1972,52 @@
           }
         },
         "blockedUrl" : {
+          "type" : "string"
+        }
+      },
+      "x-restlet" : {
+        "section" : "Auth"
+      }
+    },
+    "passwordRecovery" : {
+      "type" : "object",
+      "properties" : {
+        "email" : {
+          "type" : "string"
+        },
+        "retry" : {
+          "type" : "integer"
+        }
+      },
+      "x-restlet" : {
+        "section" : "Auth"
+      }
+    },
+    "totvs_messages" : {
+      "type" : "array",
+      "items" : {
+        "type" : "object",
+        "properties" : {
+          "type" : {
+            "type" : "string"
+          },
+          "code" : {
+            "type" : "string"
+          },
+          "detail" : {
+            "type" : "string"
+          }
+        }
+      },
+      "x-restlet" : {
+        "section" : "Auth"
+      }
+    },
+    "new_password" : {
+      "type" : "object",
+      "required" : [ "newPassword" ],
+      "properties" : {
+        "newPassword" : {
           "type" : "string"
         }
       },

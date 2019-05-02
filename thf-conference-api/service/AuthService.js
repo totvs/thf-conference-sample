@@ -23,8 +23,11 @@ exports.authLoginPOST = function(authorization,body) {
     if (user) {
       resolve(user);
     } else {
-
-      retryBasic = (retryBasic === 0) ? 3 : retryBasic--;
+      if (retryBasic === 0) {
+        retryBasic = 3
+      } else {
+        retryBasic--
+      }
 
       let resultError = {
         code: '400',
@@ -33,7 +36,7 @@ exports.authLoginPOST = function(authorization,body) {
         maxAttemptsRemaining: retryBasic,
         loginWarnings: ['Invalid user and/or password'],
         passwordWarnings: ['Invalid user and/or password'],
-        blockedUrl: 'https://thf.totvs.com.br/documentation/thf-page-blocked-user'
+        blockedUrl: '/access-denied'
       };
 
       reject(resultError);
@@ -53,3 +56,33 @@ exports.authLogoutPOST = function (body) {
   });
 }
 
+/**
+ * Endpoint para cadastro de nova senha
+ *
+ * body New_password 
+ * no response value expected for this operation
+ **/
+exports.authNew_passwordPOST = function(body) {
+  return new Promise(function(resolve, reject) {
+    resolve(204);
+  });
+}
+
+
+/**
+ * Endpoint for password recovery
+ *
+ * body PasswordRecovery 
+ * no response value expected for this operation
+ **/
+exports.authRecoveryPOST = function(body) {
+  return new Promise(function(resolve, reject) {
+    const mail = body.email;
+    const retry = body.retry || 0;
+    if (mail === 'mail@mail.com') {
+      resolve(204);
+    } else {
+      reject(404);
+    }
+  });
+}

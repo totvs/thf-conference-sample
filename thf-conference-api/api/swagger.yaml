@@ -16,33 +16,6 @@ consumes:
 produces:
 - "application/json"
 paths:
-  /ping/:
-    get:
-      tags:
-      - "Ping"
-      summary: "Ping used in mingle auth"
-      operationId: "conferencesGET"
-      produces:
-      - "application/json"
-      parameters: []
-      responses:
-        200:
-          description: "Status 200 - OK"
-          schema:
-            $ref: "#/definitions/pingResponse"
-          examples:
-            application/json: "{}"
-        500:
-          description: "Status 500 - Internal Server Error"
-          schema:
-            $ref: "#/definitions/errorResponse"
-          examples:
-            application/json: "{\n\t\"code\": \"500\",\n\t\"message\": \"Internal\
-              \ Server Error\",\n\t\"detailedMessage\": \"High system resource usage\"\
-              \n}"
-      x-swagger-router-controller: "Conferences"
-    x-restlet:
-      section: "Conference"
   /conferences/:
     get:
       tags:
@@ -55,25 +28,25 @@ paths:
       responses:
         200:
           description: "Status 200 - OK"
-          schema:
-            $ref: "#/definitions/conferencesResponse"
           examples:
             application/json: "{\n\t\"hasNext\": false,\n\t\"items\": [{\n\t\t\"id\"\
               : 1,\n\t\t\"title\": \"THF conference 2017\",\n\t\t\"date\": \"2017-07-11T00:00:00Z\"\
-              ,\n\t\t\"location\": \"Av. Santos Dumont, 831 - Santo AntÃ´nio, Joinville\
+              ,\n\t\t\"location\": \"Av. Santos Dumont, 831 - Santo Antônio, Joinville\
               \ - SC\",\n\t\t\"description\": \"Conference organized by THF\"\n\t\
               }, {\n\t\t\"id\": 2,\n\t\t\"title\": \"THF conference 2018\",\n\t\t\"\
               date\": \"2018-08-11T00:00:00Z\",\n\t\t\"location\": \"Av. Santos Dumont,\
-              \ 831 - Santo AntÃ´nio, Joinville - SC\",\n\t\t\"description\": \"Conference\
+              \ 831 - Santo Antônio, Joinville - SC\",\n\t\t\"description\": \"Conference\
               \ organized by THF\"\n\t}]\n}"
+          schema:
+            $ref: "#/definitions/conferencesResponse"
         500:
           description: "Status 500 - Internal Server Error"
-          schema:
-            $ref: "#/definitions/errorResponse"
           examples:
             application/json: "{\n\t\"code\": \"500\",\n\t\"message\": \"Internal\
               \ Server Error\",\n\t\"detailedMessage\": \"High system resource usage\"\
               \n}"
+          schema:
+            $ref: "#/definitions/errorResponse"
       x-swagger-router-controller: "Conferences"
     x-restlet:
       section: "Conference"
@@ -95,28 +68,28 @@ paths:
       responses:
         200:
           description: "Status 200 - OK"
-          schema:
-            $ref: "#/definitions/conference"
           examples:
             application/json: "{\n\t\"id\": 2,\n\t\"title\": \"THF conference 2018\"\
               ,\n\t\"date\": \"2018-08-11T00:00:00Z\",\n\t\"location\": \"Av. Santos\
-              \ Dumont, 831 - Santo AntÃ´nio, Joinville - SC\",\n\t\"description\"\
+              \ Dumont, 831 - Santo Antônio, Joinville - SC\",\n\t\"description\"\
               : \"Conference organized by THF\"\n}"
+          schema:
+            $ref: "#/definitions/conference"
         404:
           description: "Status 404 - Not Found"
-          schema:
-            $ref: "#/definitions/errorResponse"
           examples:
             application/json: "{\n\t\"code\": \"404\",\n\t\"message\": \"Not Found\"\
               ,\n\t\"detailedMessage\": \"Conference not found\"\n}"
-        500:
-          description: "Status 500 - Internal Server Error"
           schema:
             $ref: "#/definitions/errorResponse"
+        500:
+          description: "Status 500 - Internal Server Error"
           examples:
             application/json: "{\n\t\"code\": \"500\",\n\t\"message\": \"Internal\
               \ Server Error\",\n\t\"detailedMessage\": \"High system resource usage\"\
               \n}"
+          schema:
+            $ref: "#/definitions/errorResponse"
       x-swagger-router-controller: "Conferences"
     put:
       tags:
@@ -142,25 +115,25 @@ paths:
       responses:
         200:
           description: "Status 200 - OK"
-          schema:
-            $ref: "#/definitions/conference"
           examples:
             application/json: "{\n\t\"id\": 2,\n\t\"title\": \"THF conference 2018\"\
               ,\n\t\"date\": \"2018-08-11T00:00:00Z\",\n\t\"location\": \"Av. Santos\
-              \ Dumont, 831 - Santo AntÃ´nio, Joinville - SC\",\n\t\"description\"\
+              \ Dumont, 831 - Santo Antônio, Joinville - SC\",\n\t\"description\"\
               : \"Conference organized by THF\"\n}"
+          schema:
+            $ref: "#/definitions/conference"
         404:
           description: "Status 404 - Not Found"
           schema:
             $ref: "#/definitions/errorResponse"
         500:
           description: "Status 500 - Internal Server Error"
-          schema:
-            $ref: "#/definitions/errorResponse"
           examples:
             application/json: "{\n\t\"code\": \"500\",\n\t\"message\": \"Internal\
               \ Server Error\",\n\t\"detailedMessage\": \"High system resource usage\"\
               \n}"
+          schema:
+            $ref: "#/definitions/errorResponse"
       x-swagger-router-controller: "Conferences"
     x-restlet:
       section: "Conference"
@@ -200,8 +173,6 @@ paths:
       responses:
         200:
           description: "Status 200"
-          schema:
-            $ref: "#/definitions/lecturesResponse"
           examples:
             application/json: "{\n\t\"hasNext\": false,\n\t\"items\": [{\n\t\t\"id\"\
               : \"1\",\n\t\t\"title\": \"Unit testing for beginners\",\n\t\t\"room\"\
@@ -212,14 +183,16 @@ paths:
               : \"08:45:00\",\n\t\t\"endTime\": \"09:00:00\",\n\t\t\"description\"\
               : \"Chrome devtools\",\n\t\t\"trackId\": \"6\",\n\t\t\"speakerId\":\
               \ \"3\"\n\t}]\n}"
+          schema:
+            $ref: "#/definitions/lecturesResponse"
         500:
           description: "Status 500 - Internal Server Error"
-          schema:
-            $ref: "#/definitions/errorResponse"
           examples:
             application/json: "{\n\t\"code\": \"500\",\n\t\"message\": \"Internal\
               \ Server Error\",\n\t\"detailedMessage\": \"High system resource usage\"\
               \n}"
+          schema:
+            $ref: "#/definitions/errorResponse"
       x-swagger-router-controller: "Lectures"
     post:
       tags:
@@ -243,12 +216,12 @@ paths:
             $ref: "#/definitions/lecture"
         500:
           description: "Status 500 - Internal Server Error"
-          schema:
-            $ref: "#/definitions/errorResponse"
           examples:
             application/json: "{\n\t\"code\": \"500\",\n\t\"message\": \"Internal\
               \ Server Error\",\n\t\"detailedMessage\": \"High system resource usage\"\
               \n}"
+          schema:
+            $ref: "#/definitions/errorResponse"
       x-swagger-router-controller: "Lectures"
     x-restlet:
       section: "Lectures"
@@ -270,26 +243,26 @@ paths:
       responses:
         200:
           description: "Status 200 - OK"
-          schema:
-            $ref: "#/definitions/lecture"
           examples:
             application/json: "{\n\t\t\"id\": \"1\",\n\t\t\"title\": \"Unit testing\
               \ for beginners\",\n\t\t\"room\": \"2B\",\n\t\t\"startTime\": \"08:30:00\"\
               ,\n\t\t\"endTime\": \"08:45:00\",\n\t\t\"description\": \"Unit testing\
               \ for beginners\",\n\t\t\"trackId\": \"4\",\n\t\t\"speakerId\": \"4\"\
               \n}"
+          schema:
+            $ref: "#/definitions/lecture"
         404:
           description: "Status 404 - Not Found"
           schema:
             $ref: "#/definitions/errorResponse"
         500:
           description: "Status 500 - Internal Server Error"
-          schema:
-            $ref: "#/definitions/errorResponse"
           examples:
             application/json: "{\n\t\"code\": \"500\",\n\t\"message\": \"Internal\
               \ Server Error\",\n  \t\"detailedMessage\": \"High system resource usage\"\
               \n}"
+          schema:
+            $ref: "#/definitions/errorResponse"
       x-swagger-router-controller: "Lectures"
     put:
       tags:
@@ -315,26 +288,26 @@ paths:
       responses:
         200:
           description: "Status 200 - OK"
-          schema:
-            $ref: "#/definitions/lecture"
           examples:
             application/json: "{\n\t\t\"id\": \"1\",\n\t\t\"title\": \"Unit testing\
               \ for beginners\",\n\t\t\"room\": \"2B\",\n\t\t\"startTime\": \"08:30:00\"\
               ,\n\t\t\"endTime\": \"08:45:00\",\n\t\t\"description\": \"Unit testing\
               \ for beginners\",\n\t\t\"trackId\": \"4\",\n\t\t\"speakerId\": \"4\"\
               \n}"
+          schema:
+            $ref: "#/definitions/lecture"
         404:
           description: "Status 404 - Not Found"
           schema:
             $ref: "#/definitions/errorResponse"
         500:
           description: "Status 500 - Internal Server Error"
-          schema:
-            $ref: "#/definitions/errorResponse"
           examples:
             application/json: "{\n\t\"code\": \"500\",\n\t\"message\": \"Internal\
               \ Server Error\",\n  \t\"detailedMessage\": \"High system resource usage\"\
               \n}"
+          schema:
+            $ref: "#/definitions/errorResponse"
       x-swagger-router-controller: "Lectures"
     delete:
       tags:
@@ -359,12 +332,12 @@ paths:
             $ref: "#/definitions/errorResponse"
         500:
           description: "Status 500 - Internal Server Error"
-          schema:
-            $ref: "#/definitions/errorResponse"
           examples:
             application/json: "{\n\t\"code\": \"500\",\n\t\"message\": \"Internal\
               \ Server Error\",\n  \t\"detailedMessage\": \"High system resource usage\"\
               \n}"
+          schema:
+            $ref: "#/definitions/errorResponse"
       x-swagger-router-controller: "Lectures"
     x-restlet:
       section: "Lectures"
@@ -425,8 +398,6 @@ paths:
       responses:
         200:
           description: "Status 200"
-          schema:
-            $ref: "#/definitions/notesResponse"
           examples:
             application/json: "{\n\t\"hasNext\": false,\n\t\"items\": [{\n\t\t\"id\"\
               : \"1\",\n\t\t\"title\": \"Chrome DevTools\",\n\t\t\"text\": \"Note\
@@ -434,14 +405,16 @@ paths:
               \ \"2\"\n\t}, {\n\t\t\"id\": \"2\",\n\t\t\"title\": \"Unit testing for\
               \ beginners\",\n\t\t\"text\": \"Note of unit testing for beginners\"\
               ,\n\t\t\"lectureId\": \"2\",\n\t\t\"userId\": \"1\"\n\t}]\n}"
+          schema:
+            $ref: "#/definitions/notesResponse"
         500:
           description: "Status 500 - Internal Server Error"
-          schema:
-            $ref: "#/definitions/errorResponse"
           examples:
             application/json: "{\n\t\"code\": \"500\",\n\t\"message\": \"Internal\
               \ Server Error\",\n  \t\"detailedMessage\": \"High system resource usage\"\
               \n}"
+          schema:
+            $ref: "#/definitions/errorResponse"
       x-swagger-router-controller: "Notes"
     post:
       tags:
@@ -465,12 +438,12 @@ paths:
             $ref: "#/definitions/note"
         500:
           description: "Status 500 - Internal Server Error"
-          schema:
-            $ref: "#/definitions/errorResponse"
           examples:
             application/json: "{\n\t\"code\": \"500\",\n\t\"message\": \"Internal\
               \ Server Error\",\n  \t\"detailedMessage\": \"High system resource usage\"\
               \n}"
+          schema:
+            $ref: "#/definitions/errorResponse"
       x-swagger-router-controller: "Notes"
     x-restlet:
       section: "Notes"
@@ -492,27 +465,27 @@ paths:
       responses:
         200:
           description: "Status 200 - OK"
-          schema:
-            $ref: "#/definitions/note"
           examples:
             application/json: "{\n\t\t\"id\": \"1\",\n\t\t\"title\": \"Chrome DevTools\"\
               ,\n\t\t\"text\": \"Note of Chrome DevTools\",\n\t\t\"lectureId\": \"\
               1\",\n\t\t\"userId\": \"2\"\n}"
+          schema:
+            $ref: "#/definitions/note"
         404:
           description: "Status 404 - Not Found"
-          schema:
-            $ref: "#/definitions/errorResponse"
           examples:
             application/json: "{\n\t\"code\": \"404\",\n\t\"message\": \"Not Found\"\
               ,\n\t\"detailedMessage\": \"Note not found\"\n}"
-        500:
-          description: "Status 500 - Internal Server Error"
           schema:
             $ref: "#/definitions/errorResponse"
+        500:
+          description: "Status 500 - Internal Server Error"
           examples:
             application/json: "{\n\t\"code\": \"500\",\n\t\"message\": \"Internal\
               \ Server Error\",\n  \t\"detailedMessage\": \"High system resource usage\"\
               \n}"
+          schema:
+            $ref: "#/definitions/errorResponse"
       x-swagger-router-controller: "Notes"
     put:
       tags:
@@ -546,12 +519,12 @@ paths:
             $ref: "#/definitions/errorResponse"
         500:
           description: "Status 500 - Internal Server Error"
-          schema:
-            $ref: "#/definitions/errorResponse"
           examples:
             application/json: "{\n\t\"code\": \"500\",\n\t\"message\": \"Internal\
               \ Server Error\",\n  \t\"detailedMessage\": \"High system resource usage\"\
               \n}"
+          schema:
+            $ref: "#/definitions/errorResponse"
       x-swagger-router-controller: "Notes"
     delete:
       tags:
@@ -576,12 +549,12 @@ paths:
             $ref: "#/definitions/errorResponse"
         500:
           description: "Status 500 - Internal Server Error"
-          schema:
-            $ref: "#/definitions/errorResponse"
           examples:
             application/json: "{\n\t\"code\": \"500\",\n\t\"message\": \"Internal\
               \ Server Error\",\n  \t\"detailedMessage\": \"High system resource usage\"\
               \n}"
+          schema:
+            $ref: "#/definitions/errorResponse"
       x-swagger-router-controller: "Notes"
     x-restlet:
       section: "Notes"
@@ -657,8 +630,6 @@ paths:
       responses:
         200:
           description: "Status 200 - OK"
-          schema:
-            $ref: "#/definitions/speakersResponse"
           examples:
             application/json: "{\n\t\"hasNext\": false,\n\t\"items\": [{\n\t\t\"id\"\
               : 1,\n\t\t\"name\": \"NodeJS Developer\",\n\t\t\"email\": \"developer.nodejs@totvs.com.br\"\
@@ -666,14 +637,16 @@ paths:
               \n\t}, {\n\t\t\"id\": 2,\n\t\t\"name\": \"Angular Developer\",\n\t\t\
               \"email\": \"developer.angular@totvs.com.br\",\n\t\t\"description\"\
               : \"Angular developer with 2 years experience\"\n\t}]\n}"
+          schema:
+            $ref: "#/definitions/speakersResponse"
         500:
           description: "Status 500 - Internal Server Error"
-          schema:
-            $ref: "#/definitions/errorResponse"
           examples:
             application/json: "{\n\t\"code\": \"500\",\n\t\"message\": \"Internal\
               \ Server Error\",\n  \t\"detailedMessage\": \"High system resource usage\"\
               \n}"
+          schema:
+            $ref: "#/definitions/errorResponse"
       x-swagger-router-controller: "Speakers"
     post:
       tags:
@@ -699,12 +672,12 @@ paths:
             $ref: "#/definitions/speaker"
         500:
           description: "Status 500 - Internal Server Error"
-          schema:
-            $ref: "#/definitions/errorResponse"
           examples:
             application/json: "{\n\t\"code\": \"500\",\n\t\"message\": \"Internal\
               \ Server Error\",\n  \t\"detailedMessage\": \"High system resource usage\"\
               \n}"
+          schema:
+            $ref: "#/definitions/errorResponse"
       x-swagger-router-controller: "Speakers"
     x-restlet:
       section: "Speakers"
@@ -726,27 +699,27 @@ paths:
       responses:
         200:
           description: "Status 200 - OK"
-          schema:
-            $ref: "#/definitions/speaker"
           examples:
             application/json: "{\n\t\"id\": 2,\n\t\"name\": \"Angular Developer\"\
               ,\n\t\"email\": \"developer.angular@totvs.com.br\",\n\t\"description\"\
               : \"Angular developer with 2 years experience\"\n}"
+          schema:
+            $ref: "#/definitions/speaker"
         404:
           description: "Status 404 - Not Found"
-          schema:
-            $ref: "#/definitions/errorResponse"
           examples:
             application/json: "{\n\t\"code\": \"404\",\n\t\"message\": \"Not Found\"\
               ,\n\t\"detailedMessage\": \"Speaker not found\"\n}"
-        500:
-          description: "Status 500 - Internal Server Error"
           schema:
             $ref: "#/definitions/errorResponse"
+        500:
+          description: "Status 500 - Internal Server Error"
           examples:
             application/json: "{\n\t\"code\": \"500\",\n\t\"message\": \"Internal\
               \ Server Error\",\n  \t\"detailedMessage\": \"High system resource usage\"\
               \n}"
+          schema:
+            $ref: "#/definitions/errorResponse"
       x-swagger-router-controller: "Speakers"
     put:
       tags:
@@ -780,12 +753,12 @@ paths:
             $ref: "#/definitions/errorResponse"
         500:
           description: "Status 500 - Internal Server Error"
-          schema:
-            $ref: "#/definitions/errorResponse"
           examples:
             application/json: "{\n\t\"code\": \"500\",\n\t\"message\": \"Internal\
               \ Server Error\",\n  \t\"detailedMessage\": \"High system resource usage\"\
               \n}"
+          schema:
+            $ref: "#/definitions/errorResponse"
       x-swagger-router-controller: "Speakers"
     delete:
       tags:
@@ -810,12 +783,12 @@ paths:
             $ref: "#/definitions/errorResponse"
         500:
           description: "Status 500 - Internal Server Error"
-          schema:
-            $ref: "#/definitions/errorResponse"
           examples:
             application/json: "{\n\t\"code\": \"500\",\n\t\"message\": \"Internal\
               \ Server Error\",\n  \t\"detailedMessage\": \"High system resource usage\"\
               \n}"
+          schema:
+            $ref: "#/definitions/errorResponse"
       x-swagger-router-controller: "Speakers"
     x-restlet:
       section: "Speakers"
@@ -858,8 +831,6 @@ paths:
       responses:
         200:
           description: "Status 200 - OK"
-          schema:
-            $ref: "#/definitions/lecture"
           examples:
             application/json: "{\n\t\"id\": 2,\n\t\"name\": \"Angular Developer\"\
               ,\n\t\"email\": \"developer.angular@totvs.com.br\",\n\t\"description\"\
@@ -867,13 +838,15 @@ paths:
               \t\t\"id\": \"1\",\n\t\t\"title\": \"Unit testing for beginners\"\n\t\
               },{\n\t\t\"id\": \"2\",\n\t\t\"title\": \"Basic RESTful API in NodeJS\"\
               \n\t}]\n}"
+          schema:
+            $ref: "#/definitions/lecture"
         404:
           description: "Status 404 - Not Found"
-          schema:
-            $ref: "#/definitions/errorResponse"
           examples:
             application/json: "{\n\t\"code\": \"404\",\n\t\"message\": \"Not Found\"\
               ,\n\t\"detailedMessage\": \"Speaker not found\"\n}"
+          schema:
+            $ref: "#/definitions/errorResponse"
         500:
           description: "Status 500 - Internal Server Error"
           schema:
@@ -973,11 +946,11 @@ paths:
             $ref: "#/definitions/track"
         404:
           description: "Status 404 - Not Found"
-          schema:
-            $ref: "#/definitions/errorResponse"
           examples:
             application/json: "{\n\t\"code\": \"404\",\n\t\"message\": \"Not Found\"\
               ,\n\t\"detailedMessage\": \"Track not found\"\n}"
+          schema:
+            $ref: "#/definitions/errorResponse"
         500:
           description: "Status 500 - Internal Server Error"
           schema:
@@ -1107,12 +1080,12 @@ paths:
             $ref: "#/definitions/usersResponse"
         500:
           description: "Status 500 - Internal Server Error"
-          schema:
-            $ref: "#/definitions/errorResponse"
           examples:
             application/json: "{\n\t\"code\": \"500\",\n\t\"message\": \"Internal\
               \ Server Error\",\n  \t\"detailedMessage\": \"High system resource usage\"\
               \n}"
+          schema:
+            $ref: "#/definitions/errorResponse"
       x-swagger-router-controller: "Users"
     post:
       tags:
@@ -1136,12 +1109,12 @@ paths:
             $ref: "#/definitions/user"
         500:
           description: "Status 500 - Internal Server Error"
-          schema:
-            $ref: "#/definitions/errorResponse"
           examples:
             application/json: "{\n\t\"code\": \"500\",\n\t\"message\": \"Internal\
               \ Server Error\",\n  \t\"detailedMessage\": \"High system resource usage\"\
               \n}"
+          schema:
+            $ref: "#/definitions/errorResponse"
       x-swagger-router-controller: "Users"
     x-restlet:
       section: "Users"
@@ -1167,19 +1140,19 @@ paths:
             $ref: "#/definitions/user"
         404:
           description: "Status 404 - Not Found"
-          schema:
-            $ref: "#/definitions/errorResponse"
           examples:
             application/json: "{\n\t\"code\": \"404\",\n\t\"message\": \"Not Found\"\
               ,\n\t\"detailedMessage\": \"User not found\"\n}"
-        500:
-          description: "Status 500 - Internal Server Error"
           schema:
             $ref: "#/definitions/errorResponse"
+        500:
+          description: "Status 500 - Internal Server Error"
           examples:
             application/json: "{\n\t\"code\": \"500\",\n\t\"message\": \"Internal\
               \ Server Error\",\n  \t\"detailedMessage\": \"High system resource usage\"\
               \n}"
+          schema:
+            $ref: "#/definitions/errorResponse"
       x-swagger-router-controller: "Users"
     put:
       tags:
@@ -1356,6 +1329,50 @@ paths:
       x-swagger-router-controller: "Auth"
     x-restlet:
       section: "Auth"
+  /auth/recovery:
+    post:
+      tags:
+      - "Auth"
+      summary: "Endpoint for password recovery"
+      operationId: "authRecoveryPOST"
+      consumes: []
+      parameters:
+      - in: "body"
+        name: "body"
+        required: true
+        schema:
+          $ref: "#/definitions/passwordRecovery"
+      responses:
+        204:
+          description: "Status 204"
+        404:
+          description: "Invalid email"
+          schema:
+            type: "object"
+      x-swagger-router-controller: "Auth"
+    x-restlet:
+      section: "Auth"
+  /auth/new-password:
+    post:
+      tags:
+      - "Auth"
+      summary: "Endpoint para cadastro de nova senha"
+      operationId: "authNew_passwordPOST"
+      consumes: []
+      parameters:
+      - in: "body"
+        name: "body"
+        required: true
+        schema:
+          $ref: "#/definitions/new_password"
+      responses:
+        204:
+          description: "Status 204"
+        401:
+          description: "Status 401"
+      x-swagger-router-controller: "Auth"
+    x-restlet:
+      section: "Auth"
 definitions:
   errorResponse:
     type: "object"
@@ -1391,7 +1408,7 @@ definitions:
         type: "number"
         description: "Length"
     example:
-      length: 4
+      length: 0.80082819046101150206595775671303272247314453125
     x-restlet:
       section: "General"
   conference:
@@ -1460,18 +1477,6 @@ definitions:
       totvs_sync_date: "2000-01-23T04:56:07.000+00:00"
     x-restlet:
       section: "Conference"
-  pingResponse:
-    type: "object"
-    properties:
-      hasNext:
-        type: "boolean"
-        description: "Indicate if has next page of data."
-      items:
-        type: "array"
-        description: "Empty json."
-        items: {}
-    x-restlet:
-      section: "ping"
   lecture:
     type: "object"
     required:
@@ -1970,6 +1975,38 @@ definitions:
         type: "string"
     x-restlet:
       section: "Auth"
+  passwordRecovery:
+    type: "object"
+    properties:
+      email:
+        type: "string"
+      retry:
+        type: "integer"
+    x-restlet:
+      section: "Auth"
+  totvs_messages:
+    type: "array"
+    items:
+      $ref: "#/definitions/totvs_messages_inner"
+    x-restlet:
+      section: "Auth"
+  new_password:
+    type: "object"
+    required:
+    - "newPassword"
+    properties:
+      newPassword:
+        type: "string"
+    x-restlet:
+      section: "Auth"
+  totvs_messages_inner:
+    properties:
+      type:
+        type: "string"
+      code:
+        type: "string"
+      detail:
+        type: "string"
 x-restlet:
   sections:
     General: {}
