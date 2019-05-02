@@ -18,7 +18,9 @@ export class AuthGuardService implements CanActivate, CanActivateChild {
   }
 
   async checkLogin() {
-    const isLoggedIn = await this.loginService.isLoggedIn();
+    const isLoggedIn = sessionStorage.getItem('THF_USER_LOGIN');
+    // tslint:disable-next-line:no-commented-code
+    // const isLoggedIn = await this.loginService.isLoggedIn();
 
     if (!isLoggedIn) {
       this.router.navigate(['/login']);

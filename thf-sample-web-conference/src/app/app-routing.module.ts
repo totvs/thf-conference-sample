@@ -9,24 +9,36 @@ import { LectureEditComponent } from './lecture/lecture-edit/lecture-edit.compon
 import { SpeakerComponent } from './speaker/speaker.component';
 import { SpeakerDetailComponent } from './speaker/speaker-detail/speaker-detail.component';
 import { SpeakerEditComponent } from './speaker/speaker-edit/speaker-edit.component';
-import { BlockedUserComponent } from './blocked-user/blocked-user.component';
-import { ChangePasswordComponent } from './change-password/change-password.component';
+import { ThfPageBlockedUserComponent, ThfPageChangePasswordComponent } from '@totvs/thf-templates';
 
 const routes: Routes = [
+
+  {
+    path: 'access-denied',
+    component: ThfPageBlockedUserComponent,
+    data: {
+      contactEmail: 'user@totvs.com.br',
+      contactPhone: '0800 709 8100',
+      reason: 'expiredPassword',
+      urlBack: '/home'
+    }
+  },
+  {
+    path: 'new-password',
+    component: ThfPageChangePasswordComponent,
+    data: {
+      serviceApi: 'http://localhost:8080/conference-api/api/v1/auth/new-password',
+      hideCurrentPassword: true
+    }
+  },
   {
     path: 'login',
     loadChildren: 'app/login/login.module#LoginModule'
   },
   {
-    path: 'blocked-user', component: BlockedUserComponent
-  },
-  {
-    path: 'change-password', component: ChangePasswordComponent
-  },
-  {
     path: '',
     component: HomeComponent,
-    // canActivate: [AuthGuardService],
+    canActivate: [AuthGuardService],
     children: [
       { path: '', redirectTo: '/home', pathMatch: 'full' },
       { path: 'home', loadChildren: 'app/home/home.module#HomeModule' },
@@ -50,9 +62,10 @@ const routes: Routes = [
         ]
       },
       { path: 'tracks', loadChildren: 'app/track/track.module#TrackModule' },
-      // { path: '**', redirectTo: '/home', pathMatch: 'full'}
+      { path: '**', redirectTo: '/home', pathMatch: 'full'}
     ]
   }
+
 ];
 
 @NgModule({
