@@ -19,8 +19,8 @@ const routes: Routes = [
     data: {
       contactEmail: 'user@totvs.com.br',
       contactPhone: '0800 709 8100',
-      reason: 'expiredPassword',
-      urlBack: '/home'
+      reason: 'exceededAttempts',
+      urlBack: '/login'
     }
   },
   {

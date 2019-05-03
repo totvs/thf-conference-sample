@@ -11,7 +11,6 @@ import { LectureModule } from './lecture/lecture.module';
 import { NoteModule } from './note/note.module';
 import { SpeakerModule } from './speaker/speaker.module';
 import { TrackModule } from './track/track.module';
-import { LoginService } from './login/login.service';
 
 @NgModule({
   imports: [
@@ -24,14 +23,12 @@ import { LoginService } from './login/login.service';
     NoteModule,
     SpeakerModule,
     TrackModule,
-
     SharedModule
   ],
   declarations: [
     AppComponent
   ],
-  providers: [ LoginService
-  ],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,12 +1,10 @@
 import { ActivatedRouteSnapshot, CanActivate, CanActivateChild, Router, RouterStateSnapshot } from '@angular/router';
 import { Injectable } from '@angular/core';
 
-import { LoginService } from '../login/login.service';
-
 @Injectable()
 export class AuthGuardService implements CanActivate, CanActivateChild {
 
-  constructor(private loginService: LoginService, private router: Router) {
+  constructor(private router: Router) {
   }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
@@ -19,8 +17,6 @@ export class AuthGuardService implements CanActivate, CanActivateChild {
 
   async checkLogin() {
     const isLoggedIn = sessionStorage.getItem('THF_USER_LOGIN');
-    // tslint:disable-next-line:no-commented-code
-    // const isLoggedIn = await this.loginService.isLoggedIn();
 
     if (!isLoggedIn) {
       this.router.navigate(['/login']);

@@ -26,10 +26,7 @@ export class HomeComponent {
 
   logout(): void {
     sessionStorage.removeItem('THF_USER_LOGIN');
-    // tslint:disable-next-line:no-commented-code
-    // this.storage.remove('isLoggedIn').then(() => {
-    //   this.router.navigate(['/login']);
-    // });
+    this.router.navigate(['/login']);
   }
 
 }
