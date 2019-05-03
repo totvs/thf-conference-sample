@@ -1,4 +1,3 @@
-import { SharedModule } from './shared/shared.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
@@ -9,6 +8,7 @@ import { ConferenceModule } from './conference/conference.module';
 import { HomeModule } from './home/home.module';
 import { LectureModule } from './lecture/lecture.module';
 import { NoteModule } from './note/note.module';
+import { SharedModule } from './shared/shared.module';
 import { SpeakerModule } from './speaker/speaker.module';
 import { TrackModule } from './track/track.module';
 
